@@ -14,7 +14,7 @@ export const createStyleBuilder = <
   C extends {
     [key: string]: {
       [key: string]: any;
-      __defaultPropertiesToSet?: (
+      __propertiesToSet: (
         | keyof ViewStyle
         | keyof TextStyle
         | keyof ImageStyle
@@ -24,7 +24,7 @@ export const createStyleBuilder = <
   },
   P extends {
     [key in keyof C]: `${NonSymbol<key>}-${
-      | NonSymbol<keyof Omit<C[key], "__defaultPropertiesToSet">>
+      | NonSymbol<keyof Omit<C[key], "__propertiesToSet">>
       | `[${string}]`}`;
   }
 >(
@@ -42,17 +42,21 @@ export const createStyleBuilder = <
       if (prop && value && pertinentCfg) {
         const partInsideBracket = value.match(/^\[(.*)\]$/)?.[1];
 
-        const val =
-          (partInsideBracket && cleanMaybeNumberString(partInsideBracket)) ||
-          pertinentCfg?.[value];
+        const val = (() => {
+          if (partInsideBracket) {
+            return partInsideBracket
+              .split(",")
+              .map((bit) => cleanMaybeNumberString(bit.trim()));
+          } else {
+            return pertinentCfg?.[value];
+          }
+        })();
 
         if (val !== undefined && val !== null) {
-          if (typeof val === "object") {
-            styles = { ...styles, ...val };
-          } else if (Array.isArray(pertinentCfg.__defaultPropertiesToSet)) {
-            for (const p of pertinentCfg.__defaultPropertiesToSet) {
-              styles[p] = val;
-            }
+          const isValArray = Array.isArray(val);
+          for (const i in pertinentCfg.__propertiesToSet) {
+            const p = pertinentCfg.__propertiesToSet[i];
+            styles[p] = isValArray ? (val.length === 1 ? val[0] : val[i]) : val;
           }
         }
       }
@@ -61,8 +65,8 @@ export const createStyleBuilder = <
     // Massage for bg-opacity
     if (styles["--bg-opacity"] && styles.backgroundColor) {
       const { r, g, b } = hexToRgb(styles.backgroundColor);
-      console.log(r, g, b);
       styles.backgroundColor = `rgba(${r}, ${g}, ${b}, ${styles["--bg-opacity"]})`;
+      delete styles["--bg-opacity"];
     }
 
     return styles;
