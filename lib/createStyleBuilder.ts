@@ -1,11 +1,10 @@
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
-import { hexToRgb } from "./hexToRgb";
 import { colorStringToRgb } from "./colorStringToRgb";
 
 const cleanMaybeNumberString = (val: string): string | number =>
   /^\d+$/.test(val) ? Number(val) : val;
 
-type NonSymbol<T> = T extends number | string | symbol ? Exclude<T, symbol> : T;
+type NonSymbol<T> = Exclude<T, symbol>;
 type ValueOf<T> = T[keyof T];
 
 /**
@@ -14,6 +13,7 @@ type ValueOf<T> = T[keyof T];
 export const createStyleBuilder = <
   C extends {
     [key: string]: {
+      // TODO: This shouldn't be `any`. Should match up with __propertiesToSet
       [key: string]: any;
       __propertiesToSet: (
         | keyof ViewStyle

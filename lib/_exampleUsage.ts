@@ -53,127 +53,127 @@ const borderRadii = {
 export const { builder: sb, config } = createStyleBuilder({
   // Margin
   m: {
-    __defaultPropertiesToSet: ["margin"],
+    __propertiesToSet: ["margin"],
     ...spacing,
   },
   mx: {
-    __defaultPropertiesToSet: ["marginLeft", "marginRight"],
+    __propertiesToSet: ["marginLeft", "marginRight"],
     ...spacing,
   },
   my: {
-    __defaultPropertiesToSet: ["marginTop", "marginBottom"],
+    __propertiesToSet: ["marginTop", "marginBottom"],
     ...spacing,
   },
   ml: {
-    __defaultPropertiesToSet: ["marginLeft"],
+    __propertiesToSet: ["marginLeft"],
     ...spacing,
   },
   mr: {
-    __defaultPropertiesToSet: ["marginRight"],
+    __propertiesToSet: ["marginRight"],
     ...spacing,
   },
   mt: {
-    __defaultPropertiesToSet: ["marginTop"],
+    __propertiesToSet: ["marginTop"],
     ...spacing,
   },
   mb: {
-    __defaultPropertiesToSet: ["marginBottom"],
+    __propertiesToSet: ["marginBottom"],
     ...spacing,
   },
   // Padding
   p: {
-    __defaultPropertiesToSet: ["padding"],
+    __propertiesToSet: ["padding"],
     ...spacing,
   },
   px: {
-    __defaultPropertiesToSet: ["paddingLeft", "paddingRight"],
+    __propertiesToSet: ["paddingLeft", "paddingRight"],
     ...spacing,
   },
   py: {
-    __defaultPropertiesToSet: ["paddingTop", "paddingBottom"],
+    __propertiesToSet: ["paddingTop", "paddingBottom"],
     ...spacing,
   },
   pl: {
-    __defaultPropertiesToSet: ["paddingLeft"],
+    __propertiesToSet: ["paddingLeft"],
     ...spacing,
   },
   pr: {
-    __defaultPropertiesToSet: ["paddingRight"],
+    __propertiesToSet: ["paddingRight"],
     ...spacing,
   },
   pt: {
-    __defaultPropertiesToSet: ["paddingTop"],
+    __propertiesToSet: ["paddingTop"],
     ...spacing,
   },
   pb: {
-    __defaultPropertiesToSet: ["paddingBottom"],
+    __propertiesToSet: ["paddingBottom"],
     ...spacing,
   },
   // Position
   position: {
-    __defaultPropertiesToSet: ["position"],
+    __propertiesToSet: ["position"],
     relative: "relative",
     absolute: "absolute",
   },
   inset: {
-    __defaultPropertiesToSet: ["top", "bottom", "left", "right"],
+    __propertiesToSet: ["top", "bottom", "left", "right"],
     ...spacing,
   },
   "inset-x": {
-    __defaultPropertiesToSet: ["left", "right"],
+    __propertiesToSet: ["left", "right"],
     ...spacing,
   },
   "inset-y": {
-    __defaultPropertiesToSet: ["top", "bottom"],
+    __propertiesToSet: ["top", "bottom"],
     ...spacing,
   },
   left: {
-    __defaultPropertiesToSet: ["left"],
+    __propertiesToSet: ["left"],
     ...spacing,
   },
   right: {
-    __defaultPropertiesToSet: ["right"],
+    __propertiesToSet: ["right"],
     ...spacing,
   },
   top: {
-    __defaultPropertiesToSet: ["top"],
+    __propertiesToSet: ["top"],
     ...spacing,
   },
   bottom: {
-    __defaultPropertiesToSet: ["bottom"],
+    __propertiesToSet: ["bottom"],
     ...spacing,
   },
   // Sizing
   w: {
-    __defaultPropertiesToSet: ["width"],
+    __propertiesToSet: ["width"],
     ...spacing,
   },
   "min-w": {
-    __defaultPropertiesToSet: ["minWidth"],
+    __propertiesToSet: ["minWidth"],
     ...spacing,
   },
   "max-w": {
-    __defaultPropertiesToSet: ["maxWidth"],
+    __propertiesToSet: ["maxWidth"],
     ...spacing,
   },
   h: {
-    __defaultPropertiesToSet: ["height"],
+    __propertiesToSet: ["height"],
     ...spacing,
   },
   "min-h": {
-    __defaultPropertiesToSet: ["minWidth"],
+    __propertiesToSet: ["minWidth"],
     ...spacing,
   },
   "max-h": {
-    __defaultPropertiesToSet: ["maxHeight"],
+    __propertiesToSet: ["maxHeight"],
     ...spacing,
   },
   bg: {
-    __defaultPropertiesToSet: ["backgroundColor"],
+    __propertiesToSet: ["backgroundColor"],
     ...colors,
   },
   "bg-opacity": {
-    __defaultPropertiesToSet: ["--bg-opacity"],
+    __propertiesToSet: ["--bg-opacity"],
     0: 0,
     10: 0.1,
     25: 0.25,
@@ -185,74 +185,69 @@ export const { builder: sb, config } = createStyleBuilder({
     100: 1,
   },
   border: {
-    __defaultPropertiesToSet: ["borderWidth"],
+    __propertiesToSet: ["borderWidth"],
     ...borderSizes,
   },
   "border-t": {
-    __defaultPropertiesToSet: ["borderTopWidth"],
+    __propertiesToSet: ["borderTopWidth"],
     ...borderSizes,
   },
   "border-b": {
-    __defaultPropertiesToSet: ["borderBottomWidth"],
+    __propertiesToSet: ["borderBottomWidth"],
     ...borderSizes,
   },
   "border-l": {
-    __defaultPropertiesToSet: ["borderLeftWidth"],
+    __propertiesToSet: ["borderLeftWidth"],
     ...borderSizes,
   },
   "border-r": {
-    __defaultPropertiesToSet: ["borderRightWidth"],
+    __propertiesToSet: ["borderRightWidth"],
     ...borderSizes,
   },
   "border-color": {
-    __defaultPropertiesToSet: ["borderColor"],
+    __propertiesToSet: ["borderColor"],
     ...colors,
   },
   rounded: {
-    __defaultPropertiesToSet: ["borderRadius"],
+    __propertiesToSet: ["borderRadius"],
     ...borderRadii,
   },
   "rounded-t": {
-    __defaultPropertiesToSet: ["borderTopLeftRadius", "borderTopRightRadius"],
+    __propertiesToSet: ["borderTopLeftRadius", "borderTopRightRadius"],
     ...borderRadii,
   },
   "rounded-b": {
-    __defaultPropertiesToSet: [
-      "borderBottomLeftRadius",
-      "borderBottomRightRadius",
-    ],
+    __propertiesToSet: ["borderBottomLeftRadius", "borderBottomRightRadius"],
     ...borderRadii,
   },
   "rounded-l": {
-    __defaultPropertiesToSet: ["borderBottomLeftRadius", "borderTopLeftRadius"],
+    __propertiesToSet: ["borderBottomLeftRadius", "borderTopLeftRadius"],
     ...borderRadii,
   },
   "rounded-r": {
-    __defaultPropertiesToSet: [
-      "borderBottomRightRadius",
-      "borderTopRightRadius",
-    ],
+    __propertiesToSet: ["borderBottomRightRadius", "borderTopRightRadius"],
     ...borderRadii,
   },
-  flex: {
-    1: { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },
-    auto: { flexGrow: 1, flexShrink: 1, flexBasis: "auto" },
-    initial: { flexGrow: 0, flexShrink: 1, flexBasis: "auto" },
-    none: { flexGrow: 0, flexShrink: 0, flexBasis: "auto" },
-    row: { flexDirection: "row" },
-    "row-reverse": { flexDirection: "row-reverse" },
-    col: { flexDirection: "column" },
-    "col-reverse": { flexDirection: "column-reverse" },
-    grow: { flexGrow: 1 },
-    "grow-0": { flexGrow: 0 },
-    shrink: { flexShrink: 1 },
-    "shrink-0": { flexShrink: 0 },
-    wrap: { flexWrap: "wrap" },
-    "wrap-reverse": { flexWrap: "wrap-reverse" },
-    nowrap: { flexWrap: "nowrap" },
-  },
+  // TODO: This doesn't work.
+  // flex: {
+  //   1: { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },
+  //   auto: { flexGrow: 1, flexShrink: 1, flexBasis: "auto" },
+  //   initial: { flexGrow: 0, flexShrink: 1, flexBasis: "auto" },
+  //   none: { flexGrow: 0, flexShrink: 0, flexBasis: "auto" },
+  //   row: { flexDirection: "row" },
+  //   "row-reverse": { flexDirection: "row-reverse" },
+  //   col: { flexDirection: "column" },
+  //   "col-reverse": { flexDirection: "column-reverse" },
+  //   grow: { flexGrow: 1 },
+  //   "grow-0": { flexGrow: 0 },
+  //   shrink: { flexShrink: 1 },
+  //   "shrink-0": { flexShrink: 0 },
+  //   wrap: { flexWrap: "wrap" },
+  //   "wrap-reverse": { flexWrap: "wrap-reverse" },
+  //   nowrap: { flexWrap: "nowrap" },
+  // },
   justify: {
-    __defaultPropertiesToSet: ["justifyContent"],
+    __propertiesToSet: ["justifyContent"],
     start: "flex-start",
     end: "flex-end",
     center: "center",
@@ -261,56 +256,32 @@ export const { builder: sb, config } = createStyleBuilder({
     evenly: "space-evenly",
   },
   items: {
-    __defaultPropertiesToSet: ["alignItems"],
+    __propertiesToSet: ["alignItems"],
     start: "flex-start",
     end: "flex-end",
     center: "center",
     baseline: "baseline",
     stretch: "stretch",
   },
-  // TODO: Typography
   text: {
-    "text-xs": {
-      fontSize: 12,
-      lineHeight: 16,
-    },
-    "text-sm": {
-      fontSize: 14,
-      lineHeight: 20,
-    },
-    "text-base": {
-      fontSize: 16,
-      lineHeight: 24,
-    },
-    "text-lg": {
-      fontSize: 18,
-      lineHeight: 28,
-    },
-    "text-xl": {
-      fontSize: 20,
-      lineHeight: 28,
-    },
-    "text-2xl": {
-      fontSize: 24,
-      lineHeight: 32,
-    },
-    "text-3xl": {
-      fontSize: 30,
-      lineHeight: 36,
-    },
-    "text-4xl": {
-      fontSize: 36,
-      lineHeight: 40,
-    },
+    __propertiesToSet: ["fontSize", "lineHeight"],
+    "text-xs": [12, 16],
+    "text-sm": [14, 20],
+    "text-base": [16, 24],
+    "text-lg": [18, 28],
+    "text-xl": [20, 28],
+    "text-2xl": [24, 32],
+    "text-3xl": [30, 36],
+    "text-4xl": [36, 40],
   },
   overflow: {
-    __defaultPropertiesToSet: ["overflow"],
+    __propertiesToSet: ["overflow"],
     visible: "visible",
     hidden: "hidden",
     scroll: "scroll",
   },
   z: {
-    __defaultPropertiesToSet: ["zIndex"],
+    __propertiesToSet: ["zIndex"],
     0: 0,
     1: 1,
     2: 2,
