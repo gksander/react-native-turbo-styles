@@ -7,22 +7,24 @@ const cleanMaybeNumberString = (val: string): string | number =>
 type NonSymbol<T> = Exclude<T, symbol>;
 type ValueOf<T> = T[keyof T];
 
+type ThemeConfig = {
+  [key: string]: {
+    // TODO: This shouldn't be `any`. Should match up with __propertiesToSet
+    [key: string]: any;
+    __propertiesToSet: (
+      | keyof ViewStyle
+      | keyof TextStyle
+      | keyof ImageStyle
+      | "--bg-opacity"
+    )[];
+  };
+};
+
 /**
  * Style builder
  */
 export const createStyleBuilder = <
-  C extends {
-    [key: string]: {
-      // TODO: This shouldn't be `any`. Should match up with __propertiesToSet
-      [key: string]: any;
-      __propertiesToSet: (
-        | keyof ViewStyle
-        | keyof TextStyle
-        | keyof ImageStyle
-        | "--bg-opacity"
-      )[];
-    };
-  },
+  C extends ThemeConfig,
   P extends {
     [key in keyof C]: `${NonSymbol<key>}-${
       | NonSymbol<keyof Omit<C[key], "__propertiesToSet">>
