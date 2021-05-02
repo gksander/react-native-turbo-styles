@@ -1,5 +1,6 @@
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 import { hexToRgb } from "./hexToRgb";
+import { colorStringToRgb } from "./colorStringToRgb";
 
 const cleanMaybeNumberString = (val: string): string | number =>
   /^\d+$/.test(val) ? Number(val) : val;
@@ -64,7 +65,7 @@ export const createStyleBuilder = <
 
     // Massage for bg-opacity
     if (styles["--bg-opacity"] && styles.backgroundColor) {
-      const { r, g, b } = hexToRgb(styles.backgroundColor);
+      const { r, g, b } = colorStringToRgb(styles.backgroundColor);
       styles.backgroundColor = `rgba(${r}, ${g}, ${b}, ${styles["--bg-opacity"]})`;
       delete styles["--bg-opacity"];
     }
