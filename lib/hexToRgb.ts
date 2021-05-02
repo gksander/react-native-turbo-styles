@@ -16,6 +16,11 @@ export const hexToRgb = (
     const [r, g, b] = matches.map((x) =>
       parseInt(isShortVal ? `${x}${x}` : x, 16)
     );
+
+    if (isNaN(r) || isNaN(g) || isNaN(b)) {
+      throw new Error("Hex produces invalid r,g,b");
+    }
+
     return { r, g, b };
   } else {
     throw new Error("Could not parse");
