@@ -66,10 +66,15 @@ describe("createStyleBuilder", () => {
         base: 8,
         uneven: [4, 12],
       },
+      text: {
+        __propertiesToSet: ["fontSize", "lineHeight"],
+        lg: [24, 1.7],
+      },
     });
 
     expect(builder("mx-base")).toEqual({ marginLeft: 8, marginRight: 8 });
     expect(builder("mx-uneven")).toEqual({ marginLeft: 4, marginRight: 12 });
+    expect(builder("text-lg")).toEqual({ fontSize: 24, lineHeight: 1.7 });
   });
 
   it("allows single override values", () => {
