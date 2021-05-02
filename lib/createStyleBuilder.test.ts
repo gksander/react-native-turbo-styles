@@ -47,6 +47,7 @@ describe("createStyleBuilder", () => {
       bg: {
         __propertiesToSet: ["backgroundColor"],
         red: "#f00",
+        blue: "rgb(0,0,255)",
       },
       "bg-opacity": {
         __propertiesToSet: ["--bg-opacity"],
@@ -56,6 +57,10 @@ describe("createStyleBuilder", () => {
 
     expect(builder("bg-red", "bg-opacity-50")).toEqual({
       backgroundColor: "rgba(255, 0, 0, 0.5)",
+    });
+    // TODO:
+    expect(builder("bg-blue", "bg-opacity-50")).toEqual({
+      backgroundColor: "rgba(0, 0, 255, 0.5)",
     });
   });
 
@@ -104,6 +109,4 @@ describe("createStyleBuilder", () => {
 
     expect(builder("mx-[4,12]")).toEqual({ marginLeft: 4, marginRight: 12 });
   });
-
-  // TODO: Handle rgb values for colors...
 });
