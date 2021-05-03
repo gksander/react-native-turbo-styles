@@ -7,6 +7,7 @@ type Constraints = {
   bgOpacities: Record<string | number, number>;
   borderSizes: Record<string | number, number>;
   borderRadii: Record<string | number, number>;
+  fontSizes: Record<string | number, [number, number]>;
 };
 
 type NonSymbol<T> = Exclude<T, symbol>;
@@ -184,6 +185,46 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       };
     },
     z: (inp: string) => <ViewStyle>{ zIndex: parseInt(inp) },
+    text: (inp: NonSymbol<keyof C["fontSizes"]>) => {
+      const [fontSize, lineHeight] = constraints.fontSizes[inp];
+      return <TextStyle>{ fontSize, lineHeight };
+    },
+    flex: (
+      inp:
+        | "1"
+        | "auto"
+        | "initial"
+        | "none"
+        | "row"
+        | "row-reverse"
+        | "col"
+        | "col-reverse"
+        | "grow"
+        | "grow-0"
+        | "shrink"
+        | "shrink-0"
+        | "wrap"
+        | "wrap-reverse"
+        | "nowrap"
+    ) => {
+      return <FlexStyle>{
+        1: { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },
+        auto: { flexGrow: 1, flexShrink: 1, flexBasis: "auto" },
+        initial: { flexGrow: 0, flexShrink: 1, flexBasis: "auto" },
+        none: { flexGrow: 0, flexShrink: 0, flexBasis: "auto" },
+        row: { flexDirection: "row" },
+        "row-reverse": { flexDirection: "row-reverse" },
+        col: { flexDirection: "column" },
+        "col-reverse": { flexDirection: "column-reverse" },
+        grow: { flexGrow: 1 },
+        "grow-0": { flexGrow: 0 },
+        shrink: { flexShrink: 1 },
+        "shrink-0": { flexShrink: 0 },
+        wrap: { flexWrap: "wrap" },
+        "wrap-reverse": { flexWrap: "wrap-reverse" },
+        nowrap: { flexWrap: "nowrap" },
+      }[inp];
+    },
   } as const;
 
   /**

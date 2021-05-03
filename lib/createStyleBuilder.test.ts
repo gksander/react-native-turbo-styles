@@ -23,6 +23,10 @@ const makeBasicBuilder = () =>
       md: 6,
       full: 9999,
     },
+    fontSizes: {
+      base: [16, 24],
+      lg: [18, 28],
+    },
   }).builder;
 
 describe("createStyleBuilder", () => {
@@ -97,6 +101,20 @@ describe("createStyleBuilder", () => {
   it("handles zIndex", () => {
     const builder = makeBasicBuilder();
     expect(builder("z-2")).toEqual({ zIndex: 2 });
+  });
+
+  it("handles constrained font sizes", () => {
+    const builder = makeBasicBuilder();
+    expect(builder("text-base")).toEqual({ fontSize: 16, lineHeight: 24 });
+  });
+
+  it("handles flex constraints", () => {
+    const builder = makeBasicBuilder();
+    expect(builder("flex-1")).toEqual({
+      flexGrow: 1,
+      flexShrink: 1,
+      flexBasis: "0%",
+    });
   });
 });
 
