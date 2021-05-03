@@ -170,7 +170,7 @@ One important thing to note here is this bit: `as ConstraintOverride<'w'>`. TS t
 | `flex:row` | N/A | ❌ | `{ flexDirection: "row" }` | `flex:row` |
 | `flex:row-reverse` | N/A | ❌ | `{ flexDirection: "row" }` | `flex:row-reverse` |
 
-TODO: `text-` classes.
+TODO: `text-` classes, rest of flex classes
 
 ## TODO:
 
