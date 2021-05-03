@@ -287,12 +287,12 @@ export const flattenColor = <
   key: K,
   rename?: Rename
 ): Record<
-  `${undefined extends Rename ? K : Rename}${NonSymbol<keyof TwColors[K]>}`,
+  `${undefined extends Rename ? K : Rename}-${NonSymbol<keyof TwColors[K]>}`,
   string
 > => {
   return Object.entries(twColors[key]).reduce<Record<string, string>>(
     (acc, [weight, value]) => {
-      acc[`${rename ? rename : key}${weight}`] = value;
+      acc[`${rename ? rename : key}-${weight}`] = value;
       return acc;
     },
     {}

@@ -227,7 +227,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
             typeof config[k]
           >[0] extends undefined
             ? `${NonSymbol<k>}`
-            : `${NonSymbol<k>}-${NonSymbol<Parameters<typeof config[k]>[0]>}`;
+            : `${NonSymbol<k>}:${NonSymbol<Parameters<typeof config[k]>[0]>}`;
         }
       >
     >
@@ -235,12 +235,12 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     let styles = {} as Record<string | number, any>;
 
     for (let c of args) {
-      const m = c.match(/^(.+)-(.+)$/);
+      const m = c.match(/^(.+):(.+)$/);
       const prop = m?.[1];
       const value = m?.[2];
+      const handler = config?.[prop as NonSymbol<keyof typeof config>];
 
-      if (prop && value) {
-        const handler = config?.[prop as NonSymbol<keyof typeof config>];
+      if (prop && value && handler) {
         // @ts-ignore
         styles = { ...styles, ...handler(value) };
       } else {
