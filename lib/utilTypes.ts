@@ -10,3 +10,10 @@ export type Constraints = {
 export type NonSymbol<T> = Exclude<T, symbol>;
 
 export type ValueOf<T> = T[keyof T];
+
+/**
+ * Declare an override type, since TS doesn't understand string template literals for values of
+ *  template literal types. E.g. TS can't make sense of `h-[${3 + 2}]` being of type `h-[${string}]`.
+ *  So, you can do `h-[${3 + 2}]` as Override<'h'> as a workaround.
+ */
+export type ConstraintOverride<T extends string> = `${T}-[${string}]`;
