@@ -14,7 +14,6 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     key: sizeInput
   ) => {
     const val = getSizeValue(key);
-    // S TODO: Improve this?
     return properties.reduce<FlexStyle>((acc, prop) => {
       // @ts-ignore
       acc[prop] = val;
@@ -30,7 +29,6 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     inp: colorInput
   ) => {
     const val = getColorValue(inp);
-    // S TODO: Improve this?
     return properties.reduce<TextStyle>((acc, prop) => {
       // @ts-ignore
       acc[prop] = val;
@@ -49,7 +47,6 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     inp: borderSizeInput
   ) => {
     const val = getBorderSizeValue(inp);
-    // S TODO: Improve this?
     return properties.reduce<ViewStyle>((acc, prop) => {
       // @ts-ignore
       acc[prop] = val;
@@ -68,7 +65,6 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     inp: borderRadiusInput
   ) => {
     const val = getBorderRadiusValue(inp);
-    // S TODO: Improve this?
     return properties.reduce<ViewStyle>((acc, prop) => {
       // @ts-ignore
       acc[prop] = val;
@@ -112,9 +108,13 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     bg: colorHandler("backgroundColor"),
     "border-color": colorHandler("borderColor"),
     // Background opacity
-    opacity: (inp: NonSymbol<keyof C["opacities"]> | `[${number}]`) => {
+    "bg-opacity": (inp: NonSymbol<keyof C["opacities"]> | `[${number}]`) => {
       const val = constraints.opacities[inp] ?? extractFromBrackets(inp);
       return { "--bg-opacity": val };
+    },
+    opacity: (inp: NonSymbol<keyof C["opacities"]> | `[${number}]`) => {
+      const val = constraints.opacities[inp] ?? extractFromBrackets(inp);
+      return <ViewStyle>{ opacity: val };
     },
     relative: () => <FlexStyle>{ position: "relative" },
     absolute: () => <FlexStyle>{ position: "absolute" },
@@ -147,7 +147,6 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       <ViewStyle>{
         overflow,
       },
-    // TODO: Flex helpers
     justify: (
       inp: "start" | "end" | "center" | "between" | "around" | "evenly"
     ) => {
