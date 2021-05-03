@@ -6,6 +6,7 @@ type Constraints = {
   colors: Record<string | number, string>;
   bgOpacities: Record<string | number, number>;
   borderSizes: Record<string | number, number>;
+  borderRadii: Record<string | number, number>;
 };
 
 type NonSymbol<T> = Exclude<T, symbol>;
@@ -66,6 +67,25 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     }, {});
   };
 
+  // Border radii
+  type borderRadiusInput = NonSymbol<keyof C["borderRadii"]> | `[${string}]`;
+  const getBorderRadiusValue = (
+    val: borderRadiusInput
+  ): string | number | undefined => {
+    return constraints.borderRadii[val] ?? extractFromBrackets(val);
+  };
+  const borderRadiusHandler = (...properties: Array<keyof ViewStyle>) => (
+    inp: borderRadiusInput
+  ) => {
+    const val = getBorderRadiusValue(inp);
+    // S TODO: Improve this?
+    return properties.reduce<ViewStyle>((acc, prop) => {
+      // @ts-ignore
+      acc[prop] = val;
+      return acc;
+    }, {});
+  };
+
   const config = {
     // Margin
     m: sizeHandler("margin"),
@@ -114,11 +134,56 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     "border-b": borderSizeHandler("borderBottomWidth"),
     "border-l": borderSizeHandler("borderLeftWidth"),
     "border-r": borderSizeHandler("borderRightWidth"),
+    // Border radius
+    rounded: borderRadiusHandler("borderRadius"),
+    "rounded-t": borderRadiusHandler(
+      "borderTopLeftRadius",
+      "borderTopRightRadius"
+    ),
+    "rounded-b": borderRadiusHandler(
+      "borderBottomLeftRadius",
+      "borderBottomRightRadius"
+    ),
+    "rounded-l": borderRadiusHandler(
+      "borderBottomLeftRadius",
+      "borderTopLeftRadius"
+    ),
+    "rounded-r": borderRadiusHandler(
+      "borderTopRightRadius",
+      "borderBottomRightRadius"
+    ),
     // Overflow
     overflow: (overflow: NonNullable<ViewStyle["overflow"]>) =>
       <ViewStyle>{
         overflow,
       },
+    // TODO: Flex helpers
+    justify: (
+      inp: "start" | "end" | "center" | "between" | "around" | "evenly"
+    ) => {
+      return <FlexStyle>{
+        justifyContent: {
+          start: "flex-start",
+          end: "flex-end",
+          center: "center",
+          between: "space-between",
+          around: "space-around",
+          evenly: "space-evenly",
+        }[inp],
+      };
+    },
+    items: (inp: "start" | "end" | "center" | "baseline" | "stretch") => {
+      return <FlexStyle>{
+        alignItems: {
+          start: "flex-start",
+          end: "flex-end",
+          center: "center",
+          baseline: "baseline",
+          stretch: "stretch",
+        }[inp],
+      };
+    },
+    z: (inp: string) => <ViewStyle>{ zIndex: parseInt(inp) },
   } as const;
 
   /**

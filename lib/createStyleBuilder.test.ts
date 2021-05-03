@@ -18,6 +18,11 @@ const makeBasicBuilder = () =>
       3: 3,
       4: 4,
     },
+    borderRadii: {
+      sm: 2,
+      md: 6,
+      full: 9999,
+    },
   }).builder;
 
 describe("createStyleBuilder", () => {
@@ -72,10 +77,26 @@ describe("createStyleBuilder", () => {
     expect(builder("border-2")).toEqual({ borderWidth: 2 });
   });
 
+  it("handles border radius", () => {
+    const builder = makeBasicBuilder();
+    expect(builder("rounded-md")).toEqual({ borderRadius: 6 });
+  });
+
   it("handles overflow", () => {
     const builder = makeBasicBuilder();
     expect(builder("overflow-hidden")).toEqual({ overflow: "hidden" });
     expect(builder("overflow-scroll")).toEqual({ overflow: "scroll" });
+  });
+
+  it("handles justifyContent and alignItems", () => {
+    const builder = makeBasicBuilder();
+    expect(builder("justify-center")).toEqual({ justifyContent: "center" });
+    expect(builder("items-center")).toEqual({ alignItems: "center" });
+  });
+
+  it("handles zIndex", () => {
+    const builder = makeBasicBuilder();
+    expect(builder("z-2")).toEqual({ zIndex: 2 });
   });
 });
 

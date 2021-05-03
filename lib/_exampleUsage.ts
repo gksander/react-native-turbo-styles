@@ -51,26 +51,6 @@ const borderRadii = {
  * How this thing would actually be used!
  */
 export const { builder: sb, config } = createStyleBuilder({
-  rounded: {
-    __propertiesToSet: ["borderRadius"],
-    ...borderRadii,
-  },
-  "rounded-t": {
-    __propertiesToSet: ["borderTopLeftRadius", "borderTopRightRadius"],
-    ...borderRadii,
-  },
-  "rounded-b": {
-    __propertiesToSet: ["borderBottomLeftRadius", "borderBottomRightRadius"],
-    ...borderRadii,
-  },
-  "rounded-l": {
-    __propertiesToSet: ["borderBottomLeftRadius", "borderTopLeftRadius"],
-    ...borderRadii,
-  },
-  "rounded-r": {
-    __propertiesToSet: ["borderBottomRightRadius", "borderTopRightRadius"],
-    ...borderRadii,
-  },
   // TODO: This doesn't work.
   // flex: {
   //   1: { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },
@@ -89,23 +69,6 @@ export const { builder: sb, config } = createStyleBuilder({
   //   "wrap-reverse": { flexWrap: "wrap-reverse" },
   //   nowrap: { flexWrap: "nowrap" },
   // },
-  justify: {
-    __propertiesToSet: ["justifyContent"],
-    start: "flex-start",
-    end: "flex-end",
-    center: "center",
-    between: "space-between",
-    around: "space-around",
-    evenly: "space-evenly",
-  },
-  items: {
-    __propertiesToSet: ["alignItems"],
-    start: "flex-start",
-    end: "flex-end",
-    center: "center",
-    baseline: "baseline",
-    stretch: "stretch",
-  },
   text: {
     __propertiesToSet: ["fontSize", "lineHeight"],
     "size-xs": [12, 16],
@@ -116,19 +79,5 @@ export const { builder: sb, config } = createStyleBuilder({
     "size-2xl": [24, 32],
     "size-3xl": [30, 36],
     "size-4xl": [36, 40],
-  },
-  overflow: {
-    __propertiesToSet: ["overflow"],
-    visible: "visible",
-    hidden: "hidden",
-    scroll: "scroll",
-  },
-  z: {
-    __propertiesToSet: ["zIndex"],
-    0: 0,
-    1: 1,
-    2: 2,
-    3: 3,
-    10: 10,
   },
 });
