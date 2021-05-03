@@ -7,7 +7,7 @@ const makeBasicBuilder = () =>
       red: "#f00",
       blue: "rgb(0, 0, 255)",
     },
-    bgOpacities: {
+    opacities: {
       10: 0.1,
       50: 0.5,
       95: 0.95,
@@ -65,7 +65,7 @@ describe("createStyleBuilder", () => {
 
   it("handles background opacity", () => {
     const builder = makeBasicBuilder();
-    expect(builder("bg-red", "bg-opacity-50")).toEqual({
+    expect(builder("bg-red", "opacity-50")).toEqual({
       backgroundColor: "rgba(255, 0, 0, 0.5)",
     });
   });
