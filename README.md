@@ -107,11 +107,11 @@ const SomeComponent = () => {
   const { width } = useWindowDimensions();
   const elWidth = (width - 2 * 32) / 3;
   
-  return <View style={ts(`m-[${elWidth}]` as ConstraintOverride<'m'>)} />;
+  return <View style={ts(`w-[${elWidth}]` as ConstraintOverride<'w'>)} />;
 }
 ```
 
-One important thing to note here is this bit: `as ConstraintOverride<'m'>`. TS template literal types can't infer from string template literal values. That is, `m-[${elWidth}]` is "too hard" for TS to understand as an override here, so we have to help TS out a bit and declare that we're overriding. This is only needed when your override value is a template literal value, but simple string literals don't need this (e.g., `m-[57.3]` is just fine).
+One important thing to note here is this bit: `as ConstraintOverride<'w'>`. TS template literal types can't infer from string template literal values. That is, `w-[${elWidth}]` is "too hard" for TS to understand as an override here, so we have to help TS out a bit and declare that we're overriding. This is only needed when your override value is a template literal value, but simple string literals don't need this (e.g., `w-[57.3]` is just fine).
 
 ## Available Properties
 
