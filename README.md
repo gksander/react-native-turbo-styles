@@ -30,10 +30,10 @@ import { View } from 'react-native';
 import { createStyleBuilder, defaultConstraints } from "react-native-turbo-styles";
 
 // Create builder based on provided default constraints
-const { builder: tb } = createStyleBuilder(defaultConstraints);
+const { builder: ts } = createStyleBuilder(defaultConstraints);
 
 // Use the builder
-const Foo = () => <View style={tb('w-32', 'h-32', 'p-3', 'bg-red100')} />;
+const Foo = () => <View style={ts('w-32', 'h-32', 'p-3', 'bg-red100')} />;
 ```
 
 ## Constraints
@@ -101,13 +101,13 @@ A more realistic example of this might be something like:
 // Imports...
 import { createStyleBuilder, ConstraintOverride, defaultConstraints } from "react-native-turbo-styles";
 
-const { builder: sb } = createStyleBuilder(defaultConstraints);
+const { builder: ts } = createStyleBuilder(defaultConstraints);
 
 const SomeComponent = () => {
   const { width } = useWindowDimensions();
   const elWidth = (width - 2 * 32) / 3;
   
-  return <View style={sb(`m-[${elWidth}]` as ConstraintOverride<'m'>)} />;
+  return <View style={ts(`m-[${elWidth}]` as ConstraintOverride<'m'>)} />;
 }
 ```
 
