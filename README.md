@@ -30,10 +30,14 @@ import { View } from 'react-native';
 import { createStyleBuilder, defaultConstraints } from "react-native-turbo-styles";
 
 // Create builder based on provided default constraints
-const { builder: ts } = createStyleBuilder(defaultConstraints);
+const { useTurboStyles } = createStyleBuilder(defaultConstraints);
 
 // Use the builder
-const Foo = () => <View style={ts('w:32', 'h:32', 'p:3', 'bg:red-100')} />;
+const Foo = () => {
+	const ts = useTurboStyles();
+	
+	return <View style={ts('w:32', 'h:32', 'p:3', 'bg:red-100')} />;
+};
 ```
 
 ## Constraints
@@ -81,7 +85,7 @@ Since `defaultConstraints` is just a plain ol' JavaScript object, you can overri
 ```ts
 import { createStyleBuilder, defaultConstraints } from "react-native-turbo-styles";
 
-const { builder } = createStyleBuilder({
+const { useTurboStyles } = createStyleBuilder({
   ...defaultConstraints,
   colors: {
     ...defaultConstraints.colors,
@@ -102,9 +106,10 @@ A more realistic example of this might be something like:
 // Imports...
 import { createStyleBuilder, ConstraintOverride, defaultConstraints } from "react-native-turbo-styles";
 
-const { builder: ts } = createStyleBuilder(defaultConstraints);
+const { useTurboStyles } = createStyleBuilder(defaultConstraints);
 
 const SomeComponent = () => {
+	const ts = useTurboStyles();
   const { width } = useWindowDimensions();
   const elWidth = (width - 2 * 32) / 3;
   
@@ -189,11 +194,37 @@ RN Turbo Styles offers dark-mode support. The general philosophy here is this:
 - You apply a set of "base" styles.
 - You provide an additional set of styles to be merged into your "base styles" when in dark mode.
 
-Therefore, we provide a small hook for helping with this.
+Therefore, we provide a separate hook `useTurboStylesWithDarkMode` for handling this. It's usage looks like this:
+
+```tsx
+import { View } from "react-native";
+import {
+  createStyleBuilder,
+  defaultConstraints,
+} from "react-native-turbo-styles";
+
+const { useTurboStylesWithDarkMode } = createStyleBuilder(defaultConstraints);
+
+const Foo = () => {
+  const ts = useTurboStylesWithDarkMode();
+
+  return (
+    <View
+      style={ts({
+        base: ["w:32", "h:32", "p:3", "bg:red-100"],
+        dark: ["bg:red-900"],
+      })}
+    />
+  );
+};
+```
+
+**NOTE!** React Native's `Appearance` API, which this leverages, doesn't work when connected to Chrome debugger:
+
+> Note: getColorScheme() will always return light when debugging with Chrome.
 
 ## TODO:
 
 - [ ] More tests...
 - [ ] More properties...
-- [ ] Clean up code...
 - [ ] Memoize...
