@@ -52,6 +52,8 @@ export const defaultConstraints = {
     full: "100%",
   },
   colors: {
+    white: "#fff",
+    black: "#000",
     ...flattenColor("coolGray", "gray"),
     ...flattenColor("red"),
     ...flattenColor("green"),
