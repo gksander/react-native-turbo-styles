@@ -112,7 +112,11 @@ export const defaultConstraints = {
     "8xl": [6 * BASE_FONT_SIZE, 1],
     "9xl": [8 * BASE_FONT_SIZE, 1],
   },
-  // Generated from https://ethercreative.github.io/react-native-shadow-generator/
+  /**
+   * Generated from https://ethercreative.github.io/react-native-shadow-generator/
+   * android prop represents elevation.
+   * ios is [shadowOffset.width, shadowOffset.height, shadowRadius, shadowOpacity]
+   */
   shadows: {
     sm: { android: 1, ios: [0, 1, 1, 0.18] },
     base: { android: 2, ios: [0, 1, 1.41, 0.2] },

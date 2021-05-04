@@ -58,6 +58,10 @@ type Constraints = {
   borderSizes: Record<string | number, number>;
   borderRadii: Record<string | number, number>;
   fontSizes: Record<string | number, readonly [number, number]>;
+  shadows: Record<
+    string | number,
+    { android: number; ios: readonly [number, number, number, number] }
+  >;
 };
 ```
 
@@ -73,6 +77,7 @@ The following table outlines these constraint types and what they affect.
 | `borderSizes` | Used for border widths. |
 | `borderRadii` | Used for border radius. |
 | `fontSizes` | Used for defining font size/line height combinations. |
+| `shadows` | Used for defining shadow properties. On Android, sets `elevation`. For iOS, it's `[shadowOffset.width, shadowOffset.height, shadowRadius, shadowOpacity]` |
 
 ## Default Constraints
 
@@ -190,6 +195,7 @@ One important thing to note here is this bit: `as ConstraintOverride<'w'>`. TS t
 | `flex:wrap-reverse` | N/A | ❌ | `{ flexWrap: "wrap-reverse" }` | `flex:wrap-reverse` |
 | `flex:nowrap` | N/A | ❌ | `{ flexWrap: "nowrap" }` | `flex:nowrap` |
 | `text:` | `keyof Constraints['fontSizes']` | ❌ | `fontSize`, `lineHeight` | `text:sm`, `text:3xl` |
+| `shadow:` | `keyof Constraints['shadows']` | ❌ | `elevation` on Android; `shadowOffset`, `shadowRadius`, `shadowOpacity` on iOS | `shadow:sm`, `shadow:lg` |
 
 ## Dark Mode Support
 
@@ -230,7 +236,7 @@ const Foo = () => {
 ## TODO:
 
 - [x] Test custom useTurboStyles hooks...
-- [ ] Shadow properties
-- [ ] More properties (shadows, etc)
+- [x] Shadow properties
+- [ ] More properties
 - [ ] Memoize on style (e.g., cache `mx:3` style after first use?)
 - [ ] Export helpers for pulling values from config?
