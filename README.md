@@ -64,6 +64,7 @@ The following table outlines these constraint types and what they affect.
 | `opacities` | Used for background opacity. |
 | `borderSizes` | Used for border widths. |
 | `borderRadii` | Used for border radius. |
+| `fontSizes` | Used for defining font size/line height combinations. |
 
 ## Default Constraints
 
@@ -147,6 +148,7 @@ One important thing to note here is this bit: `as ConstraintOverride<'w'>`. TS t
 | `min-h:` | `keyof Constraints['sizing']` | ✅ | `minHeight` | `min-h:0`, `min-h:[32]` |
 | `max-h:` | `keyof Constraints['sizing']` | ✅ | `maxHeight` | `max-h:0`, `max-h:[32]` |
 | `bg:` | `keyof Constraints['colors']` | ✅ | `backgroundColor` | `bg:red-300`, `bg:[#ff00ff]` |
+| `color:` | `keyof Constraints['colors']` | ✅ | `color` | `color:red-300`, `color:[#ff00ff]` |
 | `bg-opacity:` | `keyof Constraints['opacities']` | ✅ | NA | `bg-opacity:50`, `bg-opacity:[0.32]` |
 | `opacity:` | `keyof Constraints['opacities']` | ✅ | `opacity` | `opacity:50`, `opacity:[0.32]` |
 | `border:` | `keyof Constraints['borderSizes']` | ✅ | `borderWidth` | `border:hairline`, `border:[3]` |
@@ -169,8 +171,16 @@ One important thing to note here is this bit: `as ConstraintOverride<'w'>`. TS t
 | `flex:none` | N/A | ❌ | `{ flexGrow: 0, flexShrink: 0, flexBasis: "auto" }` | `flex:none` |
 | `flex:row` | N/A | ❌ | `{ flexDirection: "row" }` | `flex:row` |
 | `flex:row-reverse` | N/A | ❌ | `{ flexDirection: "row" }` | `flex:row-reverse` |
-
-TODO: `text-` classes, rest of flex classes, color classes.
+| `flex:col` | N/A | ❌ | `{ flexDirection: "column" }` | `flex:col` |
+| `flex:col-reverse` | N/A | ❌ | `{ flexDirection: "column-reverse" }` | `flex:col-reverse` |
+| `flex:grow` | N/A | ❌ | `{ flexGrow: 1 }` | `flex:grow` |
+| `flex:grow-0` | N/A | ❌ | `{ flexGrow: 0 }` | `flex:grow-0` |
+| `flex:shrink` | N/A | ❌ | `{ flexShrink: 1 }` | `flex:shrink` |
+| `flex:shrink-0` | N/A | ❌ | `{ flexShrink: 0 }` | `flex:shrink-0` |
+| `flex:wrap` | N/A | ❌ | `{ flexWrap: "wrap" }` | `flex:wrap` |
+| `flex:wrap-reverse` | N/A | ❌ | `{ flexWrap: "wrap-reverse" }` | `flex:wrap-reverse` |
+| `flex:nowrap` | N/A | ❌ | `{ flexWrap: "nowrap" }` | `flex:nowrap` |
+| `text:` | `keyof Constraints['fontSizes']` | ❌ | `fontSize`, `lineHeight` | `text:sm`, `text:3xl` |
 
 ## Dark Mode Support
 
