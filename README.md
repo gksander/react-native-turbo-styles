@@ -184,7 +184,12 @@ One important thing to note here is this bit: `as ConstraintOverride<'w'>`. TS t
 
 ## Dark Mode Support
 
-TODO: Write this up.
+RN Turbo Styles offers dark-mode support. The general philosophy here is this:
+
+- You apply a set of "base" styles.
+- You provide an additional set of styles to be merged into your "base styles" when in dark mode.
+
+Therefore, we provide a small hook for helping with this.
 
 ## TODO:
 

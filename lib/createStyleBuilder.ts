@@ -1,4 +1,5 @@
-import { FlexStyle, TextStyle, ViewStyle } from "react-native";
+import * as React from "react";
+import { FlexStyle, TextStyle, useColorScheme, ViewStyle } from "react-native";
 import { colorStringToRgb } from "./colorStringToRgb";
 import { Constraints, NonSymbol, ValueOf } from "./utilTypes";
 
@@ -216,24 +217,22 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     },
   } as const;
 
+  type StyleName = ValueOf<
+    {
+      [k in keyof typeof config]: Parameters<
+        typeof config[k]
+      >[0] extends undefined
+        ? `${NonSymbol<k>}`
+        : `${NonSymbol<k>}:${NonSymbol<Parameters<typeof config[k]>[0]>}`;
+    }
+  >;
+
   /**
    * Our actual builder. Takes an array of "class names" that
    * 	are constructed from our config
    */
-  const builder = (
-    ...args: Array<
-      ValueOf<
-        {
-          [k in keyof typeof config]: Parameters<
-            typeof config[k]
-          >[0] extends undefined
-            ? `${NonSymbol<k>}`
-            : `${NonSymbol<k>}:${NonSymbol<Parameters<typeof config[k]>[0]>}`;
-        }
-      >
-    >
-  ) => {
-    let styles = {} as Record<string | number, any>;
+  const builder = (...args: Array<StyleName>) => {
+    let styles = {} as Record<string, any>;
 
     for (let c of args) {
       const m = c.match(/^(.+):(.+)$/);
@@ -260,7 +259,24 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     return styles;
   };
 
-  return { builder };
+  type BuilderParams = Parameters<typeof builder>;
+
+  const useTurboStyles = () => builder;
+
+  const useTurboStylesWithDarkMode = () => {
+    const colorScheme = useColorScheme();
+
+    return React.useCallback(
+      ({ base, dark }: { base: BuilderParams; dark: BuilderParams }) =>
+        Object.assign(
+          builder(...base),
+          colorScheme === "dark" ? builder(...dark) : {}
+        ),
+      [colorScheme]
+    );
+  };
+
+  return { builder, useTurboStyles, useTurboStylesWithDarkMode };
 };
 
 /**
