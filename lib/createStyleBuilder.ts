@@ -1,19 +1,31 @@
 import * as React from "react";
 import { FlexStyle, TextStyle, useColorScheme, ViewStyle } from "react-native";
 import { colorStringToRgb } from "./colorStringToRgb";
-import { Constraints, NonSymbol, ValueOf } from "./utilTypes";
+import {
+  BorderRadiusHandler,
+  borderRadiusInput,
+  BorderSizeHandler,
+  borderSizeInput,
+  ColorHandler,
+  colorInput,
+  Config,
+  Constraints,
+  NonSymbol,
+  SizeHandler,
+  sizeInput,
+  StyleName,
+} from "./utilTypes";
 
 /**
  * Create style builder. Pass in constraints, create handler
  */
 export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
-  type sizeInput = NonSymbol<keyof C["sizing"]> | `[${string}]`;
-  const getSizeValue = (val: sizeInput): string | number | undefined => {
+  const getSizeValue = (val: sizeInput<C>): string | number | undefined => {
     return constraints.sizing[val] ?? extractFromBrackets(val);
   };
-  const sizeHandler = (...properties: Array<keyof FlexStyle>) => (
-    key: sizeInput
-  ) => {
+  const sizeHandler = (
+    ...properties: Array<keyof FlexStyle>
+  ): SizeHandler<C> => (key: sizeInput<C>) => {
     const val = getSizeValue(key);
     return properties.reduce<FlexStyle>((acc, prop) => {
       // @ts-ignore
@@ -22,13 +34,12 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     }, {});
   };
 
-  type colorInput = NonSymbol<keyof C["colors"]> | `[${string}]`;
-  const getColorValue = (val: colorInput): string | undefined => {
+  const getColorValue = (val: colorInput<C>): string | undefined => {
     return constraints.colors[val] ?? extractFromBrackets(val);
   };
-  const colorHandler = (...properties: Array<keyof TextStyle>) => (
-    inp: colorInput
-  ) => {
+  const colorHandler = (
+    ...properties: Array<keyof TextStyle>
+  ): ColorHandler<C> => (inp) => {
     const val = getColorValue(inp);
     return properties.reduce<TextStyle>((acc, prop) => {
       // @ts-ignore
@@ -38,15 +49,14 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
   };
 
   // Border sizing
-  type borderSizeInput = NonSymbol<keyof C["borderSizes"]> | `[${string}]`;
   const getBorderSizeValue = (
-    val: borderSizeInput
+    val: borderSizeInput<C>
   ): string | number | undefined => {
     return constraints.borderSizes[val] ?? extractFromBrackets(val);
   };
-  const borderSizeHandler = (...properties: Array<keyof ViewStyle>) => (
-    inp: borderSizeInput
-  ) => {
+  const borderSizeHandler = (
+    ...properties: Array<keyof ViewStyle>
+  ): BorderSizeHandler<C> => (inp) => {
     const val = getBorderSizeValue(inp);
     return properties.reduce<ViewStyle>((acc, prop) => {
       // @ts-ignore
@@ -56,15 +66,15 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
   };
 
   // Border radii
-  type borderRadiusInput = NonSymbol<keyof C["borderRadii"]> | `[${string}]`;
+
   const getBorderRadiusValue = (
-    val: borderRadiusInput
+    val: borderRadiusInput<C>
   ): string | number | undefined => {
     return constraints.borderRadii[val] ?? extractFromBrackets(val);
   };
-  const borderRadiusHandler = (...properties: Array<keyof ViewStyle>) => (
-    inp: borderRadiusInput
-  ) => {
+  const borderRadiusHandler = (
+    ...properties: Array<keyof ViewStyle>
+  ): BorderRadiusHandler<C> => (inp) => {
     const val = getBorderRadiusValue(inp);
     return properties.reduce<ViewStyle>((acc, prop) => {
       // @ts-ignore
@@ -73,7 +83,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     }, {});
   };
 
-  const config = {
+  const config: Config<C> = {
     // Margin
     m: sizeHandler("margin"),
     mx: sizeHandler("marginLeft", "marginRight"),
@@ -145,14 +155,11 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       "borderBottomRightRadius"
     ),
     // Overflow
-    overflow: (overflow: NonNullable<ViewStyle["overflow"]>) =>
-      <ViewStyle>{
-        overflow,
-      },
-    justify: (
-      inp: "start" | "end" | "center" | "between" | "around" | "evenly"
-    ) => {
-      return <FlexStyle>{
+    overflow: (overflow) => ({
+      overflow,
+    }),
+    justify: (inp) => {
+      return {
         justifyContent: {
           start: "flex-start",
           end: "flex-end",
@@ -160,44 +167,27 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
           between: "space-between",
           around: "space-around",
           evenly: "space-evenly",
-        }[inp],
+        }[inp] as FlexStyle["justifyContent"],
       };
     },
-    items: (inp: "start" | "end" | "center" | "baseline" | "stretch") => {
-      return <FlexStyle>{
+    items: (inp) => {
+      return {
         alignItems: {
           start: "flex-start",
           end: "flex-end",
           center: "center",
           baseline: "baseline",
           stretch: "stretch",
-        }[inp],
+        }[inp] as FlexStyle["alignItems"],
       };
     },
-    z: (inp: string) => <ViewStyle>{ zIndex: parseInt(inp) },
-    text: (inp: NonSymbol<keyof C["fontSizes"]>) => {
+    z: (inp) => ({ zIndex: parseInt(inp) }),
+    text: (inp) => {
       const [fontSize, lineHeight] = constraints.fontSizes[inp];
-      return <TextStyle>{ fontSize, lineHeight };
+      return { fontSize, lineHeight };
     },
-    flex: (
-      inp:
-        | "1"
-        | "auto"
-        | "initial"
-        | "none"
-        | "row"
-        | "row-reverse"
-        | "col"
-        | "col-reverse"
-        | "grow"
-        | "grow-0"
-        | "shrink"
-        | "shrink-0"
-        | "wrap"
-        | "wrap-reverse"
-        | "nowrap"
-    ) => {
-      return <FlexStyle>{
+    flex: (inp) => {
+      return {
         1: { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },
         auto: { flexGrow: 1, flexShrink: 1, flexBasis: "auto" },
         initial: { flexGrow: 0, flexShrink: 1, flexBasis: "auto" },
@@ -213,25 +203,15 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
         wrap: { flexWrap: "wrap" },
         "wrap-reverse": { flexWrap: "wrap-reverse" },
         nowrap: { flexWrap: "nowrap" },
-      }[inp];
+      }[inp] as FlexStyle;
     },
-  } as const;
-
-  type StyleName = ValueOf<
-    {
-      [k in keyof typeof config]: Parameters<
-        typeof config[k]
-      >[0] extends undefined
-        ? `${NonSymbol<k>}`
-        : `${NonSymbol<k>}:${NonSymbol<Parameters<typeof config[k]>[0]>}`;
-    }
-  >;
+  };
 
   /**
    * Our actual builder. Takes an array of "class names" that
    * 	are constructed from our config
    */
-  const builder = (...args: Array<StyleName>) => {
+  const builder = (...args: Array<StyleName<C>>) => {
     let styles = {} as Record<string, any>;
 
     for (let c of args) {
@@ -259,7 +239,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     return styles;
   };
 
-  type BuilderParams = Parameters<typeof builder>;
+  type BuilderParams = Array<StyleName<C>>;
 
   const useTurboStyles = () => builder;
 
