@@ -20,7 +20,8 @@
     "build": "rm -rf dist && tsc",
     "prepare": "yarn build",
     "test": "jest --config=jest.config.js",
-    "test:watch": "jest --config=jest.config.js --watch"
+    "test:watch": "jest --config=jest.config.js --watch",
+    "cp-to-example": "yarn build && rm -rf ./example/lib && cp -r ./dist ./example/lib"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",

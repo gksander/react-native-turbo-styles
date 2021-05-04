@@ -229,7 +229,7 @@ const Foo = () => {
 
 ## TODO:
 
-- [ ] Test custom useTurboStyles hooks...
+- [x] Test custom useTurboStyles hooks...
 - [ ] Shadow properties
 - [ ] More properties (shadows, etc)
 - [ ] Memoize on style (e.g., cache `mx:3` style after first use?)
