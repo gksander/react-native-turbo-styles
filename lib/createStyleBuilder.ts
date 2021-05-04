@@ -1,5 +1,11 @@
 import * as React from "react";
-import { FlexStyle, TextStyle, useColorScheme, ViewStyle } from "react-native";
+import {
+  FlexStyle,
+  Platform,
+  TextStyle,
+  useColorScheme,
+  ViewStyle,
+} from "react-native";
 import { colorStringToRgb } from "./colorStringToRgb";
 import {
   BorderRadiusHandler,
@@ -204,6 +210,20 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
         "wrap-reverse": { flexWrap: "wrap-reverse" },
         nowrap: { flexWrap: "nowrap" },
       }[inp] as FlexStyle;
+    },
+    shadow: (inp) => {
+      const val = constraints.shadows[inp];
+      return Platform.select({
+        android: { elevation: val?.android || 0 },
+        default: {
+          shadowOffset: {
+            width: val?.ios?.[0] || 0,
+            height: val?.ios?.[1] || 0,
+          },
+          shadowRadius: val?.ios?.[2] || 0,
+          shadowOpacity: val?.ios?.[3] || 0,
+        },
+      });
     },
   };
 

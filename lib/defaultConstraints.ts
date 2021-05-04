@@ -112,6 +112,9 @@ export const defaultConstraints = {
     "8xl": [6 * BASE_FONT_SIZE, 1],
     "9xl": [8 * BASE_FONT_SIZE, 1],
   },
+  shadows: {
+    sm: { android: 1, ios: [0, 1, 1, 0.18] },
+  },
 } as const;
 
 assertIsConstraint(defaultConstraints);

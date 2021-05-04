@@ -7,6 +7,10 @@ export type Constraints = {
   borderSizes: Record<string | number, number>;
   borderRadii: Record<string | number, number>;
   fontSizes: Record<string | number, readonly [number, number]>;
+  shadows: Record<
+    string | number,
+    { android: number; ios: readonly [number, number, number, number] }
+  >;
 };
 
 export type NonSymbol<T> = Exclude<T, symbol>;
@@ -121,6 +125,7 @@ export type Config<C extends Constraints> = {
       | "wrap-reverse"
       | "nowrap"
   ) => FlexStyle;
+  shadow: (v: NonSymbol<keyof C["shadows"]>) => ViewStyle;
 };
 
 type Style<C extends Constraints, K extends keyof Config<C>> = Parameters<

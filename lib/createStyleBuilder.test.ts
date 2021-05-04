@@ -1,9 +1,14 @@
 import { createStyleBuilder } from "./createStyleBuilder";
 import { defaultConstraints } from "./defaultConstraints";
 
+let platform = "android";
 jest.mock("react-native", () => ({
   StyleSheet: {
     hairlineWidth: 0.5,
+  },
+  Platform: {
+    select: (args: { android: any; default: any }) =>
+      platform === "android" ? args?.android : args?.default,
   },
 }));
 
@@ -18,6 +23,10 @@ const {
 } = defaultConstraints;
 
 describe("createStyleBuilder", () => {
+  beforeEach(() => {
+    platform = "android";
+  });
+
   it("handles margin/padding with constraint", () => {
     const builder = makeBasicBuilder();
 
@@ -135,5 +144,26 @@ describe("createStyleBuilder", () => {
   it("handles defaultConstraints", () => {
     const { builder } = createStyleBuilder(defaultConstraints);
     expect(builder("m:2").margin).toBe(defaultConstraints.sizing["2"]);
+  });
+
+  it("handles shadows", () => {
+    const builder = makeBasicBuilder();
+
+    expect(builder("shadow:sm")).toEqual({
+      elevation: defaultConstraints.shadows.sm.android,
+    });
+
+    platform = "ios";
+    const [
+      width,
+      height,
+      shadowRadius,
+      shadowOpacity,
+    ] = defaultConstraints.shadows["sm"].ios;
+    expect(builder("shadow:sm")).toEqual({
+      shadowOffset: { width, height },
+      shadowOpacity,
+      shadowRadius,
+    });
   });
 });
