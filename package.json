@@ -3,6 +3,10 @@
   "version": "0.0.9",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "homepage": "https://github.com/gksander/react-native-turbo-styles",
+  "repository": {
+    "url": "https://github.com/gksander/react-native-turbo-styles"
+  },
   "files": [
     "dist/"
   ],
