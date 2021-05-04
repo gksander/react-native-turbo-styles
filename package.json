@@ -7,6 +7,7 @@
   "repository": {
     "url": "https://github.com/gksander/react-native-turbo-styles"
   },
+  "keywords": ["react", "react-native", "styles"],
   "files": [
     "dist/"
   ],
