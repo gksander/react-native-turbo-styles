@@ -34,9 +34,9 @@ const { useTurboStyles } = createStyleBuilder(defaultConstraints);
 
 // Use the builder
 const Foo = () => {
-	const ts = useTurboStyles();
-	
-	return <View style={ts('w:32', 'h:32', 'p:3', 'bg:red-100')} />;
+  const ts = useTurboStyles();
+  
+  return <View style={ts('w:32', 'h:32', 'p:3', 'bg:red-100')} />;
 };
 ```
 
@@ -109,7 +109,7 @@ import { createStyleBuilder, ConstraintOverride, defaultConstraints } from "reac
 const { useTurboStyles } = createStyleBuilder(defaultConstraints);
 
 const SomeComponent = () => {
-	const ts = useTurboStyles();
+  const ts = useTurboStyles();
   const { width } = useWindowDimensions();
   const elWidth = (width - 2 * 32) / 3;
   
