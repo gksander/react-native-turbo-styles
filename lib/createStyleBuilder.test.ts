@@ -1,4 +1,11 @@
 import { createStyleBuilder } from "./createStyleBuilder";
+import { defaultConstraints } from "./defaultConstraints";
+
+jest.mock("react-native", () => ({
+  StyleSheet: {
+    hairlineWidth: 0.5,
+  },
+}));
 
 const makeBasicBuilder = () =>
   createStyleBuilder({
@@ -127,5 +134,10 @@ describe("createStyleBuilder", () => {
     expect(builder("flex:row-reverse")).toEqual({
       flexDirection: "row-reverse",
     });
+  });
+
+  it("handles defaultConstraints", () => {
+    const { builder } = createStyleBuilder(defaultConstraints);
+    expect(builder("m:2").margin).toBe(defaultConstraints.sizing["2"]);
   });
 });
