@@ -7,46 +7,37 @@ jest.mock("react-native", () => ({
   },
 }));
 
-const makeBasicBuilder = () =>
-  createStyleBuilder({
-    sizing: { sm: 4, md: 8, lg: 12 },
-    colors: {
-      red: "#f00",
-      blue: "rgb(0, 0, 255)",
-    },
-    opacities: {
-      10: 0.1,
-      50: 0.5,
-      95: 0.95,
-    },
-    borderSizes: {
-      1: 1,
-      2: 2,
-      3: 3,
-      4: 4,
-    },
-    borderRadii: {
-      sm: 2,
-      md: 6,
-      full: 9999,
-    },
-    fontSizes: {
-      base: [16, 24],
-      lg: [18, 28],
-    },
-  }).builder;
+const makeBasicBuilder = () => createStyleBuilder(defaultConstraints).builder;
+const {
+  sizing,
+  colors,
+  borderSizes,
+  borderRadii,
+  fontSizes,
+  opacities,
+} = defaultConstraints;
 
 describe("createStyleBuilder", () => {
   it("handles margin/padding with constraint", () => {
     const builder = makeBasicBuilder();
 
-    expect(builder("m:sm")).toEqual({ margin: 4 });
-    expect(builder("mx:md")).toEqual({ marginLeft: 8, marginRight: 8 });
-    expect(builder("mb:sm")).toEqual({ marginBottom: 4 });
+    expect(builder("m:2")).toEqual({ margin: sizing["2"] });
+    expect(builder("mx:4")).toEqual({
+      marginLeft: sizing["4"],
+      marginRight: sizing["4"],
+    });
+    expect(builder("mb:2")).toEqual({
+      marginBottom: sizing["2"],
+    });
 
-    expect(builder("p:sm")).toEqual({ padding: 4 });
-    expect(builder("px:md")).toEqual({ paddingLeft: 8, paddingRight: 8 });
-    expect(builder("pb:sm")).toEqual({ paddingBottom: 4 });
+    expect(builder("p:2")).toEqual({ padding: sizing["2"] });
+    expect(builder("px:4")).toEqual({
+      paddingLeft: sizing["4"],
+      paddingRight: sizing["4"],
+    });
+    expect(builder("pb:2")).toEqual({
+      paddingBottom: sizing["2"],
+    });
   });
 
   it("handles margin with override", () => {
@@ -61,19 +52,21 @@ describe("createStyleBuilder", () => {
 
   it("handles inset/positioning", () => {
     const builder = makeBasicBuilder();
-    expect(builder("top:sm")).toEqual({ top: 4 });
+    expect(builder("top:2")).toEqual({ top: sizing["2"] });
   });
 
   it("handles background color", () => {
     const builder = makeBasicBuilder();
-    expect(builder("bg:red")).toEqual({ backgroundColor: "#f00" });
+    expect(builder("bg:red-100")).toEqual({
+      backgroundColor: colors["red-100"],
+    });
     expect(builder("bg:[blue]")).toEqual({ backgroundColor: "blue" });
   });
 
   it("handles background opacity", () => {
     const builder = makeBasicBuilder();
-    expect(builder("bg:red", "bg-opacity:50")).toEqual({
-      backgroundColor: "rgba(255, 0, 0, 0.5)",
+    expect(builder("bg:red-100", "bg-opacity:50")).toEqual({
+      backgroundColor: "rgba(254, 226, 226, 0.5)",
     });
   });
 
@@ -90,12 +83,12 @@ describe("createStyleBuilder", () => {
 
   it("handles border widths", () => {
     const builder = makeBasicBuilder();
-    expect(builder("border:2")).toEqual({ borderWidth: 2 });
+    expect(builder("border:2")).toEqual({ borderWidth: borderSizes["2"] });
   });
 
   it("handles border radius", () => {
     const builder = makeBasicBuilder();
-    expect(builder("rounded:md")).toEqual({ borderRadius: 6 });
+    expect(builder("rounded:md")).toEqual({ borderRadius: borderRadii["md"] });
   });
 
   it("handles overflow", () => {
@@ -117,7 +110,10 @@ describe("createStyleBuilder", () => {
 
   it("handles constrained font sizes", () => {
     const builder = makeBasicBuilder();
-    expect(builder("text:base")).toEqual({ fontSize: 16, lineHeight: 24 });
+    expect(builder("text:sm")).toEqual({
+      fontSize: fontSizes["sm"][0],
+      lineHeight: fontSizes["sm"][1],
+    });
   });
 
   it("handles flex constraints", () => {
