@@ -40,6 +40,10 @@ const Foo = () => {
 };
 ```
 
+## Requirements
+
+**IMPORTANT!** RN Turbo Styles' name inference is possible due to [template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) in TypeScript. Template literal types were released in TypeScript 4.1, and therefore for you to get type inference - your project will need to be using at least `typescript: "4.1.0"`.
+
 ## Constraints
 
 One of the core tenants of RN Turbo Styles is _design constraints_. This isn't a new idea: your design should generally abide by design constraints. For example, you might have a set sizing scale that's used for sizing/positioning elements. This limits the number of options you have for, say, `padding` - therefore making your designs more consistent.
