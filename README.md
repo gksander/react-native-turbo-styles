@@ -229,7 +229,8 @@ const Foo = () => {
 
 ## TODO:
 
-- [ ] More tests...
-- [ ] More properties...
+- [ ] Test custom useTurboStyles hooks...
+- [ ] Shadow properties
+- [ ] More properties (shadows, etc)
 - [ ] Memoize on style (e.g., cache `mx:3` style after first use?)
 - [ ] Export helpers for pulling values from config?
