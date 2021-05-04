@@ -107,6 +107,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     // Colors
     bg: colorHandler("backgroundColor"),
     "border-color": colorHandler("borderColor"),
+    color: colorHandler("color"),
     // Background opacity
     "bg-opacity": (inp: NonSymbol<keyof C["opacities"]> | `[${number}]`) => {
       const val = constraints.opacities[inp] ?? extractFromBrackets(inp);
@@ -245,7 +246,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
         styles = { ...styles, ...handler(value) };
       } else {
         // @ts-ignore
-        styles = { ...styles, ...(config?.[c]() || {}) };
+        styles = { ...styles, ...(config?.[c]?.() || {}) };
       }
     }
 
