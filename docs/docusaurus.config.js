@@ -2,7 +2,7 @@
 module.exports = {
   title: "RN TurboStyles",
   tagline: "Turbocharge your React Native styling.",
-  url: "https://your-docusaurus-test-site.com",
+  url: "https://turbostyles.gksander.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
