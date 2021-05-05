@@ -26,6 +26,8 @@ import {
  * Create style builder. Pass in constraints, create handler
  */
 export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
+  const __cachedStyles = {} as Record<string, Record<string, any>>;
+
   const getSizeValue = (val: sizeInput<C>): string | number | undefined => {
     return constraints.sizing[val] ?? extractFromBrackets(val);
   };
@@ -232,6 +234,13 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
    * 	are constructed from our config
    */
   const builder = (...args: Array<StyleName<C>>) => {
+    const key = args.join(",");
+
+    // Return from cache if possible.
+    if (__cachedStyles[key]) {
+      return __cachedStyles[key];
+    }
+
     let styles = {} as Record<string, any>;
 
     for (let c of args) {
@@ -256,6 +265,9 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       delete styles["--bg-opacity"];
     }
 
+    // Store style in cache
+    __cachedStyles[key] = styles;
+
     return styles;
   };
 
@@ -276,7 +288,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     );
   };
 
-  return { builder, useTurboStyles, useTurboStylesWithDarkMode };
+  return { builder, useTurboStyles, useTurboStylesWithDarkMode, constraints };
 };
 
 /**

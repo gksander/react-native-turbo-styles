@@ -238,5 +238,7 @@ const Foo = () => {
 - [x] Test custom useTurboStyles hooks...
 - [x] Shadow properties
 - [ ] More properties
-- [ ] Memoize on style (e.g., cache `mx:3` style after first use?)
+- [x] Memoize
 - [ ] Export helpers for pulling values from config?
+- [ ] A prettier README..., maybe use docasurus for a real docs page.
+- [ ] Expand default constraints section to illustrate the default constraints.

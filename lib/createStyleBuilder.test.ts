@@ -147,20 +147,21 @@ describe("createStyleBuilder", () => {
   });
 
   it("handles shadows", () => {
-    const builder = makeBasicBuilder();
+    const builder1 = makeBasicBuilder();
 
-    expect(builder("shadow:sm")).toEqual({
+    expect(builder1("shadow:sm")).toEqual({
       elevation: defaultConstraints.shadows.sm.android,
     });
 
     platform = "ios";
+    const builder2 = makeBasicBuilder();
     const [
       width,
       height,
       shadowRadius,
       shadowOpacity,
     ] = defaultConstraints.shadows["sm"].ios;
-    expect(builder("shadow:sm")).toEqual({
+    expect(builder2("shadow:sm")).toEqual({
       shadowOffset: { width, height },
       shadowOpacity,
       shadowRadius,
