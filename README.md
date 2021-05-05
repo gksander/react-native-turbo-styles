@@ -6,7 +6,7 @@ React Native Turbo Styles is a TailwindCSS-inspired styling library for React Na
 - Styling ergonomics (short, nemonic "names" for styles, similar to utility classes in CSS).
 - Strongly-typed.
 
-![Example of auto-complete using TurboStyles](./docs/img/turbo-styles-sample.gif)
+![Example of auto-complete using TurboStyles](static/img/turbo-styles-sample.gif)
 
 ## Usage
 
