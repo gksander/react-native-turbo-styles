@@ -4,32 +4,19 @@ sidebar_position: 1
 
 # Introduction
 
-Let's discover **Docusaurus in less than 5 minutes**.
+React Native TurboStyles is a TailwindCSS-inspired styling library for React Native with a goal of:
 
-## Getting Started
+- Design by constraints (using theme-constraints to guide design).
+- Styling ergonomics (short, nemonic "names" for styles, similar to utility classes in CSS).
+- Strongly-typed.
 
-Get started by **creating a new site**.
+![Example of auto-complete using TurboStyles](/img/turbo-styles-sample.gif)
 
-Or **try Docusaurus immediately** with **[new.docusaurus.io](https://new.docusaurus.io)**.
+The usage model for TurboStyles is this:
 
-## Generate a new site
+- In a React Native project, install the library via `yarn` or `npm`.
+- Provide a "constraints" configuration (things like sizing scale, colors, border radii, etc.). The library provides a default constraints configuration based on the default [TailwindCSS](https://tailwindcss.com/) configuration.
+- The library creates a "style builder" function (and hooks) based on this constraint configuration.
+- You use this "style builder" to nicely generate styles using style "names" based on your constraints.
 
-Generate a new Docusaurus site using the **classic template**:
-
-```shell
-npx @docusaurus/init@latest init my-website classic
-```
-
-## Start your site
-
-Run the development server:
-
-```shell
-cd my-website
-
-npx docusaurus start
-```
-
-Your site starts at `http://localhost:3000`.
-
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
+For more details on getting started, check out [the getting started]
