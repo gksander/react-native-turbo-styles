@@ -1,0 +1,204 @@
+export declare const defaultConstraints: {
+    readonly sizing: {
+        readonly 0: 0;
+        readonly pt: 1;
+        readonly 0.5: 2;
+        readonly 1: 4;
+        readonly 1.5: 6;
+        readonly 2: 8;
+        readonly 2.5: 10;
+        readonly 3: 12;
+        readonly 3.5: 14;
+        readonly 4: 16;
+        readonly 5: 20;
+        readonly 6: 24;
+        readonly 7: 28;
+        readonly 8: 32;
+        readonly 9: 36;
+        readonly 10: 40;
+        readonly 11: 44;
+        readonly 12: 48;
+        readonly 14: 56;
+        readonly 16: 64;
+        readonly 20: 80;
+        readonly 24: 96;
+        readonly 28: 112;
+        readonly 32: 128;
+        readonly 36: 144;
+        readonly 40: 160;
+        readonly 44: 176;
+        readonly 48: 192;
+        readonly 52: 208;
+        readonly 56: 224;
+        readonly 60: 240;
+        readonly 64: 256;
+        readonly 72: 288;
+        readonly 80: 320;
+        readonly 96: 384;
+        readonly "1/4": "25%";
+        readonly "1/2": "50%";
+        readonly "3/4": "75%";
+        readonly "1/3": "33.3333333%";
+        readonly "2/3": "66.666666%";
+        readonly "1/5": "20%";
+        readonly "2/5": "40%";
+        readonly "3/5": "60%";
+        readonly "4/5": "80%";
+        readonly full: "100%";
+    };
+    readonly colors: {
+        readonly "pink-50": string;
+        readonly "pink-100": string;
+        readonly "pink-200": string;
+        readonly "pink-300": string;
+        readonly "pink-400": string;
+        readonly "pink-500": string;
+        readonly "pink-600": string;
+        readonly "pink-700": string;
+        readonly "pink-800": string;
+        readonly "pink-900": string;
+        readonly "purple-50": string;
+        readonly "purple-100": string;
+        readonly "purple-200": string;
+        readonly "purple-300": string;
+        readonly "purple-400": string;
+        readonly "purple-500": string;
+        readonly "purple-600": string;
+        readonly "purple-700": string;
+        readonly "purple-800": string;
+        readonly "purple-900": string;
+        readonly "indigo-50": string;
+        readonly "indigo-100": string;
+        readonly "indigo-200": string;
+        readonly "indigo-300": string;
+        readonly "indigo-400": string;
+        readonly "indigo-500": string;
+        readonly "indigo-600": string;
+        readonly "indigo-700": string;
+        readonly "indigo-800": string;
+        readonly "indigo-900": string;
+        readonly "blue-50": string;
+        readonly "blue-100": string;
+        readonly "blue-200": string;
+        readonly "blue-300": string;
+        readonly "blue-400": string;
+        readonly "blue-500": string;
+        readonly "blue-600": string;
+        readonly "blue-700": string;
+        readonly "blue-800": string;
+        readonly "blue-900": string;
+        readonly "green-50": string;
+        readonly "green-100": string;
+        readonly "green-200": string;
+        readonly "green-300": string;
+        readonly "green-400": string;
+        readonly "green-500": string;
+        readonly "green-600": string;
+        readonly "green-700": string;
+        readonly "green-800": string;
+        readonly "green-900": string;
+        readonly "red-50": string;
+        readonly "red-100": string;
+        readonly "red-200": string;
+        readonly "red-300": string;
+        readonly "red-400": string;
+        readonly "red-500": string;
+        readonly "red-600": string;
+        readonly "red-700": string;
+        readonly "red-800": string;
+        readonly "red-900": string;
+        readonly "gray-50": string;
+        readonly "gray-100": string;
+        readonly "gray-200": string;
+        readonly "gray-300": string;
+        readonly "gray-400": string;
+        readonly "gray-500": string;
+        readonly "gray-600": string;
+        readonly "gray-700": string;
+        readonly "gray-800": string;
+        readonly "gray-900": string;
+        readonly white: "#fff";
+        readonly black: "#000";
+    };
+    readonly opacities: {
+        readonly 0: 0;
+        readonly 5: 0.05;
+        readonly 10: 0.1;
+        readonly 20: 0.2;
+        readonly 25: 0.25;
+        readonly 30: 0.3;
+        readonly 40: 0.4;
+        readonly 50: 0.5;
+        readonly 60: 0.6;
+        readonly 70: 0.7;
+        readonly 75: 0.75;
+        readonly 80: 0.8;
+        readonly 90: 0.9;
+        readonly 95: 0.95;
+    };
+    readonly borderSizes: {
+        readonly 0: 0;
+        readonly hairline: number;
+        readonly 1: 1;
+        readonly 2: 2;
+        readonly 4: 4;
+        readonly 8: 8;
+    };
+    readonly borderRadii: {
+        readonly none: 0;
+        readonly sm: number;
+        readonly base: number;
+        readonly md: number;
+        readonly lg: number;
+        readonly xl: number;
+        readonly "2xl": 17;
+        readonly "3xl": number;
+        readonly full: 999;
+    };
+    readonly fontSizes: {
+        readonly xs: readonly [number, 17];
+        readonly sm: readonly [number, number];
+        readonly base: readonly [17, number];
+        readonly lg: readonly [number, number];
+        readonly xl: readonly [number, number];
+        readonly "2xl": readonly [number, number];
+        readonly "3xl": readonly [number, number];
+        readonly "4xl": readonly [number, number];
+        readonly "5xl": readonly [number, 1];
+        readonly "6xl": readonly [number, 1];
+        readonly "7xl": readonly [number, 1];
+        readonly "8xl": readonly [number, 1];
+        readonly "9xl": readonly [number, 1];
+    };
+    /**
+     * Generated from https://ethercreative.github.io/react-native-shadow-generator/
+     * android prop represents elevation.
+     * ios is [shadowOffset.width, shadowOffset.height, shadowRadius, shadowOpacity]
+     */
+    readonly shadows: {
+        readonly sm: {
+            readonly android: 1;
+            readonly ios: readonly [0, 1, 1, 0.18];
+        };
+        readonly base: {
+            readonly android: 2;
+            readonly ios: readonly [0, 1, 1.41, 0.2];
+        };
+        readonly md: {
+            readonly android: 5;
+            readonly ios: readonly [0, 2, 3.84, 0.25];
+        };
+        readonly lg: {
+            readonly android: 8;
+            readonly ios: readonly [0, 4, 4.65, 0.3];
+        };
+        readonly xl: {
+            readonly android: 12;
+            readonly ios: readonly [0, 6, 7.49, 0.37];
+        };
+        readonly "2xl": {
+            readonly android: 16;
+            readonly ios: readonly [0, 8, 10.32, 0.44];
+        };
+    };
+};

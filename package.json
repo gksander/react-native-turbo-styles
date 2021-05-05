@@ -21,7 +21,7 @@
     "prepare": "yarn build",
     "test": "jest --config=jest.config.js",
     "test:watch": "jest --config=jest.config.js --watch",
-    "cp-to-example": "yarn build && rm -rf ./example/lib && cp -r ./dist ./example/lib"
+    "cp-to-sample": "yarn build && rm -rf ./sample/lib && cp -r ./dist ./sample/lib"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
