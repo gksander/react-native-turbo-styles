@@ -18,7 +18,7 @@ function HomepageHeader() {
             <p className="hero__subtitle">{siteConfig.tagline}</p>
             <Link
               className="button button--secondary button--lg"
-              to="/docs/intro"
+              to="/docs/getting-started"
             >
               🚀 Get Turbocharged! 🚀
             </Link>
