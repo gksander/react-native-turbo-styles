@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img margin="auto" width="612px" src="https://turbostyles.gksander.com/img/logo.svg" alt="TurboStyles Icon" width="150px">
+  <img margin="auto" src="https://turbostyles.gksander.com/img/logo.svg" alt="TurboStyles Icon" width="150px">
   <br>
   <span>React Native TurboStyles</span>
 </h1>
