@@ -19,4 +19,4 @@ The usage model for TurboStyles is this:
 - The library creates a "style builder" function (and hooks) based on this constraint configuration.
 - You use this "style builder" to nicely generate styles using style "names" based on your constraints.
 
-For more details on getting started, check out [the getting started]
+For more details on getting started, check out [the getting started guide](./getting-started.md).

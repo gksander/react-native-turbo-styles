@@ -1,7 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: "RN TurboStyles",
-  tagline: "Turbo charge your React Native styling.",
+  tagline: "Turbocharge your React Native styling.",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -12,10 +12,10 @@ module.exports = {
   themeConfig: {
     navbar: {
       title: "TurboStyles",
-      logo: {
-        alt: "My Site Logo",
-        src: "img/logo.svg",
-      },
+      // logo: {
+      //   alt: "My Site Logo",
+      //   src: "img/logo.svg",
+      // },
       items: [
         {
           type: "doc",
