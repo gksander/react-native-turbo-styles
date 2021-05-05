@@ -12,6 +12,16 @@
   overflow: hidden;
 }
 
+.paddedCol {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.demoImg {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;

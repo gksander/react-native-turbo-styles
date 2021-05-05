@@ -1,21 +1,21 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "RN TurboStyles",
+  title: "React Native TurboStyles",
   tagline: "Turbocharge your React Native styling.",
   url: "https://turbostyles.gksander.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+  favicon: "img/logo.svg",
   organizationName: "gksander", // Usually your GitHub org/user name.
   projectName: "react-native-turbo-styles", // Usually your repo name.
   themeConfig: {
     navbar: {
       title: "TurboStyles",
-      // logo: {
-      //   alt: "My Site Logo",
-      //   src: "img/logo.svg",
-      // },
+      logo: {
+        alt: "TurboStyles Logo",
+        src: "img/logo.svg",
+      },
       items: [
         {
           type: "doc",
