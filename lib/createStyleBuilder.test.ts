@@ -154,6 +154,13 @@ describe("createStyleBuilder", () => {
     expect(builder("capitalize").textTransform).toBe("capitalize");
   });
 
+  it("handles text decorations", () => {
+    const builder = makeBasicBuilder();
+
+    expect(builder("underline").textDecorationLine).toBe("underline");
+    expect(builder("line-through").textDecorationLine).toBe("line-through");
+  });
+
   it("handles flex constraints", () => {
     const builder = makeBasicBuilder();
     expect(builder("flex:1")).toEqual({

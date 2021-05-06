@@ -203,6 +203,8 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     uppercase: () => ({ textTransform: "uppercase" }),
     lowercase: () => ({ textTransform: "lowercase" }),
     capitalize: () => ({ textTransform: "capitalize" }),
+    underline: () => ({ textDecorationLine: "underline" }),
+    "line-through": () => ({ textDecorationLine: "line-through" }),
     flex: (inp) => {
       return {
         1: { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },

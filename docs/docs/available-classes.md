@@ -79,5 +79,7 @@ The table below shows all available types of "classes", which constraints (if an
 | `uppercase` | N/A | ❌ | `{ textTransform: "uppercase" }` | `uppercase` |
 | `lowercase` | N/A | ❌ | `{ textTransform: "lowercase" }` | `lowercase` |
 | `capitalize` | N/A | ❌ | `{ textTransform: "capitalize" }` | `capitalize` |
+| `underline` | N/A | ❌ | `{ textDecorationLine: "underline" }` | `underline` |
+| `line-through` | N/A | ❌ | `{ textDecorationLine: "line-through" }` | `line-through` |
 | `shadow:` | `keyof Constraints['shadows']` | ❌ | `elevation` on Android; `shadowOffset`, `shadowRadius`, `shadowOpacity` on iOS | `shadow:sm`, `shadow:lg` |
 

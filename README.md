@@ -58,7 +58,7 @@ const MyComponent: React.FC = () => {
 TEXT:
 - [ ] letterSpacing (tracking)
 - [ ] lineHeight (leading)
-- [ ] textDecorationLine (underline, line-through)
+- [x] textDecorationLine (underline, line-through)
 - [ ] Text shadows?
 
 IMAGE:

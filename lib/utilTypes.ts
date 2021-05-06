@@ -114,6 +114,9 @@ export type Config<C extends Constraints> = {
   uppercase: () => TextStyle;
   lowercase: () => TextStyle;
   capitalize: () => TextStyle;
+  underline: () => TextStyle;
+  "line-through": () => TextStyle;
+  // Additional flex helpers
   flex: (
     v:
       | "1"
