@@ -4,6 +4,10 @@ sidebar_position: 3
 
 # Available "Classes"
 
+The core usage of TurboStyles is providing "classes" or "style names" to a style builder and passing the built style to your UI elements (like `View`).  
+
+The table below shows all available types of "classes", which constraints (if any) apply to those "classes", and whether the type of class is [overridable](./overrides.md).
+
 | Prefix | Argument | Overridable | Properties Set | Example |
 | --- | --- | --- | --- | --- |
 | `m:` | `keyof Constraints['sizing']` | ✅ | `margin` | `m:0`, `m:[32]` |

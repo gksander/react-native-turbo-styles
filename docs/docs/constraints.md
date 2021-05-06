@@ -4,9 +4,9 @@ sidebar_position: 2
 
 # Constraints
 
-One of the core tenants of RN Turbo Styles is _design constraints_. This isn't a new idea: your design should generally abide by design constraints. For example, you might have a set sizing scale that's used for sizing/positioning elements. This limits the number of options you have for, say, `padding` - therefore making your designs more consistent.
+One of the core tenants of TurboStyles is _design constraints_. This isn't a new idea: your design should generally abide by design constraints. For example, you might have a set sizing scale that's used for sizing/positioning elements. This limits the number of options you have for, say, `padding` &ndash; therefore making your designs more consistent.
 
-When using RN Turbo Styles to create a style builder, you pass in a constraint configuration. The type of this configuration is:
+When using TurboStyles to create a style builder, you pass in a constraint configuration. The type of this configuration is this:
 
 ```ts
 type Constraints = {
@@ -37,3 +37,4 @@ The following table outlines these constraint types and what they affect.
 | `fontSizes` | Used for defining font size/line height combinations. |
 | `shadows` | Used for defining shadow properties. On Android, sets `elevation`. For iOS, it's `[shadowOffset.width, shadowOffset.height, shadowRadius, shadowOpacity]` |
 
+To see specifically what properties each constraint actually constrains, check out [the list of available "classes"](./available-classes.md).

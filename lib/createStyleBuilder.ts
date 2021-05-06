@@ -295,7 +295,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
  * If string looks like number, make it number
  */
 const cleanMaybeNumberString = (val: string): string | number =>
-  /^\d+$/.test(val) ? Number(val) : val;
+  !isNaN(Number(val)) ? Number(val) : val;
 
 /**
  * Extract value from brackets, e.g. [32] -> 32
