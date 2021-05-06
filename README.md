@@ -67,4 +67,4 @@ IMAGE:
 
 LAYOUT:
 - [ ] aspectRatio
-- [ ] display (display-none)?
+- [x] display (display-none)?

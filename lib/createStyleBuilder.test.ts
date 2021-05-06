@@ -98,6 +98,11 @@ describe("createStyleBuilder", () => {
     expect(builder("absolute")).toEqual({ position: "absolute" });
   });
 
+  it("handles hidden", () => {
+    const builder = makeBasicBuilder();
+    expect(builder("hidden")).toEqual({ display: "none" });
+  });
+
   it("handles border widths", () => {
     const builder = makeBasicBuilder();
     expect(builder("border:2")).toEqual({ borderWidth: borderSizes["2"] });

@@ -137,8 +137,9 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       const val = constraints.opacities[inp] ?? extractFromBrackets(inp);
       return <ViewStyle>{ opacity: val };
     },
-    relative: () => <FlexStyle>{ position: "relative" },
-    absolute: () => <FlexStyle>{ position: "absolute" },
+    relative: () => ({ position: "relative" }),
+    absolute: () => ({ position: "absolute" }),
+    hidden: () => ({ display: "none" }),
     // Border sizing
     border: borderSizeHandler("borderWidth"),
     "border-t": borderSizeHandler("borderTopWidth"),

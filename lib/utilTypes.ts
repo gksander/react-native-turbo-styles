@@ -93,6 +93,7 @@ export type Config<C extends Constraints> = {
   opacity: OpacityHandler<C>;
   relative: () => FlexStyle;
   absolute: () => FlexStyle;
+  hidden: () => FlexStyle;
   border: BorderSizeHandler<C>;
   "border-t": BorderSizeHandler<C>;
   "border-b": BorderSizeHandler<C>;

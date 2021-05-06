@@ -26,6 +26,7 @@ The table below shows all available types of "classes", which constraints (if an
 | `pb:` | `keyof Constraints['sizing']` | ✅ | `paddingBottom` | `pb:0`, `pb:[32]` |
 | `relative` | N/A | ❌ | `{ position: "relative" }` | `relative` |
 | `absolute` | N/A | ❌ | `{ position: "absolute" }` | `absolute` |
+| `hidden` | N/A | ❌ | `{ display: "none" }` | `hidden` |
 | `inset:` | `keyof Constraints['sizing']` | ✅ | `top`, `bottom`, `left`, `right` | `inset:0`, `inset:[32]` |
 | `inset-x:` | `keyof Constraints['sizing']` | ✅ | `left`, `right` | `inset-x:0`, `inset-x:[32]` |
 | `inset-y:` | `keyof Constraints['sizing']` | ✅ | `top`, `bottom` | `inset-y:0`, `inset-y:[32]` |
