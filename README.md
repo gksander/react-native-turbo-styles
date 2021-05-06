@@ -55,4 +55,18 @@ const MyComponent: React.FC = () => {
 
 ## TODO:
 
-- [ ] Bold fonts...
+TEXT:
+- [ ] letterSpacing (tracking)
+- [ ] lineHeight (leading)
+- [ ] textDecorationLine (underline, line-through)
+- [ ] Text shadows?
+
+IMAGE:
+- [ ] resizeMode
+- [ ] tintColor
+
+LAYOUT:
+- [ ] aspectRatio
+- [ ] direction? (ltr, rtl)
+- [ ] display (display-none)?
+- [ ] start/end (ltr equivalents of left/right?)
