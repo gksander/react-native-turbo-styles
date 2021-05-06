@@ -199,6 +199,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       return { fontWeight: val };
     },
     italic: () => ({ fontStyle: "italic" }),
+    "text-align": (textAlign) => ({ textAlign }),
     flex: (inp) => {
       return {
         1: { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },

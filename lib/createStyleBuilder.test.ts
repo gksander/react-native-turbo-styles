@@ -139,6 +139,13 @@ describe("createStyleBuilder", () => {
     });
   });
 
+  it("handles text align", () => {
+    const builder = makeBasicBuilder();
+    expect(builder("text-align:center")).toEqual({
+      textAlign: "center",
+    });
+  });
+
   it("handles flex constraints", () => {
     const builder = makeBasicBuilder();
     expect(builder("flex:1")).toEqual({

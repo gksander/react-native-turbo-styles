@@ -21,8 +21,8 @@ export const Colors: React.FC = () => {
       )}
     >
       {colors.map(([key, color]) => (
-        <View key={key}>
-          <Text style={{ fontWeight: "300", fontStyle: "italic" }}>{key}</Text>
+        <View key={key} style={ts("items:center")}>
+          <Text style={ts("font-weight:bold", "text-align:center")}>{key}</Text>
           <View style={ts("h:2")} />
           <View
             style={ts(
@@ -33,7 +33,7 @@ export const Colors: React.FC = () => {
             )}
           />
           <View style={ts("h:2")} />
-          <Text>{color}</Text>
+          <Text style={ts("text-align:center")}>{color}</Text>
         </View>
       ))}
     </View>
