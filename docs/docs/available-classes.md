@@ -85,3 +85,4 @@ The table below shows all available types of "classes", which constraints (if an
 | `shadow:` | `keyof Constraints['shadows']` | ❌ | `elevation` on Android; `shadowOffset`, `shadowRadius`, `shadowOpacity` on iOS | `shadow:sm`, `shadow:lg` |
 | `resize:` | `"cover", "contain", "stretch", "repeat", "center"` | ❌ | `resizeMode` | `resize:cover`, `resize:contain` |
 | `tint:` | `keyof Constraints['colors']` | ✅ | `tintColor` | `tint:red-300`, `tint:[#ff00ff]` |
+| `aspect:` | `keyof Constraints['aspectRatios']` | ✅ | `aspectRatio` | `aspect:16-9`, `aspect:[1.3]` |

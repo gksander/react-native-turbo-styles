@@ -66,5 +66,10 @@ IMAGE:
 - [x] tintColor
 
 LAYOUT:
-- [ ] aspectRatio
+- [x] aspectRatio
 - [x] display (display-none)?
+
+GENERAL:
+- [ ] Make some constraints optional, and conditionally offer classes based on that?
+- [ ] Constrain the cache
+- [ ] Clean up types/test files.

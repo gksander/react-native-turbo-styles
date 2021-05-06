@@ -12,6 +12,7 @@ export type Constraints = {
     string | number,
     { android: number; ios: readonly [number, number, number, number] }
   >;
+  aspectRatios: Record<string | number, readonly [number, number]>;
 };
 
 export type NonSymbol<T> = Exclude<T, symbol>;
@@ -140,6 +141,7 @@ export type Config<C extends Constraints> = {
   ) => FlexStyle;
   shadow: (v: NonSymbol<keyof C["shadows"]>) => ViewStyle;
   resize: (v: NonNullable<ImageStyle["resizeMode"]>) => ImageStyle;
+  aspect: (v: NonSymbol<keyof C["aspectRatios"]> | `[${string}]`) => FlexStyle;
 };
 
 type Style<C extends Constraints, K extends keyof Config<C>> = Parameters<

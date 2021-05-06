@@ -21,6 +21,7 @@ type Constraints = {
     string | number,
     { android: number; ios: readonly [number, number, number, number] }
   >;
+	aspectRatios: Record<string | number, readonly [number, number]>;
 };
 ```
 
@@ -38,5 +39,6 @@ The following table outlines these constraint types and what they affect.
 | `fontSizes` | Used for defining font size/line height combinations. |
 | `fontWeights` | Used for defining font-weight variants |
 | `shadows` | Used for defining shadow properties. On Android, sets `elevation`. For iOS, it's `[shadowOffset.width, shadowOffset.height, shadowRadius, shadowOpacity]` |
+| `aspectRatios` | Used for fixing aspect ratio of elements. |
 
 To see specifically what properties each constraint actually constrains, check out [the list of available "classes"](./available-classes.md).

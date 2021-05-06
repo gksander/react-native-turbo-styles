@@ -242,6 +242,19 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     },
     resize: (resizeMode) => ({ resizeMode }),
     tint: colorHandler("tintColor"),
+    aspect: (inp) => {
+      const cVal = constraints.aspectRatios?.[inp];
+      if (cVal) {
+        return { aspectRatio: cVal[0] / cVal[1] };
+      }
+
+      const overrideVal = extractFromBrackets(inp);
+      if (typeof overrideVal === "number") {
+        return { aspectRatio: overrideVal };
+      }
+
+      return {};
+    },
   };
 
   /**

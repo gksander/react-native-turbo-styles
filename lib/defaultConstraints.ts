@@ -136,6 +136,15 @@ export const defaultConstraints = {
     xl: { android: 12, ios: [0, 6, 7.49, 0.37] },
     "2xl": { android: 16, ios: [0, 8, 10.32, 0.44] },
   },
+  aspectRatios: {
+    1: [1, 1],
+    "16-9": [16, 9],
+    "9-16": [9, 16],
+    "3-4": [3, 4],
+    "4-3": [4, 3],
+    "1-2": [1, 2],
+    "2-1": [2, 1],
+  },
 } as const;
 
 assertIsConstraint(defaultConstraints);

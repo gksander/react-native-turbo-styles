@@ -226,4 +226,12 @@ describe("createStyleBuilder", () => {
       shadowRadius,
     });
   });
+
+  it("handles aspect ratio", () => {
+    const builder = makeBasicBuilder();
+
+    expect(builder("aspect:1").aspectRatio).toBe(1);
+    expect(builder("aspect:16-9").aspectRatio).toBeCloseTo(16 / 9);
+    expect(builder("aspect:3-4").aspectRatio).toBeCloseTo(3 / 4);
+  });
 });
