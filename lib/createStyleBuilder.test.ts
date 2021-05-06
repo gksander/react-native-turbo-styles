@@ -59,6 +59,13 @@ describe("createStyleBuilder", () => {
     });
   });
 
+  it("handles negative margins", () => {
+    const builder = makeBasicBuilder();
+
+    expect(builder("-m:3").margin).toBe(-sizing["3"]);
+    expect(builder("-m:[11]").margin).toBe(-11);
+  });
+
   it("handles inset/positioning", () => {
     const builder = makeBasicBuilder();
     expect(builder("top:2")).toEqual({ top: sizing["2"] });

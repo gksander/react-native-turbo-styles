@@ -33,12 +33,17 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     return constraints.sizing[val] ?? extractFromBrackets(val);
   };
   const sizeHandler = (
-    ...properties: Array<keyof FlexStyle>
+    properties: Array<keyof FlexStyle>,
+    isNegative?: boolean
   ): SizeHandler<C> => (key: sizeInput<C>) => {
     const val = getSizeValue(key);
     return properties.reduce<FlexStyle>((acc, prop) => {
       // @ts-ignore
-      acc[prop] = val;
+      acc[prop] = isNegative
+        ? typeof val === "number"
+          ? -val
+          : `-${val}`
+        : val;
       return acc;
     }, {});
   };
@@ -94,36 +99,50 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
 
   const config: Config<C> = {
     // Margin
-    m: sizeHandler("margin"),
-    mx: sizeHandler("marginLeft", "marginRight"),
-    my: sizeHandler("marginTop", "marginBottom"),
-    ml: sizeHandler("marginLeft"),
-    mr: sizeHandler("marginRight"),
-    mt: sizeHandler("marginTop"),
-    mb: sizeHandler("marginBottom"),
+    m: sizeHandler(["margin"]),
+    "-m": sizeHandler(["margin"], true),
+    mx: sizeHandler(["marginLeft", "marginRight"]),
+    "-mx": sizeHandler(["marginLeft", "marginRight"], true),
+    my: sizeHandler(["marginTop", "marginBottom"]),
+    "-my": sizeHandler(["marginTop", "marginBottom"], true),
+    ml: sizeHandler(["marginLeft"]),
+    "-ml": sizeHandler(["marginLeft"], true),
+    mr: sizeHandler(["marginRight"]),
+    "-mr": sizeHandler(["marginRight"], true),
+    mt: sizeHandler(["marginTop"]),
+    "-mt": sizeHandler(["marginTop"], true),
+    mb: sizeHandler(["marginBottom"]),
+    "-mb": sizeHandler(["marginBottom"], true),
     // Padding
-    p: sizeHandler("padding"),
-    px: sizeHandler("paddingLeft", "paddingRight"),
-    py: sizeHandler("paddingTop", "paddingBottom"),
-    pl: sizeHandler("paddingLeft"),
-    pr: sizeHandler("paddingRight"),
-    pt: sizeHandler("paddingTop"),
-    pb: sizeHandler("paddingBottom"),
+    p: sizeHandler(["padding"]),
+    px: sizeHandler(["paddingLeft", "paddingRight"]),
+    py: sizeHandler(["paddingTop", "paddingBottom"]),
+    pl: sizeHandler(["paddingLeft"]),
+    pr: sizeHandler(["paddingRight"]),
+    pt: sizeHandler(["paddingTop"]),
+    pb: sizeHandler(["paddingBottom"]),
     // Inset/position
-    inset: sizeHandler("top", "bottom", "left", "right"),
-    "inset-x": sizeHandler("left", "right"),
-    "inset-y": sizeHandler("top", "bottom"),
-    left: sizeHandler("left"),
-    right: sizeHandler("right"),
-    top: sizeHandler("top"),
-    bottom: sizeHandler("bottom"),
+    inset: sizeHandler(["top", "bottom", "left", "right"]),
+    "-inset": sizeHandler(["top", "bottom", "left", "right"], true),
+    "inset-x": sizeHandler(["left", "right"]),
+    "-inset-x": sizeHandler(["left", "right"], true),
+    "inset-y": sizeHandler(["top", "bottom"]),
+    "-inset-y": sizeHandler(["top", "bottom"], true),
+    left: sizeHandler(["left"]),
+    "-left": sizeHandler(["left"], true),
+    right: sizeHandler(["right"]),
+    "-right": sizeHandler(["right"], true),
+    top: sizeHandler(["top"]),
+    "-top": sizeHandler(["top"], true),
+    bottom: sizeHandler(["bottom"]),
+    "-bottom": sizeHandler(["bottom"], true),
     // Sizing
-    w: sizeHandler("width"),
-    "min-w": sizeHandler("minWidth"),
-    "max-w": sizeHandler("maxWidth"),
-    h: sizeHandler("height"),
-    "min-h": sizeHandler("minHeight"),
-    "max-h": sizeHandler("maxHeight"),
+    w: sizeHandler(["width"]),
+    "min-w": sizeHandler(["minWidth"]),
+    "max-w": sizeHandler(["maxWidth"]),
+    h: sizeHandler(["height"]),
+    "min-h": sizeHandler(["minHeight"]),
+    "max-h": sizeHandler(["maxHeight"]),
     // Colors
     bg: colorHandler("backgroundColor"),
     "border-color": colorHandler("borderColor"),

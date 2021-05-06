@@ -60,12 +60,19 @@ export type BorderRadiusHandler<C extends Constraints> = (
 
 export type Config<C extends Constraints> = {
   m: SizeHandler<C>;
+  "-m": SizeHandler<C>;
   mx: SizeHandler<C>;
+  "-mx": SizeHandler<C>;
   my: SizeHandler<C>;
+  "-my": SizeHandler<C>;
   ml: SizeHandler<C>;
+  "-ml": SizeHandler<C>;
   mr: SizeHandler<C>;
+  "-mr": SizeHandler<C>;
   mt: SizeHandler<C>;
+  "-mt": SizeHandler<C>;
   mb: SizeHandler<C>;
+  "-mb": SizeHandler<C>;
   p: SizeHandler<C>;
   px: SizeHandler<C>;
   py: SizeHandler<C>;
@@ -74,12 +81,19 @@ export type Config<C extends Constraints> = {
   pt: SizeHandler<C>;
   pb: SizeHandler<C>;
   inset: SizeHandler<C>;
+  "-inset": SizeHandler<C>;
   "inset-x": SizeHandler<C>;
+  "-inset-x": SizeHandler<C>;
   "inset-y": SizeHandler<C>;
+  "-inset-y": SizeHandler<C>;
   left: SizeHandler<C>;
+  "-left": SizeHandler<C>;
   right: SizeHandler<C>;
+  "-right": SizeHandler<C>;
   top: SizeHandler<C>;
+  "-top": SizeHandler<C>;
   bottom: SizeHandler<C>;
+  "-bottom": SizeHandler<C>;
   w: SizeHandler<C>;
   "min-w": SizeHandler<C>;
   "max-w": SizeHandler<C>;

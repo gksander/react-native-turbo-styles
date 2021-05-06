@@ -20,9 +20,21 @@ TurboStyles uses your sizing constraints to generate margin helpers. You can set
 | `mt:` | `keyof Constraints['sizing']` | ✅ | `marginTop` | `mt:2`, `mt:[32]` |
 | `mb:` | `keyof Constraints['sizing']` | ✅ | `marginBottom` | `mb:2`, `mb:[32]` |
 
+Each of these margin class types comes with a "negative" counterpart. E.g., something like `m:3` will generally apply _positive_ margin. You can use `-m:3` to apply the same amount of margin but in the _negative_ direction. This gives us an additional set of classes:
+
+| Prefix | Argument | Overridable | Properties Set | Example |
+| --- | --- | --- | --- | --- |
+| `-m:` | `keyof Constraints['sizing']` | ✅ | `-margin` | `-m:2`, `-m:[32]` |
+| `-mx:` | `keyof Constraints['sizing']` | ✅ | `-marginLeft`, `-marginRight` | `-mx:2`, `-mx:[32]` |
+| `-my:` | `keyof Constraints['sizing']` | ✅ | `-marginTop`, `-marginBottom` | `-my:2`, `-my:[32]` |
+| `-ml:` | `keyof Constraints['sizing']` | ✅ | `-marginLeft` | `-ml:2`, `-ml:[32]` |
+| `-mr:` | `keyof Constraints['sizing']` | ✅ | `-marginRight` | `-mr:2`, `-mr:[32]` |
+| `-mt:` | `keyof Constraints['sizing']` | ✅ | `-marginTop` | `-mt:2`, `-mt:[32]` |
+| `-mb:` | `keyof Constraints['sizing']` | ✅ | `-marginBottom` | `-mb:2`, `-mb:[32]` |
+
 ## Padding
 
-The padding classes in TurboStyles behave like their respective margin classes, but setting padding properties instead of margin.
+The padding classes in TurboStyles behave like their respective margin classes, but setting padding properties instead of margin. There are no "negative" padding classes.
 
 | Prefix | Argument | Overridable | Properties Set | Example |
 | --- | --- | --- | --- | --- |
@@ -65,6 +77,18 @@ You can set positioning type with `relative` and `absolute`. When using `absolut
 | `right:` | `keyof Constraints['sizing']` | ✅ | `right` | `right:0`, `right:[32]` |
 | `top:` | `keyof Constraints['sizing']` | ✅ | `top` | `top:0`, `top:[32]` |
 | `bottom:` | `keyof Constraints['sizing']` | ✅ | `bottom` | `bottom:0`, `bottom:[32]` |
+
+Like with [the margin classes](#margin), the positioning classes have "negative" counterparts. This allows for things like `-inset:3` to "overflow" content out of its parent. This then gives us the following set of classes:
+
+| Prefix | Argument | Overridable | Properties Set | Example |
+| --- | --- | --- | --- | --- |
+| `-inset:` | `keyof Constraints['sizing']` | ✅ | `-top`, `-bottom`, `-left`, `-right` | `-inset:3`, `-inset:[32]` |
+| `-inset-x:` | `keyof Constraints['sizing']` | ✅ | `-left`, `-right` | `-inset-x:3`, `-inset-x:[32]` |
+| `-inset-y:` | `keyof Constraints['sizing']` | ✅ | `-top`, `-bottom` | `-inset-y:3`, `-inset-y:[32]` |
+| `-left:` | `keyof Constraints['sizing']` | ✅ | `-left` | `-left:3`, `-left:[32]` |
+| `-right:` | `keyof Constraints['sizing']` | ✅ | `-right` | `-right:3`, `-right:[32]` |
+| `-top:` | `keyof Constraints['sizing']` | ✅ | `-top` | `-top:3`, `-top:[32]` |
+| `-bottom:` | `keyof Constraints['sizing']` | ✅ | `-bottom` | `-bottom:3`, `-bottom:[32]` |
 
 ## Visibility
 
