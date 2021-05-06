@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Requirements
 
-**IMPORTANT!** TurboStyles' style name inference is possible due to [template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) in TypeScript. Template literal types were released in TypeScript 4.1, and therefore for you to get type inference - your project will need to be using at least `typescript: "4.1.0"`.
+**IMPORTANT!** TurboStyles' style name inference is possible due to [template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) in TypeScript. Template literal types were released in TypeScript 4.1, and therefore for you to get type inference &ndash; your project will need to be using at least `typescript: "4.1.0"`.
 
 ## Usage
 
@@ -26,7 +26,7 @@ npm i react-native-turbo-styles
 
 ### Create Style Builder with Constraints
 
-Next, you create a "style builder" by providing constraints. The library ships with a default set of [TailwindCSS](https://tailwindcss.com/)-like constraints that you can use or extend - or you can provide your own set of constraints.
+Next, you create a "style builder" by providing constraints. The library ships with a default set of [TailwindCSS](https://tailwindcss.com/)-like constraints that you can use or extend &ndash; or you can provide your own set of constraints.
 
 ```ts
 // myTurboStyles.ts
@@ -59,7 +59,7 @@ That's all there is to it!
 
 The `createStyleBuilder` function returns (amongst other things) a `builder` function and a `useTurboStyles` hook.
 
-The previous example used the `useTurboStyles` hook -- but you might opt to use the builder directly. To do so, just export the `builder` function that is returned from `createStyleBuilder` and call it directly. This might look like the following:
+The previous example used the `useTurboStyles` hook &ndash; but you might opt to use the builder directly. To do so, just export the `builder` function that is returned from `createStyleBuilder` and call it directly. This might look like the following:
 
 ```tsx
 // In myTurboStyles.ts
