@@ -34,6 +34,18 @@ const Foo = () => {
 };
 ```
 
+The `useTurboStylesWithDarkMode` hook creates a slightly-modified style builder that has the following type:
+
+```ts
+useTurboStylesWithDarkMode(): (args: { base: StyleName[], dark: StyleName[] }) => object;
+```
+
+where `StyleName` is just an array-form of the arguments you'd generally pass to a `builder` from `createStyleBuilder`.
+
+## In Debug Mode
+
 **NOTE!** React Native's `Appearance` API, which this leverages, doesn't work when connected to Chrome debugger:
 
 > Note: getColorScheme() will always return light when debugging with Chrome.
+
+If you're testing this out on a simulator, it might appear like dark mode is not working. You may need to install the app on a physical device to test this.

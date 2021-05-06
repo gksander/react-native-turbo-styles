@@ -60,7 +60,7 @@ export const ComputedOverrideExample: React.FC = () => {
     <View style={ts("flex:1", "bg:gray-200", "justify:center", "items:center")}>
       <View
         style={ts(
-          `w:[${rectWidth}]` as ConstraintOverride<"w">,
+          `w:[${Math.round(rectWidth)}]` as ConstraintOverride<"w">,
           "h:10",
           "bg:red-300"
         )}
@@ -70,5 +70,5 @@ export const ComputedOverrideExample: React.FC = () => {
 };
 ```
 
-One important thing to note here is this bit: `as ConstraintOverride<'w'>`. TS template literal types can't infer from string template literal values. That is, `w:[${rectWidth}]` is "too hard" for TS to understand as an override here, so we have to help TS out a bit and declare that we're overriding. This is only needed when your override value is a template literal value, but simple string literals don't need this (e.g., `w:[57.3]` is just fine).
+One important thing to note here is this bit: `as ConstraintOverride<'w'>`. TS template literal types can't infer from string template literal values. That is, `w:[${Math.round(rectWidth)}]` is "too hard" for TS to understand as an override here, so we have to help TS out a bit and declare that we're overriding. This is only needed when your override value is a template literal value, but simple string literals don't need this (e.g., `w:[57.3]` is just fine).
 

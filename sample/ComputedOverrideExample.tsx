@@ -11,7 +11,7 @@ export const ComputedOverrideExample: React.FC = () => {
     <View style={ts("flex:1", "bg:gray-200", "justify:center", "items:center")}>
       <View
         style={ts(
-          `w:[${rectWidth}]` as ConstraintOverride<"w">,
+          `w:[${Math.round(rectWidth)}]` as ConstraintOverride<"w">,
           "h:10",
           "bg:red-300"
         )}
