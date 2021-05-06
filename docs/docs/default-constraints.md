@@ -78,7 +78,9 @@ const { useTurboStyles } = createStyleBuilder({
 
 ## Default Colors
 
-Coming soon...
+The default colors consist of `white: #fff`, `black: #000`, and the following colors.
+
+![Default color palette](/img/screenshots/default-colors.png)
 
 ## Default Opacities
 
