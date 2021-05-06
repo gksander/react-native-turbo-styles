@@ -7,6 +7,7 @@ export type Constraints = {
   borderSizes: Record<string | number, number>;
   borderRadii: Record<string | number, number>;
   fontSizes: Record<string | number, readonly [number, number]>;
+  fontWeights: Record<string | number, TextStyle["fontWeight"]>;
   shadows: Record<
     string | number,
     { android: number; ios: readonly [number, number, number, number] }
@@ -107,6 +108,8 @@ export type Config<C extends Constraints> = {
   items: (v: "start" | "end" | "center" | "baseline" | "stretch") => FlexStyle;
   z: (v: string) => ViewStyle;
   text: (v: NonSymbol<keyof C["fontSizes"]>) => TextStyle;
+  "font-weight": (v: NonSymbol<keyof C["fontWeights"]>) => TextStyle;
+  italic: () => TextStyle;
   flex: (
     v:
       | "1"

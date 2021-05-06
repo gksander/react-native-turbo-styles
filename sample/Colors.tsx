@@ -22,7 +22,7 @@ export const Colors: React.FC = () => {
     >
       {colors.map(([key, color]) => (
         <View key={key}>
-          <Text style={ts()}>{key}</Text>
+          <Text style={{ fontWeight: "300", fontStyle: "italic" }}>{key}</Text>
           <View style={ts("h:2")} />
           <View
             style={ts(

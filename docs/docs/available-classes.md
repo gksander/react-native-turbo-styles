@@ -73,5 +73,7 @@ The table below shows all available types of "classes", which constraints (if an
 | `flex:wrap-reverse` | N/A | ❌ | `{ flexWrap: "wrap-reverse" }` | `flex:wrap-reverse` |
 | `flex:nowrap` | N/A | ❌ | `{ flexWrap: "nowrap" }` | `flex:nowrap` |
 | `text:` | `keyof Constraints['fontSizes']` | ❌ | `fontSize`, `lineHeight` | `text:sm`, `text:3xl` |
+| `font-weight:` | `keyof Constraints['fontWeights']` | ❌ | `fontWeight` | `font-weight:normal`, `font-weight:extrabold` |
+| `italic` | N/A | ❌ | `{ fontStyle: "italic" }` | `italic` |
 | `shadow:` | `keyof Constraints['shadows']` | ❌ | `elevation` on Android; `shadowOffset`, `shadowRadius`, `shadowOpacity` on iOS | `shadow:sm`, `shadow:lg` |
 

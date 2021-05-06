@@ -16,6 +16,7 @@ type Constraints = {
   borderSizes: Record<string | number, number>;
   borderRadii: Record<string | number, number>;
   fontSizes: Record<string | number, readonly [number, number]>;
+	fontWeights: Record<string | number, TextStyle["fontWeight"]>;
   shadows: Record<
     string | number,
     { android: number; ios: readonly [number, number, number, number] }
@@ -35,6 +36,7 @@ The following table outlines these constraint types and what they affect.
 | `borderSizes` | Used for border widths. |
 | `borderRadii` | Used for border radius. |
 | `fontSizes` | Used for defining font size/line height combinations. |
+| `fontWeights` | Used for defining font-weight variants |
 | `shadows` | Used for defining shadow properties. On Android, sets `elevation`. For iOS, it's `[shadowOffset.width, shadowOffset.height, shadowRadius, shadowOpacity]` |
 
 To see specifically what properties each constraint actually constrains, check out [the list of available "classes"](./available-classes.md).

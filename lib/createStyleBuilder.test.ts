@@ -125,6 +125,20 @@ describe("createStyleBuilder", () => {
     });
   });
 
+  it("handles constrained font weights", () => {
+    const builder = makeBasicBuilder();
+    expect(builder("font-weight:bold")).toEqual({
+      fontWeight: defaultConstraints.fontWeights["bold"],
+    });
+  });
+
+  it("handles italic class", () => {
+    const builder = makeBasicBuilder();
+    expect(builder("italic")).toEqual({
+      fontStyle: "italic",
+    });
+  });
+
   it("handles flex constraints", () => {
     const builder = makeBasicBuilder();
     expect(builder("flex:1")).toEqual({

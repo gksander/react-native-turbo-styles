@@ -112,6 +112,17 @@ export const defaultConstraints = {
     "8xl": [6 * BASE_FONT_SIZE, 1],
     "9xl": [8 * BASE_FONT_SIZE, 1],
   },
+  fontWeights: {
+    thin: "100",
+    extralight: "200",
+    light: "300",
+    normal: "400",
+    medium: "500",
+    semibold: "600",
+    bold: "700",
+    extrabold: "800",
+    black: "900",
+  },
   /**
    * Generated from https://ethercreative.github.io/react-native-shadow-generator/
    * android prop represents elevation.
