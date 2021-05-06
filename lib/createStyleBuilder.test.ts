@@ -21,6 +21,8 @@ const {
   borderRadii,
   fontSizes,
   opacities,
+  aspectRatios,
+  fontWeights,
 } = defaultConstraints;
 
 describe("createStyleBuilder", () => {
@@ -244,6 +246,162 @@ describe("createStyleBuilder", () => {
     [["max-h:0"], { maxHeight: sizing["0"] }],
     [["max-h:2"], { maxHeight: sizing["2"] }],
     [["max-h:[3]"], { maxHeight: 3 }],
+
+    // bg:
+    [["bg:red-300"], { backgroundColor: colors["red-300"] }],
+    [["bg:blue-900"], { backgroundColor: colors["blue-900"] }],
+    [["bg:[yellow]"], { backgroundColor: "yellow" }],
+    [["bg:[#f03]"], { backgroundColor: "#f03" }],
+    // border-color:
+    [["border-color:red-300"], { borderColor: colors["red-300"] }],
+    [["border-color:blue-900"], { borderColor: colors["blue-900"] }],
+    [["border-color:[yellow]"], { borderColor: "yellow" }],
+    [["border-color:[#f03]"], { borderColor: "#f03" }],
+    // tint:
+    [["tint:red-300"], { tintColor: colors["red-300"] }],
+    [["tint:blue-900"], { tintColor: colors["blue-900"] }],
+    [["tint:[yellow]"], { tintColor: "yellow" }],
+    [["tint:[#f03]"], { tintColor: "#f03" }],
+    [
+      ["bg:red-100", "bg-opacity:50"],
+      { backgroundColor: "rgba(254, 226, 226, 0.5)" },
+    ],
+
+    // Opacity
+    [["opacity:25"], { opacity: 0.25 }],
+    [["opacity:[0.33]"], { opacity: 0.33 }],
+
+    // relative/absolute/hidden
+    [["relative"], { position: "relative" }],
+    [["absolute"], { position: "absolute" }],
+    [["hidden"], { display: "none" }],
+
+    // border:
+    [["border:hairline"], { borderWidth: borderSizes["hairline"] }],
+    [["border-t:hairline"], { borderTopWidth: borderSizes["hairline"] }],
+    [["border-b:hairline"], { borderBottomWidth: borderSizes["hairline"] }],
+    [["border-l:hairline"], { borderLeftWidth: borderSizes["hairline"] }],
+    [["border-r:hairline"], { borderRightWidth: borderSizes["hairline"] }],
+
+    // rounded:
+    [["rounded:lg"], { borderRadius: borderRadii["lg"] }],
+    [
+      ["rounded-t:lg"],
+      {
+        borderTopLeftRadius: borderRadii["lg"],
+        borderTopRightRadius: borderRadii["lg"],
+      },
+    ],
+    [
+      ["rounded-b:lg"],
+      {
+        borderBottomLeftRadius: borderRadii["lg"],
+        borderBottomRightRadius: borderRadii["lg"],
+      },
+    ],
+    [
+      ["rounded-l:lg"],
+      {
+        borderTopLeftRadius: borderRadii["lg"],
+        borderBottomLeftRadius: borderRadii["lg"],
+      },
+    ],
+    [
+      ["rounded-r:lg"],
+      {
+        borderTopRightRadius: borderRadii["lg"],
+        borderBottomRightRadius: borderRadii["lg"],
+      },
+    ],
+
+    // Overflow
+    [["overflow:visible"], { overflow: "visible" }],
+    [["overflow:hidden"], { overflow: "hidden" }],
+    [["overflow:scroll"], { overflow: "scroll" }],
+
+    // z:
+    [["z:0"], { zIndex: 0 }],
+    [["z:1"], { zIndex: 1 }],
+    [["z:10"], { zIndex: 10 }],
+
+    // justify:
+    [["justify:start"], { justifyContent: "flex-start" }],
+    [["justify:end"], { justifyContent: "flex-end" }],
+    [["justify:center"], { justifyContent: "center" }],
+    [["justify:between"], { justifyContent: "space-between" }],
+    [["justify:around"], { justifyContent: "space-around" }],
+    [["justify:evenly"], { justifyContent: "space-evenly" }],
+
+    // items:
+    [["items:start"], { alignItems: "flex-start" }],
+    [["items:end"], { alignItems: "flex-end" }],
+    [["items:center"], { alignItems: "center" }],
+    [["items:baseline"], { alignItems: "baseline" }],
+    [["items:stretch"], { alignItems: "stretch" }],
+
+    // flex helpers
+    [["flex:1"], { flexGrow: 1, flexShrink: 1, flexBasis: "0%" }],
+    [["flex:auto"], { flexGrow: 1, flexShrink: 1, flexBasis: "auto" }],
+    [["flex:initial"], { flexGrow: 0, flexShrink: 1, flexBasis: "auto" }],
+    [["flex:none"], { flexGrow: 0, flexShrink: 0, flexBasis: "auto" }],
+    [["flex:row"], { flexDirection: "row" }],
+    [["flex:row-reverse"], { flexDirection: "row-reverse" }],
+    [["flex:col"], { flexDirection: "column" }],
+    [["flex:col-reverse"], { flexDirection: "column-reverse" }],
+    [["flex:grow"], { flexGrow: 1 }],
+    [["flex:grow-0"], { flexGrow: 0 }],
+    [["flex:shrink"], { flexShrink: 1 }],
+    [["flex:shrink-0"], { flexShrink: 0 }],
+    [["flex:wrap"], { flexWrap: "wrap" }],
+    [["flex:wrap-reverse"], { flexWrap: "wrap-reverse" }],
+    [["flex:nowrap"], { flexWrap: "nowrap" }],
+
+    // text:
+    [
+      ["text:sm"],
+      { fontSize: fontSizes["sm"][0], lineHeight: fontSizes["sm"][1] },
+    ],
+    [
+      ["text:2xl"],
+      { fontSize: fontSizes["2xl"][0], lineHeight: fontSizes["2xl"][1] },
+    ],
+
+    // font-weight:
+    [["font-weight:light"], { fontWeight: fontWeights["light"] }],
+    [["font-weight:bold"], { fontWeight: fontWeights["bold"] }],
+    [["font-weight:extrabold"], { fontWeight: fontWeights["extrabold"] }],
+
+    // text-align:
+    [["text-align:center"], { textAlign: "center" }],
+
+    // text transform/decorations
+    [["italic"], { fontStyle: "italic" }],
+    [["uppercase"], { textTransform: "uppercase" }],
+    [["lowercase"], { textTransform: "lowercase" }],
+    [["capitalize"], { textTransform: "capitalize" }],
+    [["underline"], { textDecorationLine: "underline" }],
+    [["line-through"], { textDecorationLine: "line-through" }],
+
+    // resize:
+    [["resize:cover"], { resizeMode: "cover" }],
+    [["resize:contain"], { resizeMode: "contain" }],
+    [["resize:stretch"], { resizeMode: "stretch" }],
+    [["resize:repeat"], { resizeMode: "repeat" }],
+    [["resize:center"], { resizeMode: "center" }],
+
+    // aspect:
+    [
+      ["aspect:1"],
+      { aspectRatio: aspectRatios["1"][0] / aspectRatios["1"][1] },
+    ],
+    [
+      ["aspect:16-9"],
+      { aspectRatio: aspectRatios["16-9"][0] / aspectRatios["16-9"][1] },
+    ],
+    [
+      ["aspect:3-4"],
+      { aspectRatio: aspectRatios["3-4"][0] / aspectRatios["3-4"][1] },
+    ],
   ];
 
   test.each(cases)("builder(...%s) returns %s", (classList, expectedOutput) => {
@@ -251,222 +409,25 @@ describe("createStyleBuilder", () => {
     expect(builder(...classList)).toEqual(expectedOutput);
   });
 
-  it("handles m: classes", () => {
-    const builder = makeDefaultBuilder();
-  });
+  it("handles shadows", () => {
+    const builder1 = makeDefaultBuilder();
 
-  // it("handles margin/padding with constraint", () => {
-  //   const builder = makeDefaultBuilder();
-  //
-  //   expect(builder("m:2")).toEqual({ margin: sizing["2"] });
-  //   expect(builder("mx:4")).toEqual({
-  //     marginLeft: sizing["4"],
-  //     marginRight: sizing["4"],
-  //   });
-  //   expect(builder("mb:2")).toEqual({
-  //     marginBottom: sizing["2"],
-  //   });
-  //
-  //   expect(builder("p:2")).toEqual({ padding: sizing["2"] });
-  //   expect(builder("px:4")).toEqual({
-  //     paddingLeft: sizing["4"],
-  //     paddingRight: sizing["4"],
-  //   });
-  //   expect(builder("pb:2")).toEqual({
-  //     paddingBottom: sizing["2"],
-  //   });
-  // });
-  //
-  // it("handles margin with override", () => {
-  //   const builder = makeDefaultBuilder();
-  //
-  //   expect(builder("m:[32]")).toEqual({ margin: 32 });
-  //   expect(builder("mx:[10%]")).toEqual({
-  //     marginLeft: "10%",
-  //     marginRight: "10%",
-  //   });
-  // });
-  //
-  // it("handles negative margins", () => {
-  //   const builder = makeDefaultBuilder();
-  //
-  //   expect(builder("-m:3").margin).toBe(-sizing["3"]);
-  //   expect(builder("-m:[11]").margin).toBe(-11);
-  // });
-  //
-  // it("handles inset/positioning", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("top:2")).toEqual({ top: sizing["2"] });
-  // });
-  //
-  // it("handles background color", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("bg:red-100")).toEqual({
-  //     backgroundColor: colors["red-100"],
-  //   });
-  //   expect(builder("bg:[blue]")).toEqual({ backgroundColor: "blue" });
-  // });
-  //
-  // it("handles tint color", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("tint:red-100")).toEqual({
-  //     tintColor: colors["red-100"],
-  //   });
-  //   expect(builder("tint:[blue]")).toEqual({ tintColor: "blue" });
-  // });
-  //
-  // it("handles background opacity", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("bg:red-100", "bg-opacity:50")).toEqual({
-  //     backgroundColor: "rgba(254, 226, 226, 0.5)",
-  //   });
-  // });
-  //
-  // it("handles opacity", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("opacity:50")).toEqual({ opacity: 0.5 });
-  // });
-  //
-  // it("handles relative/absolute position", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("relative")).toEqual({ position: "relative" });
-  //   expect(builder("absolute")).toEqual({ position: "absolute" });
-  // });
-  //
-  // it("handles hidden", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("hidden")).toEqual({ display: "none" });
-  // });
-  //
-  // it("handles border widths", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("border:2")).toEqual({ borderWidth: borderSizes["2"] });
-  // });
-  //
-  // it("handles border radius", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("rounded:md")).toEqual({ borderRadius: borderRadii["md"] });
-  // });
-  //
-  // it("handles overflow", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("overflow:hidden")).toEqual({ overflow: "hidden" });
-  //   expect(builder("overflow:scroll")).toEqual({ overflow: "scroll" });
-  // });
-  //
-  // it("handles justifyContent and alignItems", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("justify:center")).toEqual({ justifyContent: "center" });
-  //   expect(builder("items:center")).toEqual({ alignItems: "center" });
-  // });
-  //
-  // it("handles zIndex", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("z:2")).toEqual({ zIndex: 2 });
-  // });
-  //
-  // it("handles constrained font sizes", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("text:sm")).toEqual({
-  //     fontSize: fontSizes["sm"][0],
-  //     lineHeight: fontSizes["sm"][1],
-  //   });
-  // });
-  //
-  // it("handles constrained font weights", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("font-weight:bold")).toEqual({
-  //     fontWeight: defaultConstraints.fontWeights["bold"],
-  //   });
-  // });
-  //
-  // it("handles italic class", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("italic")).toEqual({
-  //     fontStyle: "italic",
-  //   });
-  // });
-  //
-  // it("handles text align", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("text-align:center")).toEqual({
-  //     textAlign: "center",
-  //   });
-  // });
-  //
-  // it("handles text transforms", () => {
-  //   const builder = makeDefaultBuilder();
-  //
-  //   expect(builder("uppercase").textTransform).toBe("uppercase");
-  //   expect(builder("lowercase").textTransform).toBe("lowercase");
-  //   expect(builder("capitalize").textTransform).toBe("capitalize");
-  // });
-  //
-  // it("handles text decorations", () => {
-  //   const builder = makeDefaultBuilder();
-  //
-  //   expect(builder("underline").textDecorationLine).toBe("underline");
-  //   expect(builder("line-through").textDecorationLine).toBe("line-through");
-  // });
-  //
-  // it("handles resizeMode", () => {
-  //   const builder = makeDefaultBuilder();
-  //
-  //   expect(builder("resize:center").resizeMode).toBe("center");
-  //   expect(builder("resize:contain").resizeMode).toBe("contain");
-  //   expect(builder("resize:cover").resizeMode).toBe("cover");
-  //   expect(builder("resize:stretch").resizeMode).toBe("stretch");
-  //   expect(builder("resize:repeat").resizeMode).toBe("repeat");
-  // });
-  //
-  // it("handles flex constraints", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("flex:1")).toEqual({
-  //     flexGrow: 1,
-  //     flexShrink: 1,
-  //     flexBasis: "0%",
-  //   });
-  // });
-  //
-  // it("handles row:reverse", () => {
-  //   const builder = makeDefaultBuilder();
-  //   expect(builder("flex:row-reverse")).toEqual({
-  //     flexDirection: "row-reverse",
-  //   });
-  // });
-  //
-  // it("handles defaultConstraints", () => {
-  //   const { builder } = createStyleBuilder(defaultConstraints);
-  //   expect(builder("m:2").margin).toBe(defaultConstraints.sizing["2"]);
-  // });
-  //
-  // it("handles shadows", () => {
-  //   const builder1 = makeDefaultBuilder();
-  //
-  //   expect(builder1("shadow:sm")).toEqual({
-  //     elevation: defaultConstraints.shadows.sm.android,
-  //   });
-  //
-  //   platform = "ios";
-  //   const builder2 = makeDefaultBuilder();
-  //   const [
-  //     width,
-  //     height,
-  //     shadowRadius,
-  //     shadowOpacity,
-  //   ] = defaultConstraints.shadows["sm"].ios;
-  //   expect(builder2("shadow:sm")).toEqual({
-  //     shadowOffset: { width, height },
-  //     shadowOpacity,
-  //     shadowRadius,
-  //   });
-  // });
-  //
-  // it("handles aspect ratio", () => {
-  //   const builder = makeDefaultBuilder();
-  //
-  //   expect(builder("aspect:1").aspectRatio).toBe(1);
-  //   expect(builder("aspect:16-9").aspectRatio).toBeCloseTo(16 / 9);
-  //   expect(builder("aspect:3-4").aspectRatio).toBeCloseTo(3 / 4);
-  // });
+    expect(builder1("shadow:sm")).toEqual({
+      elevation: defaultConstraints.shadows.sm.android,
+    });
+
+    platform = "ios";
+    const builder2 = makeDefaultBuilder();
+    const [
+      width,
+      height,
+      shadowRadius,
+      shadowOpacity,
+    ] = defaultConstraints.shadows["sm"].ios;
+    expect(builder2("shadow:sm")).toEqual({
+      shadowOffset: { width, height },
+      shadowOpacity,
+      shadowRadius,
+    });
+  });
 });
