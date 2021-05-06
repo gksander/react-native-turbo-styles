@@ -52,3 +52,7 @@ const MyComponent: React.FC = () => {
   );
 };
 ```
+
+## TODO:
+
+- [ ] Bold fonts...
