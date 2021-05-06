@@ -111,6 +111,9 @@ export type Config<C extends Constraints> = {
   "font-weight": (v: NonSymbol<keyof C["fontWeights"]>) => TextStyle;
   italic: () => TextStyle;
   "text-align": (v: NonNullable<TextStyle["textAlign"]>) => TextStyle;
+  uppercase: () => TextStyle;
+  lowercase: () => TextStyle;
+  capitalize: () => TextStyle;
   flex: (
     v:
       | "1"

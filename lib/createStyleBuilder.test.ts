@@ -146,6 +146,14 @@ describe("createStyleBuilder", () => {
     });
   });
 
+  it("handles text transforms", () => {
+    const builder = makeBasicBuilder();
+
+    expect(builder("uppercase").textTransform).toBe("uppercase");
+    expect(builder("lowercase").textTransform).toBe("lowercase");
+    expect(builder("capitalize").textTransform).toBe("capitalize");
+  });
+
   it("handles flex constraints", () => {
     const builder = makeBasicBuilder();
     expect(builder("flex:1")).toEqual({

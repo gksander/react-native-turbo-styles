@@ -200,6 +200,9 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     },
     italic: () => ({ fontStyle: "italic" }),
     "text-align": (textAlign) => ({ textAlign }),
+    uppercase: () => ({ textTransform: "uppercase" }),
+    lowercase: () => ({ textTransform: "lowercase" }),
+    capitalize: () => ({ textTransform: "capitalize" }),
     flex: (inp) => {
       return {
         1: { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },
