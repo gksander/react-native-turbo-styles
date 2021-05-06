@@ -83,3 +83,4 @@ The table below shows all available types of "classes", which constraints (if an
 | `line-through` | N/A | ❌ | `{ textDecorationLine: "line-through" }` | `line-through` |
 | `shadow:` | `keyof Constraints['shadows']` | ❌ | `elevation` on Android; `shadowOffset`, `shadowRadius`, `shadowOpacity` on iOS | `shadow:sm`, `shadow:lg` |
 | `resize:` | `"cover", "contain", "stretch", "repeat", "center"` | ❌ | `resizeMode` | `resize:cover`, `resize:contain` |
+| `tint:` | `keyof Constraints['colors']` | ✅ | `tintColor` | `tint:red-300`, `tint:[#ff00ff]` |
