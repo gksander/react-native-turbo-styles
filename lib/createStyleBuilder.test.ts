@@ -72,6 +72,14 @@ describe("createStyleBuilder", () => {
     expect(builder("bg:[blue]")).toEqual({ backgroundColor: "blue" });
   });
 
+  it("handles tint color", () => {
+    const builder = makeBasicBuilder();
+    expect(builder("tint:red-100")).toEqual({
+      tintColor: colors["red-100"],
+    });
+    expect(builder("tint:[blue]")).toEqual({ tintColor: "blue" });
+  });
+
   it("handles background opacity", () => {
     const builder = makeBasicBuilder();
     expect(builder("bg:red-100", "bg-opacity:50")).toEqual({

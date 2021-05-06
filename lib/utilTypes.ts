@@ -40,9 +40,10 @@ export type borderRadiusInput<C extends Constraints> =
 
 export type SizeHandler<C extends Constraints> = (v: sizeInput<C>) => FlexStyle;
 
-export type ColorHandler<C extends Constraints> = (
-  v: colorInput<C>
-) => TextStyle;
+export type ColorHandler<
+  C extends Constraints,
+  Style extends TextStyle | ImageStyle = TextStyle
+> = (v: colorInput<C>) => Style;
 
 type OpacityHandler<C extends Constraints> = (
   v: NonSymbol<keyof C["opacities"]> | `[${number}]`
@@ -87,6 +88,7 @@ export type Config<C extends Constraints> = {
   bg: ColorHandler<C>;
   "border-color": ColorHandler<C>;
   color: ColorHandler<C>;
+  tint: ColorHandler<C, ImageStyle>;
   "bg-opacity": OpacityHandler<C>;
   opacity: OpacityHandler<C>;
   relative: () => FlexStyle;

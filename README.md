@@ -63,10 +63,8 @@ TEXT:
 
 IMAGE:
 - [x] resizeMode
-- [ ] tintColor
+- [x] tintColor
 
 LAYOUT:
 - [ ] aspectRatio
-- [ ] direction? (ltr, rtl)
 - [ ] display (display-none)?
-- [ ] start/end (ltr equivalents of left/right?)

@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   FlexStyle,
+  ImageStyle,
   Platform,
   TextStyle,
   useColorScheme,
@@ -45,15 +46,15 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
   const getColorValue = (val: colorInput<C>): string | undefined => {
     return constraints.colors[val] ?? extractFromBrackets(val);
   };
-  const colorHandler = (
-    ...properties: Array<keyof TextStyle>
-  ): ColorHandler<C> => (inp) => {
+  const colorHandler = <S extends TextStyle | ImageStyle = TextStyle>(
+    ...properties: Array<keyof S>
+  ): ColorHandler<C, S> => (inp) => {
     const val = getColorValue(inp);
-    return properties.reduce<TextStyle>((acc, prop) => {
+    return properties.reduce<S>((acc, prop) => {
       // @ts-ignore
       acc[prop] = val;
       return acc;
-    }, {});
+    }, {} as S);
   };
 
   // Border sizing
@@ -239,6 +240,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       });
     },
     resize: (resizeMode) => ({ resizeMode }),
+    tint: colorHandler("tintColor"),
   };
 
   /**
