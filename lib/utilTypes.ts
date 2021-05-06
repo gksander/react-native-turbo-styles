@@ -1,4 +1,4 @@
-import { FlexStyle, TextStyle, ViewStyle } from "react-native";
+import { FlexStyle, ImageStyle, TextStyle, ViewStyle } from "react-native";
 
 export type Constraints = {
   sizing: Record<string | number, string | number>;
@@ -136,6 +136,7 @@ export type Config<C extends Constraints> = {
       | "nowrap"
   ) => FlexStyle;
   shadow: (v: NonSymbol<keyof C["shadows"]>) => ViewStyle;
+  resize: (v: NonNullable<ImageStyle["resizeMode"]>) => ImageStyle;
 };
 
 type Style<C extends Constraints, K extends keyof Config<C>> = Parameters<

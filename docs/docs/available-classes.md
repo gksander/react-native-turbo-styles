@@ -75,11 +75,11 @@ The table below shows all available types of "classes", which constraints (if an
 | `text:` | `keyof Constraints['fontSizes']` | ❌ | `fontSize`, `lineHeight` | `text:sm`, `text:3xl` |
 | `font-weight:` | `keyof Constraints['fontWeights']` | ❌ | `fontWeight` | `font-weight:normal`, `font-weight:extrabold` |
 | `italic` | N/A | ❌ | `{ fontStyle: "italic" }` | `italic` |
-| `text-align:` | `auto`, `left`, `right`, `justify`, `center` | ❌ | `textAlign` | `text-align:center`, `text-align:left` |
+| `text-align:` | `"auto", "left", "right", "center", "justify"` | ❌ | `textAlign` | `text-align:center`, `text-align:left` |
 | `uppercase` | N/A | ❌ | `{ textTransform: "uppercase" }` | `uppercase` |
 | `lowercase` | N/A | ❌ | `{ textTransform: "lowercase" }` | `lowercase` |
 | `capitalize` | N/A | ❌ | `{ textTransform: "capitalize" }` | `capitalize` |
 | `underline` | N/A | ❌ | `{ textDecorationLine: "underline" }` | `underline` |
 | `line-through` | N/A | ❌ | `{ textDecorationLine: "line-through" }` | `line-through` |
 | `shadow:` | `keyof Constraints['shadows']` | ❌ | `elevation` on Android; `shadowOffset`, `shadowRadius`, `shadowOpacity` on iOS | `shadow:sm`, `shadow:lg` |
-
+| `resize:` | `"cover", "contain", "stretch", "repeat", "center"` | ❌ | `resizeMode` | `resize:cover`, `resize:contain` |

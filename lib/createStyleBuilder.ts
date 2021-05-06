@@ -238,6 +238,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
         },
       });
     },
+    resize: (resizeMode) => ({ resizeMode }),
   };
 
   /**

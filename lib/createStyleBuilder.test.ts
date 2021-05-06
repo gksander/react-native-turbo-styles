@@ -161,6 +161,16 @@ describe("createStyleBuilder", () => {
     expect(builder("line-through").textDecorationLine).toBe("line-through");
   });
 
+  it("handles resizeMode", () => {
+    const builder = makeBasicBuilder();
+
+    expect(builder("resize:center").resizeMode).toBe("center");
+    expect(builder("resize:contain").resizeMode).toBe("contain");
+    expect(builder("resize:cover").resizeMode).toBe("cover");
+    expect(builder("resize:stretch").resizeMode).toBe("stretch");
+    expect(builder("resize:repeat").resizeMode).toBe("repeat");
+  });
+
   it("handles flex constraints", () => {
     const builder = makeBasicBuilder();
     expect(builder("flex:1")).toEqual({

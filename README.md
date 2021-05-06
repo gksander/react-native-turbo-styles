@@ -62,7 +62,7 @@ TEXT:
 - [ ] Text shadows?
 
 IMAGE:
-- [ ] resizeMode
+- [x] resizeMode
 - [ ] tintColor
 
 LAYOUT:
