@@ -58,18 +58,10 @@ const MyComponent: React.FC = () => {
 TEXT:
 - [ ] letterSpacing (tracking)
 - [ ] lineHeight (leading)
-- [x] textDecorationLine (underline, line-through)
 - [ ] Text shadows?
 
-IMAGE:
-- [x] resizeMode
-- [x] tintColor
-
-LAYOUT:
-- [x] aspectRatio
-- [x] display (display-none)?
-
 GENERAL:
+- [ ] Negative classes? (e.g., `-m:3` for negative margin?).
 - [ ] Make some constraints optional, and conditionally offer classes based on that?
-- [ ] Constrain the cache
+- [ ] Put an upper bound on the cache
 - [ ] Clean up types/test files.
