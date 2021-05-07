@@ -82,6 +82,27 @@ The default colors consist of `white: #fff`, `black: #000`, and the following co
 
 ![Default color palette](/img/screenshots/default-colors.png)
 
+TurboStyles exposes [the TailwindCSS color palette](https://tailwindcss.com/docs/customizing-colors#color-palette-reference) for you to use. To add more colors to the color palette, we expose a `flattenColor` utility. Usage looks something like this:
+
+```ts
+import { createStyleBuilder, defaultConstraints, flattenColor } from "./lib";
+
+export const { builder } = createStyleBuilder({
+  ...defaultConstraints,
+  colors: {
+    ...defaultConstraints.colors,
+    ...flattenColor("lime", "lime"),
+    ...flattenColor("rose", "myNameForRose")
+  },
+});
+```
+
+The signature for `flattenColor` is roughly this:
+
+```ts
+type FlattenColor = (key: keyof TailwindColors, name: string) => Record<string, string>;
+```
+
 ## Default Opacities
 
 Coming soon...

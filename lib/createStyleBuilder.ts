@@ -21,6 +21,7 @@ import {
   SizeHandler,
   sizeInput,
   ClassName,
+  Builder,
 } from "./utilTypes";
 
 /**
@@ -298,7 +299,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
    * Our actual builder. Takes an array of "class names" that
    * 	are constructed from our config
    */
-  const builder = (...args: Array<ClassName<C>>) => {
+  const builder: Builder<C> = (...args) => {
     const key = args.join(",");
 
     // Return from cache if possible.

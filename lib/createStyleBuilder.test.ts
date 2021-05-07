@@ -1,6 +1,7 @@
 import { createStyleBuilder } from "./createStyleBuilder";
 import { defaultConstraints } from "./defaultConstraints";
-import { ClassName } from "./utilTypes";
+import { ClassName, Constraints } from "./utilTypes";
+import { flattenColor } from "./twColors";
 
 let platform = "android";
 jest.mock("react-native", () => ({
@@ -590,5 +591,28 @@ describe("createStyleBuilder", () => {
     // @ts-expect-error
     expect(builder("aspect:1")).toEqual({});
     expect(builder("aspect:[3.2]")).toEqual({ aspectRatio: 3.2 });
+  });
+
+  it("should allow extending of default colors", () => {
+    const { builder } = createStyleBuilder({
+      ...defaultConstraints,
+      sizing: {
+        ...defaultConstraints.sizing,
+        foo: 31,
+      },
+      fontSizes: {
+        ...defaultConstraints.fontSizes,
+        foo: [31, 1.8],
+      },
+      colors: {
+        ...defaultConstraints.colors,
+        ...flattenColor("lime", "lime"),
+      },
+    });
+
+    expect(builder("w:foo").width).toBe(31);
+    expect(builder("text:foo").fontSize).toBe(31);
+    expect(builder("bg:red-800").backgroundColor).toBeTruthy();
+    expect(builder("bg:lime-300").backgroundColor).toBeTruthy();
   });
 });

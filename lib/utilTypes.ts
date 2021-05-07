@@ -145,6 +145,10 @@ export type ClassName<C extends Constraints> = ValueOf<
   }
 >;
 
+export type Builder<C extends Constraints> = (
+  ...args: ClassName<C>[]
+) => Record<string, any>;
+
 /**
  * Configuration helpers
  */

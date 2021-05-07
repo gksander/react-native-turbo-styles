@@ -280,23 +280,15 @@ type TwColors = typeof twColors;
  * This util just flattens things a bit, so:
  * { gray: { 100: '#...' } } -> { gray100: '#...' }
  */
-export const flattenColor = <
-  K extends keyof TwColors,
-  Rename extends string | undefined
->(
+export const flattenColor = <K extends keyof TwColors, Rename extends string>(
   key: K,
-  rename?: Rename
-): Record<
-  `${undefined extends Rename ? K : Rename}-${NonSymbol<keyof TwColors[K]>}`,
-  string
-> => {
+  name: Rename
+): Record<`${Rename}-${NonSymbol<keyof TwColors[K]>}`, string> => {
   return Object.entries(twColors[key]).reduce<Record<string, string>>(
     (acc, [weight, value]) => {
-      acc[`${rename ? rename : key}-${weight}`] = value;
+      acc[`${name}-${weight}`] = value;
       return acc;
     },
     {}
   );
 };
-
-type Foo = string extends undefined ? true : false;

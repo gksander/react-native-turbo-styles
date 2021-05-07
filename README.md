@@ -62,6 +62,6 @@ TEXT:
 
 GENERAL:
 - [x] Negative classes? (e.g., `-m:3` for negative margin?).
-- [ ] Make some constraints optional, and conditionally offer classes based on that?
+- [x] Make some constraints optional, and conditionally offer classes based on that?
 - [ ] Put an upper bound on the cache
 - [x] Clean up types/test files.
