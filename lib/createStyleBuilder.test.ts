@@ -430,4 +430,165 @@ describe("createStyleBuilder", () => {
       shadowRadius,
     });
   });
+
+  it("allows omitting sizing, disables sizing-related constrained classes (allows overrides)", () => {
+    const { builder } = createStyleBuilder({
+      ...defaultConstraints,
+      sizing: undefined,
+    });
+
+    // @ts-expect-error
+    expect(builder("m:2")).toEqual({});
+    expect(builder("m:[69]")).toEqual({ margin: 69 });
+
+    // @ts-expect-error
+    expect(builder("p:2")).toEqual({});
+    expect(builder("p:[69]")).toEqual({ padding: 69 });
+
+    // @ts-expect-error
+    expect(builder("w:2")).toEqual({});
+    expect(builder("w:[69]")).toEqual({ width: 69 });
+
+    // TODO: min/max h?
+
+    // @ts-expect-error
+    expect(builder("h:2")).toEqual({});
+    expect(builder("h:[69]")).toEqual({ height: 69 });
+
+    // @ts-expect-error
+    expect(builder("inset:2")).toEqual({});
+    expect(builder("inset:[69]")).toEqual({
+      top: 69,
+      bottom: 69,
+      left: 69,
+      right: 69,
+    });
+
+    // TODO: Left/right/top/bottom?
+  });
+
+  it("allows omitting colors, disables bg:, color:, and border-color: constrained classes (allows overrides)", () => {
+    const { builder } = createStyleBuilder({
+      ...defaultConstraints,
+      colors: undefined,
+    });
+
+    // @ts-expect-error
+    expect(builder("bg:red-300")).toEqual({});
+    // @ts-expect-error
+    expect(builder("color:red-300")).toEqual({});
+    // @ts-expect-error
+    expect(builder("border-color:red-300")).toEqual({});
+
+    expect(builder("bg:[blue]")).toEqual({ backgroundColor: "blue" });
+    expect(builder("color:[blue]")).toEqual({ color: "blue" });
+    expect(builder("border-color:[blue]")).toEqual({ borderColor: "blue" });
+  });
+
+  it("allows omitting opacities, disables bg-opacity: and opacity: constrained classes (allows overrides)", () => {
+    const { builder } = createStyleBuilder({
+      ...defaultConstraints,
+      opacities: undefined,
+    });
+
+    // @ts-expect-error
+    expect(builder("bg:red-300", "bg-opacity:25")).toEqual({
+      backgroundColor: colors["red-300"],
+    });
+    // @ts-expect-error
+    expect(builder("opacity:25")).toEqual({});
+
+    expect(builder("opacity:[0.32]")).toEqual({ opacity: 0.32 });
+  });
+
+  it("allows omitting borderSizes, disables border-*: constrained classes (allows overrides)", () => {
+    const { builder } = createStyleBuilder({
+      ...defaultConstraints,
+      borderSizes: undefined,
+    });
+
+    // @ts-expect-error
+    expect(builder("border:hairline")).toEqual({});
+    // @ts-expect-error
+    expect(builder("border-t:hairline")).toEqual({});
+    // @ts-expect-error
+    expect(builder("border-b:hairline")).toEqual({});
+    // @ts-expect-error
+    expect(builder("border-l:hairline")).toEqual({});
+    // @ts-expect-error
+    expect(builder("border-r:hairline")).toEqual({});
+
+    expect(builder("border:[69]")).toEqual({ borderWidth: 69 });
+  });
+
+  it("allows omitting borderRadii, disables rounded-*: constrained classes (allows overrides)", () => {
+    const { builder } = createStyleBuilder({
+      ...defaultConstraints,
+      borderRadii: undefined,
+    });
+
+    // @ts-expect-error
+    expect(builder("rounded:lg")).toEqual({});
+    // @ts-expect-error
+    expect(builder("rounded-t:lg")).toEqual({});
+    // @ts-expect-error
+    expect(builder("rounded-b:lg")).toEqual({});
+    // @ts-expect-error
+    expect(builder("rounded-l:lg")).toEqual({});
+    // @ts-expect-error
+    expect(builder("rounded-r:lg")).toEqual({});
+
+    expect(builder("rounded:[3]")).toEqual({ borderRadius: 3 });
+  });
+
+  it("allows omitting fontSizes, disables text: classes", () => {
+    const { builder } = createStyleBuilder({
+      ...defaultConstraints,
+      fontSizes: undefined,
+    });
+
+    // @ts-expect-error
+    expect(builder("text")).toEqual({});
+    // @ts-expect-error
+    expect(builder("text:lg")).toEqual({});
+    // @ts-expect-error
+    expect(builder("text:[32]")).toEqual({});
+  });
+
+  it("allows omitting fontWeights, disables font-weight: classes", () => {
+    const { builder } = createStyleBuilder({
+      ...defaultConstraints,
+      fontWeights: undefined,
+    });
+
+    // @ts-expect-error
+    expect(builder("font-weight")).toEqual({});
+    // @ts-expect-error
+    expect(builder("font-weight:bold")).toEqual({});
+  });
+
+  it("allows omitting shadows, disables shadow: classes", () => {
+    const { builder } = createStyleBuilder({
+      ...defaultConstraints,
+      shadows: undefined,
+    });
+
+    // @ts-expect-error
+    expect(builder("shadow:sm")).toEqual({});
+    // @ts-expect-error
+    expect(builder("shadow")).toEqual({});
+  });
+
+  it("allows omitting aspectRatio, disables aspect: classes (but allows overrides)", () => {
+    const { builder } = createStyleBuilder({
+      ...defaultConstraints,
+      aspectRatios: undefined,
+    });
+
+    // @ts-expect-error
+    expect(builder("aspect")).toEqual({});
+    // @ts-expect-error
+    expect(builder("aspect:1")).toEqual({});
+    expect(builder("aspect:[3.2]")).toEqual({ aspectRatio: 3.2 });
+  });
 });

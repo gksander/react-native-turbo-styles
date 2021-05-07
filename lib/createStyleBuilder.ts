@@ -30,7 +30,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
   const __cachedStyles = {} as Record<string, Record<string, any>>;
 
   const getSizeValue = (val: sizeInput<C>): string | number | undefined => {
-    return constraints.sizing[val] ?? extractFromBrackets(val);
+    return constraints.sizing?.[val] ?? extractFromBrackets(val);
   };
   const sizeHandler = (
     properties: Array<keyof FlexStyle>,
@@ -49,7 +49,15 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
   };
 
   const getColorValue = (val: colorInput<C>): string | undefined => {
-    return constraints.colors[val] ?? extractFromBrackets(val);
+    const constrainedValue = constraints.colors?.[val];
+    if (constrainedValue) return constrainedValue;
+
+    const bracketValue = extractFromBrackets(val);
+    if (bracketValue) {
+      return String(bracketValue);
+    }
+
+    return undefined;
   };
   const colorHandler = <S extends TextStyle | ImageStyle = TextStyle>(
     ...properties: Array<keyof S>
@@ -66,7 +74,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
   const getBorderSizeValue = (
     val: borderSizeInput<C>
   ): string | number | undefined => {
-    return constraints.borderSizes[val] ?? extractFromBrackets(val);
+    return constraints.borderSizes?.[val] ?? extractFromBrackets(val);
   };
   const borderSizeHandler = (
     ...properties: Array<keyof ViewStyle>
@@ -84,7 +92,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
   const getBorderRadiusValue = (
     val: borderRadiusInput<C>
   ): string | number | undefined => {
-    return constraints.borderRadii[val] ?? extractFromBrackets(val);
+    return constraints.borderRadii?.[val] ?? extractFromBrackets(val);
   };
   const borderRadiusHandler = (
     ...properties: Array<keyof ViewStyle>
@@ -147,13 +155,19 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     bg: colorHandler("backgroundColor"),
     "border-color": colorHandler("borderColor"),
     color: colorHandler("color"),
-    // Background opacity
-    "bg-opacity": (inp: NonSymbol<keyof C["opacities"]> | `[${number}]`) => {
-      const val = constraints.opacities[inp] ?? extractFromBrackets(inp);
-      return { "--bg-opacity": val };
+    "bg-opacity": (inp) => {
+      const constrainedVal = constraints.opacities?.[inp];
+      if (constrainedVal) return { "--bg-opacity": constrainedVal };
+
+      const bracketVal = Number(extractFromBrackets(inp));
+      if (!isNaN(bracketVal)) {
+        return { "--bg-opacity": bracketVal };
+      }
+
+      return {};
     },
     opacity: (inp: NonSymbol<keyof C["opacities"]> | `[${number}]`) => {
-      const val = constraints.opacities[inp] ?? extractFromBrackets(inp);
+      const val = constraints.opacities?.[inp] ?? extractFromBrackets(inp);
       return <ViewStyle>{ opacity: val };
     },
     relative: () => ({ position: "relative" }),
@@ -212,11 +226,14 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     },
     z: (inp) => ({ zIndex: parseInt(inp) }),
     text: (inp) => {
-      const [fontSize, lineHeight] = constraints.fontSizes[inp];
+      const [fontSize, lineHeight] = constraints.fontSizes?.[inp] || [
+        undefined,
+        undefined,
+      ];
       return { fontSize, lineHeight };
     },
     "font-weight": (inp) => {
-      const val = constraints.fontWeights[inp];
+      const val = constraints.fontWeights?.[inp];
       return { fontWeight: val };
     },
     italic: () => ({ fontStyle: "italic" }),
@@ -246,7 +263,8 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       }[inp] as FlexStyle;
     },
     shadow: (inp) => {
-      const val = constraints.shadows[inp];
+      const val = constraints.shadows?.[inp];
+      if (!val) return {};
       return Platform.select({
         android: { elevation: val?.android || 0 },
         default: {
@@ -306,11 +324,11 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     }
 
     // Massage for bg-opacity
-    if (styles["--bg-opacity"] && styles.backgroundColor) {
+    if (typeof styles["--bg-opacity"] === "number" && styles.backgroundColor) {
       const { r, g, b } = colorStringToRgb(styles.backgroundColor);
       styles.backgroundColor = `rgba(${r}, ${g}, ${b}, ${styles["--bg-opacity"]})`;
-      delete styles["--bg-opacity"];
     }
+    delete styles["--bg-opacity"];
 
     // Store style in cache
     __cachedStyles[key] = styles;

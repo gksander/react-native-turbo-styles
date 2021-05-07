@@ -4,18 +4,18 @@ import { FlexStyle, ImageStyle, TextStyle, ViewStyle } from "react-native";
  * Shape of constraints
  */
 export type Constraints = {
-  sizing: Record<string | number, string | number>;
-  colors: Record<string | number, string>;
-  opacities: Record<string | number, number>;
-  borderSizes: Record<string | number, number>;
-  borderRadii: Record<string | number, number>;
-  fontSizes: Record<string | number, readonly [number, number]>;
-  fontWeights: Record<string | number, TextStyle["fontWeight"]>;
-  shadows: Record<
+  sizing?: Record<string | number, string | number>;
+  colors?: Record<string | number, string>;
+  opacities?: Record<string | number, number>;
+  borderSizes?: Record<string | number, number>;
+  borderRadii?: Record<string | number, number>;
+  fontSizes?: Record<string | number, readonly [number, number]>;
+  fontWeights?: Record<string | number, TextStyle["fontWeight"]>;
+  shadows?: Record<
     string | number,
     { android: number; ios: readonly [number, number, number, number] }
   >;
-  aspectRatios: Record<string | number, readonly [number, number]>;
+  aspectRatios?: Record<string | number, readonly [number, number]>;
 };
 
 /**
@@ -88,8 +88,12 @@ export type Config<C extends Constraints> = {
   ) => FlexStyle;
   items: (v: "start" | "end" | "center" | "baseline" | "stretch") => FlexStyle;
   z: (v: string) => ViewStyle;
-  text: (v: NonSymbol<keyof C["fontSizes"]>) => TextStyle;
-  "font-weight": (v: NonSymbol<keyof C["fontWeights"]>) => TextStyle;
+  text: (
+    v: IfDefined<C["fontSizes"], NonSymbol<keyof C["fontSizes"]>>
+  ) => TextStyle;
+  "font-weight": (
+    v: IfDefined<C["fontWeights"], NonSymbol<keyof C["fontWeights"]>>
+  ) => TextStyle;
   italic: () => TextStyle;
   "text-align": (v: NonNullable<TextStyle["textAlign"]>) => TextStyle;
   uppercase: () => TextStyle;
@@ -116,14 +120,22 @@ export type Config<C extends Constraints> = {
       | "wrap-reverse"
       | "nowrap"
   ) => FlexStyle;
-  shadow: (v: NonSymbol<keyof C["shadows"]>) => ViewStyle;
+  shadow: (
+    v: IfDefined<C["shadows"], NonSymbol<keyof C["shadows"]>>
+  ) => ViewStyle;
   resize: (v: NonNullable<ImageStyle["resizeMode"]>) => ImageStyle;
-  aspect: (v: NonSymbol<keyof C["aspectRatios"]> | `[${string}]`) => FlexStyle;
+  aspect: (
+    v:
+      | IfDefined<C["aspectRatios"], NonSymbol<keyof C["aspectRatios"]>>
+      | `[${string}]`
+  ) => FlexStyle;
 };
 
-type Style<C extends Constraints, K extends keyof Config<C>> = Parameters<
-  Config<C>[K]
->[0] extends undefined
+type Style<
+  C extends Constraints,
+  K extends keyof Config<C>,
+  FP = Parameters<Config<C>[K]>[0]
+> = FP extends undefined
   ? `${NonSymbol<K>}`
   : `${NonSymbol<K>}:${NonSymbol<Parameters<Config<C>[K]>[0]>}`;
 
@@ -137,16 +149,16 @@ export type ClassName<C extends Constraints> = ValueOf<
  * Configuration helpers
  */
 export type sizeInput<C extends Constraints> =
-  | NonSymbol<keyof C["sizing"]>
+  | IfDefined<C["sizing"], NonSymbol<keyof C["sizing"]>>
   | `[${string}]`;
 export type colorInput<C extends Constraints> =
-  | NonSymbol<keyof C["colors"]>
+  | IfDefined<C["colors"], NonSymbol<keyof C["colors"]>>
   | `[${string}]`;
 export type borderSizeInput<C extends Constraints> =
-  | NonSymbol<keyof C["borderSizes"]>
+  | IfDefined<C["borderSizes"], NonSymbol<keyof C["borderSizes"]>>
   | `[${string}]`;
 export type borderRadiusInput<C extends Constraints> =
-  | NonSymbol<keyof C["borderRadii"]>
+  | IfDefined<C["borderRadii"], NonSymbol<keyof C["borderRadii"]>>
   | `[${string}]`;
 
 export type SizeHandler<C extends Constraints> = (v: sizeInput<C>) => FlexStyle;
@@ -157,8 +169,8 @@ export type ColorHandler<
 > = (v: colorInput<C>) => Style;
 
 type OpacityHandler<C extends Constraints> = (
-  v: NonSymbol<keyof C["opacities"]> | `[${number}]`
-) => ViewStyle | { "--bg-opacity": number };
+  v: IfDefined<C["opacities"], NonSymbol<keyof C["opacities"]>> | `[${number}]`
+) => ViewStyle | { "--bg-opacity"?: number };
 
 export type BorderSizeHandler<C extends Constraints> = (
   v: borderSizeInput<C>
@@ -173,6 +185,7 @@ export type BorderRadiusHandler<C extends Constraints> = (
  */
 export type NonSymbol<T> = Exclude<T, symbol>;
 export type ValueOf<T> = T[keyof T];
+type IfDefined<Condition, Value> = Condition extends undefined ? never : Value;
 
 /**
  * Declare an override type, since TS doesn't understand string template literals for values of
@@ -180,3 +193,5 @@ export type ValueOf<T> = T[keyof T];
  *  So, you can do `h-[${3 + 2}]` as Override<'h'> as a workaround.
  */
 export type ConstraintOverride<T extends string> = `${T}:[${string}]`;
+
+type Foo = undefined extends never ? true : false;
