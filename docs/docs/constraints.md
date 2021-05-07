@@ -10,18 +10,18 @@ When using TurboStyles to create a style builder, you pass in a constraint confi
 
 ```ts
 type Constraints = {
-  sizing: Record<string | number, string | number>;
-  colors: Record<string | number, string>;
-  opacities: Record<string | number, number>;
-  borderSizes: Record<string | number, number>;
-  borderRadii: Record<string | number, number>;
-  fontSizes: Record<string | number, readonly [number, number]>;
-	fontWeights: Record<string | number, TextStyle["fontWeight"]>;
-  shadows: Record<
+  sizing?: Record<string | number, string | number>;
+  colors?: Record<string | number, string>;
+  opacities?: Record<string | number, number>;
+  borderSizes?: Record<string | number, number>;
+  borderRadii?: Record<string | number, number>;
+  fontSizes?: Record<string | number, readonly [number, number]>;
+  fontWeights?: Record<string | number, TextStyle["fontWeight"]>;
+  shadows?: Record<
     string | number,
     { android: number; ios: readonly [number, number, number, number] }
   >;
-	aspectRatios: Record<string | number, readonly [number, number]>;
+  aspectRatios?: Record<string | number, readonly [number, number]>;
 };
 ```
 
@@ -42,3 +42,7 @@ The following table outlines these constraint types and what they affect.
 | `aspectRatios` | Used for fixing aspect ratio of elements. |
 
 To see specifically what properties each constraint actually constrains, check out [the list of available "classes"](./available-classes.md).
+
+:::note
+Each constraint type is optional. If you omit a constraint type, you will not receive "constrained classes" that use that constraint type &ndash; although overrides will still work (where applicable).
+:::
