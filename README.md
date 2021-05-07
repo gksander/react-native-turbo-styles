@@ -61,7 +61,7 @@ TEXT:
 - [ ] Text shadows?
 
 GENERAL:
-- [ ] Negative classes? (e.g., `-m:3` for negative margin?).
+- [x] Negative classes? (e.g., `-m:3` for negative margin?).
 - [ ] Make some constraints optional, and conditionally offer classes based on that?
 - [ ] Put an upper bound on the cache
-- [ ] Clean up types/test files.
+- [x] Clean up types/test files.

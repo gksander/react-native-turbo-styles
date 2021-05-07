@@ -20,7 +20,7 @@ import {
   NonSymbol,
   SizeHandler,
   sizeInput,
-  StyleName,
+  ClassName,
 } from "./utilTypes";
 
 /**
@@ -280,7 +280,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
    * Our actual builder. Takes an array of "class names" that
    * 	are constructed from our config
    */
-  const builder = (...args: Array<StyleName<C>>) => {
+  const builder = (...args: Array<ClassName<C>>) => {
     const key = args.join(",");
 
     // Return from cache if possible.
@@ -318,7 +318,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     return styles;
   };
 
-  type BuilderParams = Array<StyleName<C>>;
+  type BuilderParams = Array<ClassName<C>>;
 
   const useTurboStyles = () => builder;
 

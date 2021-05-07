@@ -1,6 +1,6 @@
 import { createStyleBuilder } from "./createStyleBuilder";
 import { defaultConstraints } from "./defaultConstraints";
-import { StyleName } from "./utilTypes";
+import { ClassName } from "./utilTypes";
 
 let platform = "android";
 jest.mock("react-native", () => ({
@@ -30,7 +30,7 @@ describe("createStyleBuilder", () => {
     platform = "android";
   });
 
-  const cases: [StyleName<typeof defaultConstraints>[], object][] = [
+  const cases: [ClassName<typeof defaultConstraints>[], object][] = [
     // m:
     [["m:0"], { margin: sizing["0"] }],
     [["m:2"], { margin: sizing["2"] }],
