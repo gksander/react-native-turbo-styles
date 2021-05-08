@@ -20,7 +20,13 @@ export const Demo: React.FC = () => {
           </Text>
           <View style={sb("h:2")} />
           <Text
-            style={sb("flex:shrink", "flex:wrap", "italic", "color:gray-500")}
+            style={sb(
+              "flex:shrink",
+              "flex:wrap",
+              "italic",
+              "color:gray-500",
+              "text:base"
+            )}
           >
             Turbocharge your React Native styling.
           </Text>

@@ -2,7 +2,7 @@ import { flattenColor } from "./twColors";
 import { StyleSheet } from "react-native";
 import { Constraints } from "./utilTypes";
 
-const BASE_FONT_SIZE = 17;
+const BASE_FONT_SIZE = 14;
 export const defaultConstraints = {
   sizing: {
     0: 0,
