@@ -17,7 +17,7 @@ Since `defaultConstraints` is just a plain ol' JavaScript object, you can overri
 ```ts
 import { createStyleBuilder, defaultConstraints } from "react-native-turbo-styles";
 
-const { useTurboStyles } = createStyleBuilder({
+const { builder } = createStyleBuilder({
   ...defaultConstraints,
   colors: {
     ...defaultConstraints.colors,

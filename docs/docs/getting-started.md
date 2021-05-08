@@ -32,9 +32,8 @@ Next, you create a "style builder" by providing constraints. The library ships w
 // myTurboStyles.ts
 import { createStyleBuilder, defaultConstraints } from "react-native-turbo-styles";
 
-// builder is the "style builder".
-// useTurboStyles is just a hook for accessing the builder.
-export const { builder, useTurboStyles } = createStyleBuilder(defaultConstraints);
+// builder is the "style builder", we'll name as `sb` for short
+export const { builder: sb } = createStyleBuilder(defaultConstraints);
 ```
 
 ### Styling Elements
@@ -44,34 +43,15 @@ Now that you've created a "style builder", you can use it to style elements. You
 ```tsx
 import * as React from 'react';
 import { View } from 'react-native';
-import { useTurboStyles } from './myTurboStyles';
+import { sb } from './myTurboStyles';
 
 const MyComponent: React.FC = () => {
-  const ts = useTurboStyles();
-  
-  return <View style={ts('flex:1', 'p:3', 'bg:red-300')} />;
+  return <View style={sb('flex:1', 'p:3', 'bg:red-300')} />;
 }
 ```
 
 That's all there is to it!
 
-### Use the Style Builder Directly
-
-The `createStyleBuilder` function returns (amongst other things) a `builder` function and a `useTurboStyles` hook.
-
-The previous example used the `useTurboStyles` hook &ndash; but you might opt to use the builder directly. To do so, just export the `builder` function that is returned from `createStyleBuilder` and call it directly. This might look like the following:
-
-```tsx
-// In myTurboStyles.ts
-import { createStyleBuilder, defaultConstraints } from "react-native-turbo-styles";
-export const { builder: ts, useTurboStyles } = createStyleBuilder(defaultConstraints);
-
-// In MyComponent.tsx
-import * as React from 'react';
-import { View } from 'react-native';
-import { ts } from './myTurboStyles';
-
-const MyComponent: React.FC = () => {
-	return <View style={ts('flex:1', 'p:3', 'bg:red-300')} />;
-}
-```
+:::note
+The `createStyleBuilder` function also returns a property named `constraints` that's a reference to the constraints object that you passed in.
+:::

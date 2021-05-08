@@ -19,14 +19,14 @@ A common way to handle this is to use negative position values. Here's how we co
 ```tsx
 import * as React from "react";
 import { View } from "react-native";
-import { ts } from "./myTurboStyles";
+import { sb } from "./myTurboStyles";
 
 export const OverrideExample: React.FC = () => {
   return (
-    <View style={ts("flex:1", "bg:gray-300", "justify:center", "items:center")}>
-      <View style={ts("w:32", "h:32", "bg:white")}>
+    <View style={sb("flex:1", "bg:gray-300", "justify:center", "items:center")}>
+      <View style={sb("w:32", "h:32", "bg:white")}>
         <View
-          style={ts(
+          style={sb(
             "absolute",
             "h:12",
             "bg:purple-500",
@@ -49,7 +49,7 @@ Another usage of override values is when needing to use a computed value for an 
 ```tsx
 import * as React from "react";
 import { useWindowDimensions, View } from "react-native";
-import { ts } from "./myTurboStyles";
+import { sb } from "./myTurboStyles";
 import { ConstraintOverride } from "react-native-turbo-styles";
 
 export const ComputedOverrideExample: React.FC = () => {
@@ -57,9 +57,9 @@ export const ComputedOverrideExample: React.FC = () => {
   const rectWidth = (width - 32) / 3;
 
   return (
-    <View style={ts("flex:1", "bg:gray-200", "justify:center", "items:center")}>
+    <View style={sb("flex:1", "bg:gray-200", "justify:center", "items:center")}>
       <View
-        style={ts(
+        style={sb(
           `w:[${Math.round(rectWidth)}]` as ConstraintOverride<"w">,
           "h:10",
           "bg:red-300"
