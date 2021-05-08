@@ -28,6 +28,8 @@ const { builder } = createStyleBuilder({
 
 ## Default Sizing Constraints
 
+The `sizing` constraints apply to anything space/size related, such as [the margin classes](./available-classes.md#margin), [the padding classes](./available-classes.md#padding), [the sizing classes](./available-classes.md#sizing), and [the positioning classes](./available-classes.md#positioning). Here's the scale for the default `sizing` constraints.
+
 | Name | Size |
 | --- | --- |
 | `0` (ex: `w:0`) | 0 |
@@ -105,20 +107,141 @@ type FlattenColor = (key: keyof TailwindColors, name: string) => Record<string, 
 
 ## Default Opacities
 
-Coming soon...
+The `opacities` constraint applies to opacity and background opacity (which is opacity applied _only_ to the background, not all elements). Here's the default `opacities` constraint scale.
+
+| Name | Value |
+| --- | --- |
+| `0` | 0 |
+| `5` | 0.05 |
+| `10` | 0.1 |
+| `20` | 0.2 |
+| `25` | 0.25 |
+| `30` | 0.3 |
+| `40` | 0.4 |
+| `50` | 0.5 |
+| `60` | 0.6 |
+| `70` | 0.7 |
+| `75` | 0.75 |
+| `80` | 0.8 |
+| `90` | 0.9 |
+| `95` | 0.95 |
+
+Here's a visual representation of that scale.
+
+![A screenshot of the default opacities shown in a simulator](/img/screenshots/default-opacities.png)
 
 ## Default Border Sizes
 
-Coming soon...
+The `borderSizes` constraint applies to [the border width classes](./available-classes.md#borders-width-color-radius). The scale for this is:
+
+| Name | Size |
+| --- | --- |
+| `0` | 0 |
+| `hairline` | `StyleSheet.hairlineWidth` |
+| `1` | 1 |
+| `2` | 2 |
+| `4` | 4 |
+| `8` | 8 |
+
+Here's a visual representation of that scale.
+
+![A screenshot of the default border sizes scale shown in a simulator](/img/screenshots/default-border-sizes.png)
 
 ## Default Border Radii
 
-Coming soon...
+The `borderRadii` constraint applies to [the border radius classes](./available-classes.md#borders-width-color-radius). The scale is based off of the base font size for the default constraints, which is `const BASE_FONT_SIZE = 14`. The scale is as follows:
+
+| Name | Size |
+| --- | --- |
+| `none` | `0` |
+| `sm` | `0.125 * BASE_FONT_SIZE` |
+| `base` | `0.25 * BASE_FONT_SIZE` |
+| `md` | `0.375 * BASE_FONT_SIZE` |
+| `lg` | `0.5 * BASE_FONT_SIZE` |
+| `xl` | `0.75 * BASE_FONT_SIZE` |
+| `2xl` | `BASE_FONT_SIZE` |
+| `3xl` | `1.5 * BASE_FONT_SIZE` |
+| `full` | `999` |
+
+Here's a visual representation of that scale.
+
+![A screenshot of the default border radii scale shown in a simulator](/img/screenshots/default-border-radii.png)
 
 ## Default Font Sizes
 
-Coming soon...
+The `fontSizes` constraint applies to [the font size classes](./available-classes.md#text-styling). The scale is based off of the base font size for the default constraints, which is `const BASE_FONT_SIZE = 14`. The scale is as follows:
+
+| Name | Size |
+| --- | --- |
+| `xs` | `[0.75 * BASE_FONT_SIZE, BASE_FONT_SIZE]` |
+| `sm` | `[0.875 * BASE_FONT_SIZE, 1.25 * BASE_FONT_SIZE]` |
+| `base` | `[BASE_FONT_SIZE, 1.5 * BASE_FONT_SIZE]` |
+| `lg` | `[1.125 * BASE_FONT_SIZE, 1.75 * BASE_FONT_SIZE]` |
+| `xl` | `[1.25 * BASE_FONT_SIZE, 1.75 * BASE_FONT_SIZE]` |
+| `2xl` | `[1.5 * BASE_FONT_SIZE, 2 * BASE_FONT_SIZE]` |
+| `3xl` | `[1.875 * BASE_FONT_SIZE, 2.25 * BASE_FONT_SIZE]` |
+| `4xl` | `[2.25 * BASE_FONT_SIZE, 2.5 * BASE_FONT_SIZE]` |
+| `5xl` | `[3 * BASE_FONT_SIZE, 3 * BASE_FONT_SIZE]` |
+| `6xl` | `[3.75 * BASE_FONT_SIZE, 3.75 * BASE_FONT_SIZE]` |
+| `7xl` | `[4.5 * BASE_FONT_SIZE, 4.5 * BASE_FONT_SIZE]` |
+| `8xl` | `[6 * BASE_FONT_SIZE, 6 * BASE_FONT_SIZE]` |
+| `9xl` | `[8 * BASE_FONT_SIZE, 8 * BASE_FONT_SIZE]` |
+
+Here's a visual representation of that scale.
+
+![A screenshot of the default font size scale shown in a simulator](/img/screenshots/default-font-sizes.png)
+
+## Default Font Weights
+
+The `fontWeights` constraint applies to [the font weight classes](./available-classes.md#text-styling). The scale for this is:
+
+| Name | Value |
+| --- | --- |
+| `thin` | 100 |
+| `extralight` | 200 |
+| `light` | 300 |
+| `normal` | 400 |
+| `medium` | 500 |
+| `semibold` | 600 |
+| `bold` | 700 |
+| `extrabold` | 800 |
+| `black` | 900 |
+
+Here's a visual representation of that scale.
+
+![A screenshot of the default font weights scale shown in a simulator](/img/screenshots/default-font-weights.png)
 
 ## Default Shadows
 
-Coming soon...
+The `shadows` constraint applies to [the shadow classes](./available-classes.md#shadows). The scale for this is:
+
+| Name | Value |
+| --- | --- |
+| `sm` | `{ android: 1, ios: [0, 1, 1, 0.18] }` |
+| `base` | `{ android: 2, ios: [0, 1, 1.41, 0.2] }` |
+| `md` | `{ android: 5, ios: [0, 2, 3.84, 0.25] }` |
+| `lg` | `{ android: 8, ios: [0, 4, 4.65, 0.3] }` |
+| `xl` | `{ android: 12, ios: [0, 6, 7.49, 0.37] }` |
+| `2xl` | `{ android: 16, ios: [0, 8, 10.32, 0.44] }`|
+
+Here's a visual representation of that scale.
+
+![A screenshot of the default shadows scale shown in a simulator](/img/screenshots/default-shadows.png)
+
+## Default Aspect Ratios
+
+The `aspectRatios` constraint applies to the aspect ratio classes. The scale for this is as follows, where `[16, 9]` represents a 16-9 aspect ratio.
+
+| Name | Value |
+| --- | --- |
+| `1` | `[1, 1]` |
+| `16-9` | `[16, 9]` |
+| `9-16` | `[9, 16]` |
+| `3-4` | `[3, 4]` |
+| `4-3` | `[4, 3]` |
+| `1-2` | `[1, 2]` |
+| `2-1` | `[2, 1]` |
+
+Here's a visual representation of that scale.
+
+![A screenshot of the default shadows scale shown in a simulator](/img/screenshots/default-aspect-ratios.png)

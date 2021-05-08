@@ -158,7 +158,8 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     color: colorHandler("color"),
     "bg-opacity": (inp) => {
       const constrainedVal = constraints.opacities?.[inp];
-      if (constrainedVal) return { "--bg-opacity": constrainedVal };
+      if (typeof constrainedVal === "number")
+        return { "--bg-opacity": constrainedVal };
 
       const bracketVal = Number(extractFromBrackets(inp));
       if (!isNaN(bracketVal)) {

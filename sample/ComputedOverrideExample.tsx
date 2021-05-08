@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useWindowDimensions, View } from "react-native";
-import { ts } from "./myTurboStyles";
+import { sb } from "./myTurboStyles";
 import { ConstraintOverride } from "./lib";
 
 export const ComputedOverrideExample: React.FC = () => {
@@ -8,9 +8,9 @@ export const ComputedOverrideExample: React.FC = () => {
   const rectWidth = (width - 32) / 3;
 
   return (
-    <View style={ts("flex:1", "bg:gray-200", "justify:center", "items:center")}>
+    <View style={sb("flex:1", "bg:gray-200", "justify:center", "items:center")}>
       <View
-        style={ts(
+        style={sb(
           `w:[${Math.round(rectWidth)}]` as ConstraintOverride<"w">,
           "h:10",
           "bg:red-300"

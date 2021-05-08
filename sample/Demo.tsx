@@ -1,6 +1,9 @@
 import * as React from "react";
 import { View, Image, Text } from "react-native";
-import { createStyleBuilder, defaultConstraints } from "./lib";
+import {
+  createStyleBuilder,
+  defaultConstraints,
+} from "react-native-turbo-styles";
 
 const { builder: sb } = createStyleBuilder(defaultConstraints);
 

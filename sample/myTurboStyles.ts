@@ -1,6 +1,6 @@
 import { createStyleBuilder, defaultConstraints, flattenColor } from "./lib";
 
-export const { builder: ts, useTurboStyles, constraints } = createStyleBuilder({
+export const { builder: sb, constraints } = createStyleBuilder({
   ...defaultConstraints,
   colors: {
     ...defaultConstraints.colors,

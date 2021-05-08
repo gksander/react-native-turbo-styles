@@ -1,12 +1,11 @@
 import * as React from "react";
-import { View, Image, Text } from "react-native";
-import { Demo } from "./Demo";
 import { createStyleBuilder, defaultConstraints } from "./lib";
+import { DefaultAspectRatios } from "./DefaultAspectRatios";
 
 const { builder: sb } = createStyleBuilder(defaultConstraints);
 
 const App: React.FC = () => {
-  return <Demo />;
+  return <DefaultAspectRatios />;
 };
 
 export default App;

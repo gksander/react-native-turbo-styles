@@ -1,5 +1,5 @@
 import * as React from "react";
-import { constraints, ts } from "./myTurboStyles";
+import { constraints, sb } from "./myTurboStyles";
 import { ScrollView, Text, View } from "react-native";
 import { ConstraintOverride, useDarkModeStyles } from "./lib";
 
@@ -11,7 +11,7 @@ const getColors = (key: string) => {
 };
 
 export const Colors: React.FC = () => {
-  const dm = useDarkModeStyles(ts);
+  const dm = useDarkModeStyles(sb);
 
   return (
     <ScrollView
@@ -34,7 +34,7 @@ export const Colors: React.FC = () => {
 const ColorList: React.FC<{ color: string }> = ({ color }) => {
   return (
     <View
-      style={ts(
+      style={sb(
         "flex:1",
         "flex:row",
         "items:center",
@@ -43,21 +43,21 @@ const ColorList: React.FC<{ color: string }> = ({ color }) => {
       )}
     >
       {getColors(color).map(([key, color]) => (
-        <View key={key} style={ts("items:center")}>
-          <Text style={ts("font-weight:bold", "text-align:center", "text:xs")}>
+        <View key={key} style={sb("items:center")}>
+          <Text style={sb("font-weight:bold", "text-align:center", "text:xs")}>
             {key}
           </Text>
-          <View style={ts("h:2")} />
+          <View style={sb("h:2")} />
           <View
-            style={ts(
+            style={sb(
               "w:14",
               "h:8",
               "shadow:md",
               `bg:${key}` as ConstraintOverride<"bg">
             )}
           />
-          <View style={ts("h:2")} />
-          <Text style={ts("text-align:center")}>{color}</Text>
+          <View style={sb("h:2")} />
+          <Text style={sb("text-align:center")}>{color}</Text>
         </View>
       ))}
     </View>
