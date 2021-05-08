@@ -1,11 +1,12 @@
 import * as React from "react";
-import { OverrideExample } from "./OverrideExample";
-import { ComputedOverrideExample } from "./ComputedOverrideExample";
-import { Colors } from "./Colors";
-import { AspectRatios } from "./AspectRatios";
+import { View, Image, Text } from "react-native";
+import { Demo } from "./Demo";
+import { createStyleBuilder, defaultConstraints } from "./lib";
+
+const { builder: sb } = createStyleBuilder(defaultConstraints);
 
 const App: React.FC = () => {
-  return <AspectRatios />;
+  return <Demo />;
 };
 
 export default App;

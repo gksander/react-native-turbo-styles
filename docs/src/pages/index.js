@@ -25,10 +25,17 @@ function HomepageHeader() {
             <div style={{ marginBottom: "2rem" }} />
           </div>
           <div className="col col--6">
-            <img
-              src="/img/turbo-styles-sample.gif"
+            <video
+              width="100%"
+              autoPlay
+              controls={false}
+              muted
+              loop
               className={clsx("shadow--md", styles.demoImg)}
-            />
+            >
+              <source src="/demo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>
