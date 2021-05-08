@@ -17,7 +17,7 @@ export const DefaultBorderRadii: React.FC<DefaultBorderRadiiProps> = () => {
     >
       {Object.keys(constraints.borderRadii).map((key) => (
         <View key={key} style={sb("items:center")}>
-          <Text style={sb("text:sm", "color:gray-600")}>border:{key}</Text>
+          <Text style={sb("text:sm", "color:gray-600")}>rounded:{key}</Text>
           <View
             style={sb(
               "border:2",
