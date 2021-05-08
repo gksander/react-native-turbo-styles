@@ -337,24 +337,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     return styles;
   };
 
-  type BuilderParams = Array<ClassName<C>>;
-
-  const useTurboStyles = () => builder;
-
-  const useTurboStylesWithDarkMode = () => {
-    const colorScheme = useColorScheme();
-
-    return React.useCallback(
-      ({ base, dark }: { base: BuilderParams; dark: BuilderParams }) =>
-        Object.assign(
-          builder(...base),
-          colorScheme === "dark" ? builder(...dark) : {}
-        ),
-      [colorScheme]
-    );
-  };
-
-  return { builder, useTurboStyles, useTurboStylesWithDarkMode, constraints };
+  return { builder, constraints };
 };
 
 /**

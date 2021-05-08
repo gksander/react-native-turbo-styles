@@ -1,7 +1,7 @@
 import * as React from "react";
 import { constraints, ts } from "./myTurboStyles";
 import { ScrollView, Text, View } from "react-native";
-import { ConstraintOverride } from "./lib";
+import { ConstraintOverride, useDarkModeStyles } from "./lib";
 
 const getColors = (key: string) => {
   const r = new RegExp(`${key}`);
@@ -11,8 +11,15 @@ const getColors = (key: string) => {
 };
 
 export const Colors: React.FC = () => {
+  const dm = useDarkModeStyles(ts);
+
   return (
-    <ScrollView contentContainerStyle={ts("py:4", "px:10")}>
+    <ScrollView
+      contentContainerStyle={dm({
+        base: ["py:4", "px:10"],
+        dark: ["bg:gray-900"],
+      })}
+    >
       <ColorList color="gray" />
       <ColorList color="red" />
       <ColorList color="green" />
