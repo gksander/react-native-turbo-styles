@@ -12,7 +12,8 @@ export const DefaultBorderSizes: React.FC<DefaultBorderSizesProps> = () => {
         "flex:row",
         "items:center",
         "justify:between",
-        "px:20"
+        "px:20",
+        "bg:gray-300"
       )}
     >
       {Object.keys(constraints.borderSizes).map((key) => (
@@ -21,6 +22,7 @@ export const DefaultBorderSizes: React.FC<DefaultBorderSizesProps> = () => {
           <View
             style={sb(
               "rounded:lg",
+              "bg:white",
               "border-color:purple-700",
               // @ts-ignore
               `border:${key}`,
