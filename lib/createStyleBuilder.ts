@@ -1,10 +1,8 @@
-import * as React from "react";
 import {
   FlexStyle,
   ImageStyle,
   Platform,
   TextStyle,
-  useColorScheme,
   ViewStyle,
 } from "react-native";
 import { colorStringToRgb } from "./colorStringToRgb";
@@ -13,6 +11,7 @@ import {
   borderRadiusInput,
   BorderSizeHandler,
   borderSizeInput,
+  Builder,
   ColorHandler,
   colorInput,
   Config,
@@ -20,15 +19,14 @@ import {
   NonSymbol,
   SizeHandler,
   sizeInput,
-  ClassName,
-  Builder,
 } from "./utilTypes";
+import { SimpleConstrainedCache } from "./SimpleConstrainedCache";
 
 /**
  * Create style builder. Pass in constraints, create handler
  */
 export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
-  const __cachedStyles = {} as Record<string, Record<string, any>>;
+  const __cachedStyles = new SimpleConstrainedCache({ maxNumRecords: 250 });
 
   const getSizeValue = (val: sizeInput<C>): string | number | undefined => {
     return constraints.sizing?.[val] ?? extractFromBrackets(val);
@@ -304,8 +302,8 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     const key = args.join(",");
 
     // Return from cache if possible.
-    if (__cachedStyles[key]) {
-      return __cachedStyles[key];
+    if (__cachedStyles.has(key)) {
+      return __cachedStyles.get(key);
     }
 
     let styles = {} as Record<string, any>;
@@ -333,7 +331,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     delete styles["--bg-opacity"];
 
     // Store style in cache
-    __cachedStyles[key] = styles;
+    __cachedStyles.set(key, styles);
 
     return styles;
   };
