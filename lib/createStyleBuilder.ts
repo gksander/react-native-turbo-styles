@@ -316,10 +316,10 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
 
       if (prop && value && handler) {
         // @ts-ignore
-        styles = { ...styles, ...handler(value) };
+        Object.assign(styles, handler(value));
       } else {
         // @ts-ignore
-        styles = { ...styles, ...(config?.[c]?.() || {}) };
+        Object.assign(styles, config?.[c]?.() || {});
       }
     }
 

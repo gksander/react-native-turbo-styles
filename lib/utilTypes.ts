@@ -197,5 +197,3 @@ type IfDefined<Condition, Value> = Condition extends undefined ? never : Value;
  *  So, you can do `h-[${3 + 2}]` as Override<'h'> as a workaround.
  */
 export type ConstraintOverride<T extends string> = `${T}:[${string}]`;
-
-type Foo = undefined extends never ? true : false;
