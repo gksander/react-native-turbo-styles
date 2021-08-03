@@ -1,6 +1,7 @@
 import { createStyleBuilder } from "./createStyleBuilder";
 import { FlexStyle, TextStyle } from "react-native";
 import { cleanMaybeNumberString } from "./utils";
+import { defaultSpacingHandlers } from "./handlers/defaultSpacingHandlers";
 
 describe("createStyleBuilder", () => {
   it("creates simple builder", () => {
@@ -24,5 +25,18 @@ describe("createStyleBuilder", () => {
     });
 
     expect(builder("capitalize")).toEqual({ textTransform: "capitalize" });
+  });
+
+  it("maintains referential equality", () => {
+    const { builder } = createStyleBuilder({
+      handlers: defaultSpacingHandlers(),
+    });
+
+    const s1 = builder("mx:3", "my:12");
+    const s2 = builder("mx:3", "my:12");
+    const s3 = builder("mx:3", "my:10");
+
+    expect(s1).toBe(s2);
+    expect(s1).not.toBe(s3);
   });
 });
