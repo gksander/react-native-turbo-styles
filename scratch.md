@@ -21,7 +21,7 @@
 - Opacity
 - Positioning?
 - Borders ✅
-- Border Radii (corners)
+- Border Radii (corners) ✅
 - Overflow?
 - Flex positioning
 - z index

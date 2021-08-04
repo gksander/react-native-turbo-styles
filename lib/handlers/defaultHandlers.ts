@@ -3,6 +3,7 @@ import { flattenColor } from "./twColors";
 import { StyleSheet } from "react-native";
 import { createAspectRatioHandlers } from "./createAspectRatioHandlers";
 import { createBorderHandlers } from "./createBorderHandlers";
+import { createRoundedHandlers } from "./createRoundedHandlers";
 
 const BASE_FONT_SIZE = 14;
 export const DEFAULT_CONSTRAINTS = {
@@ -161,10 +162,14 @@ export const defaultAspectRatioHandlers = createAspectRatioHandlers(
 export const defaultBorderHandlers = createBorderHandlers(
   DEFAULT_CONSTRAINTS.BORDER_SIZES
 );
+export const defaultRoundedHandlers = createRoundedHandlers(
+  DEFAULT_CONSTRAINTS.BORDER_RADII
+);
 
 export const defaultHandlers = Object.assign(
   {},
   defaultSpacingHandlers,
   defaultAspectRatioHandlers,
-  defaultBorderHandlers
+  defaultBorderHandlers,
+  defaultRoundedHandlers
 );
