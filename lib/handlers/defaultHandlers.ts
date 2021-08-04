@@ -6,6 +6,7 @@ import { createBorderHandlers } from "./createBorderHandlers";
 import { createRoundedHandlers } from "./createRoundedHandlers";
 import { createColorHandlers } from "./createColorHandlers";
 import { createOpacityHandlers } from "./createOpacityHandlers";
+import { createShadowHandlers } from "./createShadowHandlers";
 
 const BASE_FONT_SIZE = 14;
 export const DEFAULT_CONSTRAINTS = {
@@ -55,7 +56,7 @@ export const DEFAULT_CONSTRAINTS = {
     "3/5": "60%",
     "4/5": "80%",
     full: "100%",
-  },
+  } as const,
   COLORS: {
     white: "#fff",
     black: "#000",
@@ -82,7 +83,7 @@ export const DEFAULT_CONSTRAINTS = {
     80: 0.8,
     90: 0.9,
     95: 0.95,
-  },
+  } as const,
   BORDER_SIZES: {
     0: 0,
     hairline: StyleSheet.hairlineWidth,
@@ -90,7 +91,7 @@ export const DEFAULT_CONSTRAINTS = {
     2: 2,
     4: 4,
     8: 8,
-  },
+  } as const,
   BORDER_RADII: {
     none: 0,
     sm: 0.125 * BASE_FONT_SIZE,
@@ -101,7 +102,7 @@ export const DEFAULT_CONSTRAINTS = {
     "2xl": BASE_FONT_SIZE,
     "3xl": 1.5 * BASE_FONT_SIZE,
     full: 999,
-  },
+  } as const,
   FONT_SIZES: {
     xs: [0.75 * BASE_FONT_SIZE, BASE_FONT_SIZE],
     sm: [0.875 * BASE_FONT_SIZE, 1.25 * BASE_FONT_SIZE],
@@ -116,7 +117,7 @@ export const DEFAULT_CONSTRAINTS = {
     "7xl": [4.5 * BASE_FONT_SIZE, 4.5 * BASE_FONT_SIZE],
     "8xl": [6 * BASE_FONT_SIZE, 6 * BASE_FONT_SIZE],
     "9xl": [8 * BASE_FONT_SIZE, 8 * BASE_FONT_SIZE],
-  },
+  } as const,
   FONT_WEIGHTS: {
     thin: "100",
     extralight: "200",
@@ -127,7 +128,7 @@ export const DEFAULT_CONSTRAINTS = {
     bold: "700",
     extrabold: "800",
     black: "900",
-  },
+  } as const,
   /**
    * Generated from https://ethercreative.github.io/react-native-shadow-generator/
    * android prop represents elevation.
@@ -140,8 +141,8 @@ export const DEFAULT_CONSTRAINTS = {
     lg: { android: 8, ios: [0, 4, 4.65, 0.3] },
     xl: { android: 12, ios: [0, 6, 7.49, 0.37] },
     "2xl": { android: 16, ios: [0, 8, 10.32, 0.44] },
-  },
-  ASPECT_RATIOS: <{ [k: string]: readonly [number, number] }>{
+  } as const,
+  ASPECT_RATIOS: {
     1: [1, 1],
     "16-9": [16, 9],
     "9-16": [9, 16],
@@ -149,7 +150,7 @@ export const DEFAULT_CONSTRAINTS = {
     "4-3": [4, 3],
     "1-2": [1, 2],
     "2-1": [2, 1],
-  },
+  } as const,
 };
 
 /**
@@ -173,6 +174,9 @@ export const defaultColorHandlers = createColorHandlers(
 export const defaultOpacityHandlers = createOpacityHandlers(
   DEFAULT_CONSTRAINTS.OPACITIES
 );
+export const defaultShadowHandlers = createShadowHandlers(
+  DEFAULT_CONSTRAINTS.SHADOWS
+);
 
 export const defaultHandlers = {
   ...defaultSpacingHandlers,
@@ -181,4 +185,5 @@ export const defaultHandlers = {
   ...defaultRoundedHandlers,
   ...defaultColorHandlers,
   ...defaultOpacityHandlers,
+  ...defaultShadowHandlers,
 };

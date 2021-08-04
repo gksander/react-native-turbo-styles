@@ -26,4 +26,4 @@
 - Flex positioning
 - z index
 - Typography
-- Shadows
+- Shadows ✅
