@@ -10,6 +10,8 @@ type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
   : never;
 export type Override<T extends string | number> = `[${T}]`;
 
+export type BgOpacityRecord = { "--bg-opacity"?: number };
+
 /**
  * Types for createStyleBuilder
  */
@@ -40,7 +42,9 @@ export type ReturnStyle<
 > = UnionToIntersection<
   ValueOf<
     {
-      [K in T]: ReturnType<P[K]>;
+      [K in T]: ReturnType<P[K]> extends BgOpacityRecord
+        ? never
+        : ReturnType<P[K]>;
     }
   >
 >;

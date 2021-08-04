@@ -17,8 +17,8 @@
 
 - Spacing  ✅
 - Aspect Ratio ✅
-- Colors
-- Opacity
+- Colors ✅
+- Opacity ✅
 - Positioning?
 - Borders ✅
 - Border Radii (corners) ✅

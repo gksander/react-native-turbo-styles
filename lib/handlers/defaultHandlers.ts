@@ -5,6 +5,7 @@ import { createAspectRatioHandlers } from "./createAspectRatioHandlers";
 import { createBorderHandlers } from "./createBorderHandlers";
 import { createRoundedHandlers } from "./createRoundedHandlers";
 import { createColorHandlers } from "./createColorHandlers";
+import { createOpacityHandlers } from "./createOpacityHandlers";
 
 const BASE_FONT_SIZE = 14;
 export const DEFAULT_CONSTRAINTS = {
@@ -169,6 +170,9 @@ export const defaultRoundedHandlers = createRoundedHandlers(
 export const defaultColorHandlers = createColorHandlers(
   DEFAULT_CONSTRAINTS.COLORS
 );
+export const defaultOpacityHandlers = createOpacityHandlers(
+  DEFAULT_CONSTRAINTS.OPACITIES
+);
 
 export const defaultHandlers = {
   ...defaultSpacingHandlers,
@@ -176,4 +180,5 @@ export const defaultHandlers = {
   ...defaultBorderHandlers,
   ...defaultRoundedHandlers,
   ...defaultColorHandlers,
+  ...defaultOpacityHandlers,
 };
