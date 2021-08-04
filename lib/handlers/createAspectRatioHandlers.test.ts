@@ -26,4 +26,15 @@ describe("createAspectRatioHandlers", () => {
       expect(actualOutput).toEqual(expectedOutput);
     }
   );
+
+  it("allows custom constraints", () => {
+    const { builder } = createStyleBuilder({
+      handlers: createAspectRatioHandlers({ foo: [1, 1], bar: [3, 7] }),
+    });
+
+    expect(builder("aspect:foo")).toEqual({ aspectRatio: 1 });
+    expect(builder("aspect:bar")).toEqual({ aspectRatio: 3 / 7 });
+    // @ts-expect-error
+    expect(builder("aspect:1")).toEqual({});
+  });
 });
