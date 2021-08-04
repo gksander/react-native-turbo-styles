@@ -1,7 +1,7 @@
 # Overview
 
 - `createStyleBuilder` is greatly simplified, just takes handlers and returns a builder.
-- Ship utilities that can be used to quickly create utility functions. Like, `createSpacingHandlers(constraints)` or some shit. Can pick and choose the modules you want.
+- Ship utilities that can be used to quickly create util ity functions. Like, `createSpacingHandlers(constraints)` or some shit. Can pick and choose the modules you want.
 - Ship a default utility set that can be used out of the box, like TW. Maybe allow to override default constraints.
 - Export all of the utilities needed to totally customize with ease.
 - Also provide dark mode support...
@@ -20,7 +20,7 @@
 - Colors
 - Opacity
 - Positioning?
-- Borders
+- Borders ✅
 - Border Radii (corners)
 - Overflow?
 - Flex positioning

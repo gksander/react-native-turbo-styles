@@ -2,6 +2,7 @@ import { createSpacingHandlers } from "./createSpacingHandlers";
 import { flattenColor } from "./twColors";
 import { StyleSheet } from "react-native";
 import { createAspectRatioHandlers } from "./createAspectRatioHandlers";
+import { createBorderHandlers } from "./createBorderHandlers";
 
 const BASE_FONT_SIZE = 14;
 export const DEFAULT_CONSTRAINTS = {
@@ -157,9 +158,13 @@ export const defaultSpacingHandlers = createSpacingHandlers(
 export const defaultAspectRatioHandlers = createAspectRatioHandlers(
   DEFAULT_CONSTRAINTS.ASPECT_RATIOS
 );
+export const defaultBorderHandlers = createBorderHandlers(
+  DEFAULT_CONSTRAINTS.BORDER_SIZES
+);
 
 export const defaultHandlers = Object.assign(
   {},
   defaultSpacingHandlers,
-  defaultAspectRatioHandlers
+  defaultAspectRatioHandlers,
+  defaultBorderHandlers
 );

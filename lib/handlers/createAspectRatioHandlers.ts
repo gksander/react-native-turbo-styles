@@ -1,5 +1,6 @@
 import { extractFromBrackets } from "../utils";
 import { NonSymbol } from "../types";
+import { FlexStyle } from "react-native";
 
 export const createAspectRatioHandlers = <
   Constraints extends Record<string | number, readonly [number, number]>
@@ -7,7 +8,7 @@ export const createAspectRatioHandlers = <
   constraints: Constraints
 ) => {
   return {
-    aspect: (inp: NonSymbol<keyof Constraints> | `[${string}]`) => {
+    aspect: (inp: NonSymbol<keyof Constraints> | `[${string}]`): FlexStyle => {
       const cVal = constraints?.[inp];
       if (cVal) {
         return { aspectRatio: cVal[0] / cVal[1] };
