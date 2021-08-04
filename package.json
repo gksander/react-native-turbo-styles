@@ -19,7 +19,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "prepare": "yarn build",
-    "test": "jest --config=jest.config.js",
+    "test": "tsc --noEmit && jest --config=jest.config.js",
     "test:watch": "jest --config=jest.config.js --watch",
     "cp-to-sample": "yarn build && rm -rf ./sample/lib && cp -r ./dist ./sample/lib"
   },

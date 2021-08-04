@@ -1,9 +1,9 @@
+import { NonSymbol } from "../types";
+
 /**
  * NOTE!!! This comes from the _amazing_ crew at Tailwind.
  * This is the TailwindCSS default color palette.
  */
-import { NonSymbol } from "../old/utilTypes";
-
 export const twColors = {
   black: "#000",
   white: "#fff",
