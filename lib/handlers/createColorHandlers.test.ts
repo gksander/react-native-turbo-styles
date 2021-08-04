@@ -1,4 +1,8 @@
-import { DEFAULT_CONSTRAINTS, defaultColorHandlers } from "./defaultHandlers";
+import {
+  DEFAULT_CONSTRAINTS,
+  defaultColorHandlers,
+  defaultHandlers,
+} from "./defaultHandlers";
 import { createStyleBuilder } from "../createStyleBuilder";
 
 jest.mock("react-native", () => ({
@@ -8,12 +12,12 @@ jest.mock("react-native", () => ({
 }));
 
 const { builder: sb } = createStyleBuilder({
-  handlers: defaultColorHandlers,
+  handlers: defaultHandlers,
 });
 const C = DEFAULT_CONSTRAINTS.COLORS;
 
-// const myStyle = sb("bg:red-300");
-// const color = myStyle.color;
+const myStyle = sb("bg:red-300");
+const color = myStyle.color;
 
 describe("createColorHandlers", () => {
   const cases: [string, object, object][] = [

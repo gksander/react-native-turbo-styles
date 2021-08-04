@@ -18,9 +18,9 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
 }) => {
   const __cachedStyles = new SimpleConstrainedCache({ maxNumRecords: 250 });
 
-  const builder = <Prefixes extends keyof StyleHandlers>(
-    ...args: ClassName<StyleHandlers, Prefixes>[]
-  ): ReturnStyle<StyleHandlers, Prefixes> => {
+  const builder = <P extends keyof StyleHandlers>(
+    ...args: ClassName<StyleHandlers, P>[]
+  ): ReturnStyle<StyleHandlers, P> => {
     const key = args.join(",");
 
     // Return from cache if possible.
@@ -28,7 +28,7 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
       return __cachedStyles.get(key);
     }
 
-    let styles = {} as ReturnStyle<StyleHandlers, Prefixes> & {
+    let styles = {} as ReturnStyle<StyleHandlers, P> & {
       "--bg-opacity"?: number;
     };
 

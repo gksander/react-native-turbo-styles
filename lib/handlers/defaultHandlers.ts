@@ -170,11 +170,10 @@ export const defaultColorHandlers = createColorHandlers(
   DEFAULT_CONSTRAINTS.COLORS
 );
 
-export const defaultHandlers = Object.assign(
-  {},
-  defaultSpacingHandlers,
-  defaultAspectRatioHandlers,
-  defaultBorderHandlers,
-  defaultRoundedHandlers,
-  defaultColorHandlers
-);
+export const defaultHandlers = {
+  ...defaultSpacingHandlers,
+  ...defaultAspectRatioHandlers,
+  ...defaultBorderHandlers,
+  ...defaultRoundedHandlers,
+  ...defaultColorHandlers,
+};

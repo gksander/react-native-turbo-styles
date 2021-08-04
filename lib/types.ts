@@ -20,7 +20,7 @@ export type StyleHandlerSet = {
 export type Prefix<P extends StyleHandlerSet> = keyof P;
 export type ClassName<P extends StyleHandlerSet, Pf extends keyof P> = ValueOf<
   {
-    [K in keyof Pick<P, Pf>]: Parameters<P[K]>[0] extends undefined
+    [K in Pf]: Parameters<P[K]>[0] extends undefined
       ? `${NonSymbol<K>}`
       : `${NonSymbol<K>}:${Parameters<P[K]>[0]}`;
   }
