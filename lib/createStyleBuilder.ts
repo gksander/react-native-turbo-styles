@@ -2,10 +2,11 @@ import { SimpleConstrainedCache } from "./SimpleConstrainedCache";
 import { colorStringToRgb } from "./util/colorStringToRgb";
 import {
   ClassName,
+  InvertClassName,
   NonSymbol,
-  StyleHandlerSet,
-  Prefix,
   ReturnStyle,
+  ReturnStyle,
+  StyleHandlerSet,
 } from "types";
 
 /**
@@ -18,9 +19,9 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
 }) => {
   const __cachedStyles = new SimpleConstrainedCache({ maxNumRecords: 250 });
 
-  const builder = <P extends keyof StyleHandlers>(
-    ...args: ClassName<StyleHandlers, P>[]
-  ): ReturnStyle<StyleHandlers, P> => {
+  const builder = <Cn extends ClassName<StyleHandlers>>(
+    ...args: Cn[]
+  ): ReturnStyle<StyleHandlers, InvertClassName<StyleHandlers, Cn>> => {
     const key = args.join(",");
 
     // Return from cache if possible.

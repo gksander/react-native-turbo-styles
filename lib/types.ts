@@ -17,21 +17,30 @@ export type StyleHandler = (...args: any[]) => object;
 export type StyleHandlerSet = {
   [key: string]: StyleHandler;
 };
-export type Prefix<P extends StyleHandlerSet> = keyof P;
-export type ClassName<P extends StyleHandlerSet, Pf extends keyof P> = ValueOf<
+export type ClassName<P extends StyleHandlerSet> = ValueOf<
   {
-    [K in Pf]: Parameters<P[K]>[0] extends undefined
+    [K in keyof P]: Parameters<P[K]>[0] extends undefined
       ? `${NonSymbol<K>}`
       : `${NonSymbol<K>}:${Parameters<P[K]>[0]}`;
   }
 >;
+
+export type InvertClassName<
+  P extends StyleHandlerSet,
+  Cn extends ClassName<P>
+> = Cn extends `${infer K1}:${any}`
+  ? K1
+  : Cn extends `${infer K2}`
+  ? K2
+  : never;
+
 export type ReturnStyle<
   P extends StyleHandlerSet,
-  Pf extends keyof P
+  T extends string
 > = UnionToIntersection<
   ValueOf<
     {
-      [K in Pf]: ReturnType<P[K]>;
+      [K in T]: ReturnType<P[K]>;
     }
   >
 >;
