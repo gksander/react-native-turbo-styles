@@ -11,16 +11,16 @@ import {
 /**
  * Style builder function (doesn't do anything, but is typed)
  */
-export const createStyleBuilder = <P extends StyleHandlerSet>({
+export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
   handlers,
 }: {
-  handlers: P;
+  handlers: StyleHandlers;
 }) => {
   const __cachedStyles = new SimpleConstrainedCache({ maxNumRecords: 250 });
 
-  const builder = <Ps extends Prefix<P>>(
-    ...args: ClassName<P, Ps>[]
-  ): ReturnStyle<P, Ps> => {
+  const builder = <Prefixes extends keyof StyleHandlers>(
+    ...args: ClassName<StyleHandlers, Prefixes>[]
+  ): ReturnStyle<StyleHandlers, Prefixes> => {
     const key = args.join(",");
 
     // Return from cache if possible.
@@ -28,7 +28,9 @@ export const createStyleBuilder = <P extends StyleHandlerSet>({
       return __cachedStyles.get(key);
     }
 
-    let styles = {} as ReturnStyle<P, Ps> & { "--bg-opacity"?: number };
+    let styles = {} as ReturnStyle<StyleHandlers, Prefixes> & {
+      "--bg-opacity"?: number;
+    };
 
     for (let c of args) {
       const m = c.match(/^(.+):(.+)$/);

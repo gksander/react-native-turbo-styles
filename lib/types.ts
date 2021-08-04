@@ -31,7 +31,7 @@ export type ReturnStyle<
 > = UnionToIntersection<
   ValueOf<
     {
-      [K in keyof Pick<P, Pf>]: ReturnType<P[K]>;
+      [K in Pf]: ReturnType<P[K]>;
     }
   >
 >;

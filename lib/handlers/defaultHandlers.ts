@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import { createAspectRatioHandlers } from "./createAspectRatioHandlers";
 import { createBorderHandlers } from "./createBorderHandlers";
 import { createRoundedHandlers } from "./createRoundedHandlers";
+import { createColorHandlers } from "./createColorHandlers";
 
 const BASE_FONT_SIZE = 14;
 export const DEFAULT_CONSTRAINTS = {
@@ -165,11 +166,15 @@ export const defaultBorderHandlers = createBorderHandlers(
 export const defaultRoundedHandlers = createRoundedHandlers(
   DEFAULT_CONSTRAINTS.BORDER_RADII
 );
+export const defaultColorHandlers = createColorHandlers(
+  DEFAULT_CONSTRAINTS.COLORS
+);
 
 export const defaultHandlers = Object.assign(
   {},
   defaultSpacingHandlers,
   defaultAspectRatioHandlers,
   defaultBorderHandlers,
-  defaultRoundedHandlers
+  defaultRoundedHandlers,
+  defaultColorHandlers
 );
