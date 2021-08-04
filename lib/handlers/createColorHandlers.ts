@@ -1,4 +1,3 @@
-import { ColorHandler, colorInput } from "../old/utilTypes";
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 import { extractFromBrackets } from "../utils";
 
@@ -39,5 +38,6 @@ export const createColorHandlers = <
     bg: colorHandler<ViewStyle>("backgroundColor"),
     "border-color": colorHandler<ViewStyle>("borderColor"),
     color: colorHandler<TextStyle>("color"),
+    tint: colorHandler<ImageStyle>("tintColor"),
   };
 };

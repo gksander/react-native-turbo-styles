@@ -1,5 +1,5 @@
-import { createStyleBuilder } from "./createStyleBuilder";
-import { defaultConstraints } from "./defaultConstraints";
+import { createStyleBuilder } from "./old/createStyleBuilder";
+import { defaultConstraints } from "./old/defaultConstraints";
 import { renderHook } from "@testing-library/react-hooks";
 import { useDarkModeStyles } from "./useDarkModeStyles";
 

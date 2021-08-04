@@ -1,6 +1,6 @@
 import { createSpacingHandlers } from "./createSpacingHandlers";
 import { flattenColor } from "./twColors";
-import { FlexStyle, StyleSheet, ViewStyle } from "react-native";
+import { FlexStyle, ImageStyle, StyleSheet, ViewStyle } from "react-native";
 import { createAspectRatioHandlers } from "./createAspectRatioHandlers";
 import { createBorderHandlers } from "./createBorderHandlers";
 import { createRoundedHandlers } from "./createRoundedHandlers";
@@ -8,6 +8,7 @@ import { createColorHandlers } from "./createColorHandlers";
 import { createOpacityHandlers } from "./createOpacityHandlers";
 import { createShadowHandlers } from "./createShadowHandlers";
 import { cleanMaybeNumberString } from "../utils";
+import { createTypographyHandlers } from "./createTypographyHandlers";
 
 const BASE_FONT_SIZE = 14;
 export const DEFAULT_CONSTRAINTS = {
@@ -251,6 +252,14 @@ export const defaultFlexHandlers = {
     };
   },
 };
+export const defaultTypographyHandlers = createTypographyHandlers({
+  fontSizes: DEFAULT_CONSTRAINTS.FONT_SIZES,
+  fontWeights: DEFAULT_CONSTRAINTS.FONT_WEIGHTS,
+});
+export const defaultImageHandlers = {
+  resize: (resizeMode: NonNullable<ImageStyle["resizeMode"]>) =>
+    <ImageStyle>{ resizeMode },
+};
 
 export const defaultHandlers = {
   ...defaultSpacingHandlers,
@@ -262,4 +271,6 @@ export const defaultHandlers = {
   ...defaultShadowHandlers,
   ...defaultPositioningHandlers,
   ...defaultFlexHandlers,
+  ...defaultTypographyHandlers,
+  ...defaultImageHandlers,
 };

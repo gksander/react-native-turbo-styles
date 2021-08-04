@@ -16,3 +16,4 @@
 ## Types of Handler helpers
 
 - Typography
+- Image helpers (resize, tint) 

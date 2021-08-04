@@ -240,7 +240,6 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     underline: () => ({ textDecorationLine: "underline" }),
     "line-through": () => ({ textDecorationLine: "line-through" }),
 
-    // TODO: Flex helpers...
     flex: (inp) => {
       return {
         1: { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },
