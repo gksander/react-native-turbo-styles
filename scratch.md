@@ -15,15 +15,5 @@
 
 ## Types of Handler helpers
 
-- Spacing  ✅
-- Aspect Ratio ✅
-- Colors ✅
-- Opacity ✅
-- Positioning?
-- Borders ✅
-- Border Radii (corners) ✅
-- Overflow?
 - Flex positioning
-- z index
 - Typography
-- Shadows ✅

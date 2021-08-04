@@ -18,8 +18,6 @@ const { builder: sb } = createStyleBuilder({
 });
 const C = DEFAULT_CONSTRAINTS.OPACITIES;
 
-const myStyle = sb("bg:red-100", "bg-opacity:50");
-
 describe("createOpacityHandlers", () => {
   const cases: [string, object, object][] = [
     // opacity:

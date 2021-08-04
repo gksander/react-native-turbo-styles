@@ -1,12 +1,13 @@
 import { createSpacingHandlers } from "./createSpacingHandlers";
 import { flattenColor } from "./twColors";
-import { StyleSheet } from "react-native";
+import { FlexStyle, StyleSheet, ViewStyle } from "react-native";
 import { createAspectRatioHandlers } from "./createAspectRatioHandlers";
 import { createBorderHandlers } from "./createBorderHandlers";
 import { createRoundedHandlers } from "./createRoundedHandlers";
 import { createColorHandlers } from "./createColorHandlers";
 import { createOpacityHandlers } from "./createOpacityHandlers";
 import { createShadowHandlers } from "./createShadowHandlers";
+import { cleanMaybeNumberString } from "../utils";
 
 const BASE_FONT_SIZE = 14;
 export const DEFAULT_CONSTRAINTS = {
@@ -177,6 +178,16 @@ export const defaultOpacityHandlers = createOpacityHandlers(
 export const defaultShadowHandlers = createShadowHandlers(
   DEFAULT_CONSTRAINTS.SHADOWS
 );
+export const defaultPositioningHandlers = {
+  relative: () => <FlexStyle>{ position: "relative" },
+  absolute: () => <FlexStyle>{ position: "absolute" },
+  hidden: () => <FlexStyle>{ display: "none" },
+  visible: () => <FlexStyle>{ display: "flex" },
+  overflow: (overflow: NonNullable<FlexStyle["overflow"]>) =>
+    <FlexStyle>{ overflow },
+  z: (zIndex: NonNullable<FlexStyle["zIndex"]>) =>
+    <FlexStyle>{ zIndex: cleanMaybeNumberString(`${zIndex}`) },
+};
 
 export const defaultHandlers = {
   ...defaultSpacingHandlers,
@@ -186,4 +197,5 @@ export const defaultHandlers = {
   ...defaultColorHandlers,
   ...defaultOpacityHandlers,
   ...defaultShadowHandlers,
+  ...defaultPositioningHandlers,
 };

@@ -151,7 +151,6 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     "min-h": sizeHandler(["minHeight"]),
     "max-h": sizeHandler(["maxHeight"]),
 
-    // TODO: ... is this it's own thing?
     aspect: (inp) => {
       const cVal = constraints.aspectRatios?.[inp];
       if (cVal) {
@@ -166,12 +165,10 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       return {};
     },
 
-    // TODO: Colors
     bg: colorHandler("backgroundColor"),
     "border-color": colorHandler("borderColor"),
     color: colorHandler("color"),
 
-    // TODO: Opacity helpers
     "bg-opacity": (inp) => {
       const constrainedVal = constraints.opacities?.[inp];
       if (typeof constrainedVal === "number")
@@ -189,19 +186,16 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       return <ViewStyle>{ opacity: val };
     },
 
-    // TODO: What do we call these?
     relative: () => ({ position: "relative" }),
     absolute: () => ({ position: "absolute" }),
     hidden: () => ({ display: "none" }),
 
-    // TODO: Border sizing
     border: borderSizeHandler("borderWidth"),
     "border-t": borderSizeHandler("borderTopWidth"),
     "border-b": borderSizeHandler("borderBottomWidth"),
     "border-l": borderSizeHandler("borderLeftWidth"),
     "border-r": borderSizeHandler("borderRightWidth"),
 
-    // TODO: Border radius
     rounded: borderRadiusHandler("borderRadius"),
     "rounded-t": borderRadiusHandler(
       "borderTopLeftRadius",
@@ -289,7 +283,6 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       }[inp] as FlexStyle;
     },
 
-    // TODO: Shadows
     shadow: (inp) => {
       const val = constraints.shadows?.[inp];
       if (!val) return {};
@@ -306,7 +299,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       });
     },
 
-    // Image helpers
+    // TODO: Image helpers
     resize: (resizeMode) => ({ resizeMode }),
     tint: colorHandler("tintColor"),
   };
