@@ -1,12 +1,17 @@
-import { defaultSpacingHandlers } from "./defaultSpacingHandlers";
+import { createSpacingHandlers } from "./createSpacingHandlers";
 import { createStyleBuilder } from "../createStyleBuilder";
+import { DEFAULT_CONSTRAINTS, defaultSpacingHandlers } from "./defaultHandlers";
+
+jest.mock("react-native", () => ({
+  StyleSheet: {
+    hairlineWidth: 0.5,
+  },
+}));
 
 const sb = createStyleBuilder({
-  handlers: {
-    ...defaultSpacingHandlers(),
-  },
+  handlers: defaultSpacingHandlers,
 }).builder;
-const C = defaultSpacingHandlers.DEFAULT_CONSTRAINTS;
+const C = DEFAULT_CONSTRAINTS.SPACING;
 
 describe("defaultSpacingHandlers", () => {
   const cases: [object, object][] = [
@@ -166,4 +171,14 @@ describe("defaultSpacingHandlers", () => {
       expect(actualOutput).toEqual(expectedOutput);
     }
   );
+
+  it("allows for custom constraints", () => {
+    const { builder } = createStyleBuilder({
+      handlers: createSpacingHandlers({ 1: 1, 2: 2 } as const),
+    });
+
+    expect(builder("m:2")).toEqual({ margin: 2 });
+    // @ts-expect-error
+    expect(builder("m:3")).toEqual({});
+  });
 });

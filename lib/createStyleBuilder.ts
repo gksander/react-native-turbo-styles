@@ -1,5 +1,5 @@
 import { SimpleConstrainedCache } from "./SimpleConstrainedCache";
-import { colorStringToRgb } from "./old/colorStringToRgb";
+import { colorStringToRgb } from "./util/colorStringToRgb";
 import {
   ClassName,
   NonSymbol,

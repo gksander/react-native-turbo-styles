@@ -12,3 +12,18 @@
 - [] Spacing handlers
 - [] ... rest of handlers in due time.
 - [] Method to create all base styles with overrides available?
+
+## Types of Handler helpers
+
+- Spacing  ✅
+- Aspect Ratio ✅
+- Colors
+- Opacity
+- Positioning?
+- Borders
+- Border Radii (corners)
+- Overflow?
+- Flex positioning
+- z index
+- Typography
+- Shadows

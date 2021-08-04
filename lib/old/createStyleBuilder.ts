@@ -5,7 +5,7 @@ import {
   TextStyle,
   ViewStyle,
 } from "react-native";
-import { colorStringToRgb } from "./colorStringToRgb";
+import { colorStringToRgb } from "../util/colorStringToRgb";
 import {
   BorderRadiusHandler,
   borderRadiusInput,
@@ -150,10 +150,28 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     h: sizeHandler(["height"]),
     "min-h": sizeHandler(["minHeight"]),
     "max-h": sizeHandler(["maxHeight"]),
-    // Colors
+
+    // TODO: ... is this it's own thing?
+    aspect: (inp) => {
+      const cVal = constraints.aspectRatios?.[inp];
+      if (cVal) {
+        return { aspectRatio: cVal[0] / cVal[1] };
+      }
+
+      const overrideVal = extractFromBrackets(inp);
+      if (typeof overrideVal === "number") {
+        return { aspectRatio: overrideVal };
+      }
+
+      return {};
+    },
+
+    // TODO: Colors
     bg: colorHandler("backgroundColor"),
     "border-color": colorHandler("borderColor"),
     color: colorHandler("color"),
+
+    // TODO: Opacity helpers
     "bg-opacity": (inp) => {
       const constrainedVal = constraints.opacities?.[inp];
       if (typeof constrainedVal === "number")
@@ -170,16 +188,20 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       const val = constraints.opacities?.[inp] ?? extractFromBrackets(inp);
       return <ViewStyle>{ opacity: val };
     },
+
+    // TODO: What do we call these?
     relative: () => ({ position: "relative" }),
     absolute: () => ({ position: "absolute" }),
     hidden: () => ({ display: "none" }),
-    // Border sizing
+
+    // TODO: Border sizing
     border: borderSizeHandler("borderWidth"),
     "border-t": borderSizeHandler("borderTopWidth"),
     "border-b": borderSizeHandler("borderBottomWidth"),
     "border-l": borderSizeHandler("borderLeftWidth"),
     "border-r": borderSizeHandler("borderRightWidth"),
-    // Border radius
+
+    // TODO: Border radius
     rounded: borderRadiusHandler("borderRadius"),
     "rounded-t": borderRadiusHandler(
       "borderTopLeftRadius",
@@ -225,6 +247,8 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
       };
     },
     z: (inp) => ({ zIndex: parseInt(inp) }),
+
+    // TODO: Typography
     text: (inp) => {
       const [fontSize, lineHeight] = constraints.fontSizes?.[inp] || [
         undefined,
@@ -243,6 +267,8 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     capitalize: () => ({ textTransform: "capitalize" }),
     underline: () => ({ textDecorationLine: "underline" }),
     "line-through": () => ({ textDecorationLine: "line-through" }),
+
+    // TODO: Flex helpers...
     flex: (inp) => {
       return {
         1: { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },
@@ -262,6 +288,8 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
         nowrap: { flexWrap: "nowrap" },
       }[inp] as FlexStyle;
     },
+
+    // TODO: Shadows
     shadow: (inp) => {
       const val = constraints.shadows?.[inp];
       if (!val) return {};
@@ -277,21 +305,10 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
         },
       });
     },
+
+    // Image helpers
     resize: (resizeMode) => ({ resizeMode }),
     tint: colorHandler("tintColor"),
-    aspect: (inp) => {
-      const cVal = constraints.aspectRatios?.[inp];
-      if (cVal) {
-        return { aspectRatio: cVal[0] / cVal[1] };
-      }
-
-      const overrideVal = extractFromBrackets(inp);
-      if (typeof overrideVal === "number") {
-        return { aspectRatio: overrideVal };
-      }
-
-      return {};
-    },
   };
 
   /**

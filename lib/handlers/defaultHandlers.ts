@@ -1,10 +1,11 @@
-import { flattenColor } from "../handlers/twColors";
+import { createSpacingHandlers } from "./createSpacingHandlers";
+import { flattenColor } from "./twColors";
 import { StyleSheet } from "react-native";
-import { Constraints } from "./utilTypes";
+import { createAspectRatioHandlers } from "./createAspectRatioHandlers";
 
 const BASE_FONT_SIZE = 14;
-export const defaultConstraints = {
-  sizing: {
+export const DEFAULT_CONSTRAINTS = {
+  SPACING: {
     0: 0,
     pt: 1,
     0.5: 2,
@@ -51,7 +52,7 @@ export const defaultConstraints = {
     "4/5": "80%",
     full: "100%",
   },
-  colors: {
+  COLORS: {
     white: "#fff",
     black: "#000",
     ...flattenColor("coolGray", "gray"),
@@ -62,7 +63,7 @@ export const defaultConstraints = {
     ...flattenColor("purple", "purple"),
     ...flattenColor("pink", "pink"),
   } as const,
-  opacities: {
+  OPACITIES: {
     0: 0,
     5: 0.05,
     10: 0.1,
@@ -78,7 +79,7 @@ export const defaultConstraints = {
     90: 0.9,
     95: 0.95,
   },
-  borderSizes: {
+  BORDER_SIZES: {
     0: 0,
     hairline: StyleSheet.hairlineWidth,
     1: 1,
@@ -86,7 +87,7 @@ export const defaultConstraints = {
     4: 4,
     8: 8,
   },
-  borderRadii: {
+  BORDER_RADII: {
     none: 0,
     sm: 0.125 * BASE_FONT_SIZE,
     base: 0.25 * BASE_FONT_SIZE,
@@ -97,7 +98,7 @@ export const defaultConstraints = {
     "3xl": 1.5 * BASE_FONT_SIZE,
     full: 999,
   },
-  fontSizes: {
+  FONT_SIZES: {
     xs: [0.75 * BASE_FONT_SIZE, BASE_FONT_SIZE],
     sm: [0.875 * BASE_FONT_SIZE, 1.25 * BASE_FONT_SIZE],
     base: [BASE_FONT_SIZE, 1.5 * BASE_FONT_SIZE],
@@ -112,7 +113,7 @@ export const defaultConstraints = {
     "8xl": [6 * BASE_FONT_SIZE, 6 * BASE_FONT_SIZE],
     "9xl": [8 * BASE_FONT_SIZE, 8 * BASE_FONT_SIZE],
   },
-  fontWeights: {
+  FONT_WEIGHTS: {
     thin: "100",
     extralight: "200",
     light: "300",
@@ -128,7 +129,7 @@ export const defaultConstraints = {
    * android prop represents elevation.
    * ios is [shadowOffset.width, shadowOffset.height, shadowRadius, shadowOpacity]
    */
-  shadows: {
+  SHADOWS: {
     sm: { android: 1, ios: [0, 1, 1, 0.18] },
     base: { android: 2, ios: [0, 1, 1.41, 0.2] },
     md: { android: 5, ios: [0, 2, 3.84, 0.25] },
@@ -136,7 +137,7 @@ export const defaultConstraints = {
     xl: { android: 12, ios: [0, 6, 7.49, 0.37] },
     "2xl": { android: 16, ios: [0, 8, 10.32, 0.44] },
   },
-  aspectRatios: {
+  ASPECT_RATIOS: <{ [k: string]: readonly [number, number] }>{
     1: [1, 1],
     "16-9": [16, 9],
     "9-16": [9, 16],
@@ -145,10 +146,20 @@ export const defaultConstraints = {
     "1-2": [1, 2],
     "2-1": [2, 1],
   },
-} as const;
+};
 
-assertIsConstraint(defaultConstraints);
+/**
+ * Default handlers
+ */
+export const defaultSpacingHandlers = createSpacingHandlers(
+  DEFAULT_CONSTRAINTS.SPACING
+);
+export const defaultAspectRatioHandlers = createAspectRatioHandlers(
+  DEFAULT_CONSTRAINTS.ASPECT_RATIOS
+);
 
-function assertIsConstraint(
-  component: Constraints
-): asserts component is Constraints {}
+export const defaultHandlers = Object.assign(
+  {},
+  defaultSpacingHandlers,
+  defaultAspectRatioHandlers
+);

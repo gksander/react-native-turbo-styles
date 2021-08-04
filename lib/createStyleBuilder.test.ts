@@ -1,7 +1,14 @@
 import { createStyleBuilder } from "./createStyleBuilder";
 import { FlexStyle, TextStyle } from "react-native";
 import { cleanMaybeNumberString } from "./utils";
-import { defaultSpacingHandlers } from "./handlers/defaultSpacingHandlers";
+import { createSpacingHandlers } from "./handlers/createSpacingHandlers";
+import { defaultSpacingHandlers } from "./handlers/defaultHandlers";
+
+jest.mock("react-native", () => ({
+  StyleSheet: {
+    hairlineWidth: 0.5,
+  },
+}));
 
 describe("createStyleBuilder", () => {
   it("creates simple builder", () => {
@@ -29,7 +36,7 @@ describe("createStyleBuilder", () => {
 
   it("maintains referential equality", () => {
     const { builder } = createStyleBuilder({
-      handlers: defaultSpacingHandlers(),
+      handlers: defaultSpacingHandlers,
     });
 
     const s1 = builder("mx:3", "my:12");
