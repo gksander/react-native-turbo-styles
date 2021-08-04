@@ -217,29 +217,7 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
     overflow: (overflow) => ({
       overflow,
     }),
-    justify: (inp) => {
-      return {
-        justifyContent: {
-          start: "flex-start",
-          end: "flex-end",
-          center: "center",
-          between: "space-between",
-          around: "space-around",
-          evenly: "space-evenly",
-        }[inp] as FlexStyle["justifyContent"],
-      };
-    },
-    items: (inp) => {
-      return {
-        alignItems: {
-          start: "flex-start",
-          end: "flex-end",
-          center: "center",
-          baseline: "baseline",
-          stretch: "stretch",
-        }[inp] as FlexStyle["alignItems"],
-      };
-    },
+
     z: (inp) => ({ zIndex: parseInt(inp) }),
 
     // TODO: Typography
@@ -281,6 +259,29 @@ export const createStyleBuilder = <C extends Constraints>(constraints: C) => {
         "wrap-reverse": { flexWrap: "wrap-reverse" },
         nowrap: { flexWrap: "nowrap" },
       }[inp] as FlexStyle;
+    },
+    justify: (inp) => {
+      return {
+        justifyContent: {
+          start: "flex-start",
+          end: "flex-end",
+          center: "center",
+          between: "space-between",
+          around: "space-around",
+          evenly: "space-evenly",
+        }[inp] as FlexStyle["justifyContent"],
+      };
+    },
+    items: (inp) => {
+      return {
+        alignItems: {
+          start: "flex-start",
+          end: "flex-end",
+          center: "center",
+          baseline: "baseline",
+          stretch: "stretch",
+        }[inp] as FlexStyle["alignItems"],
+      };
     },
 
     shadow: (inp) => {

@@ -15,5 +15,4 @@
 
 ## Types of Handler helpers
 
-- Flex positioning
 - Typography

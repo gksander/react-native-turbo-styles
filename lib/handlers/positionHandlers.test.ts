@@ -1,11 +1,5 @@
-import {
-  DEFAULT_CONSTRAINTS,
-  defaultColorHandlers,
-  defaultHandlers,
-} from "./defaultHandlers";
+import { defaultHandlers } from "./defaultHandlers";
 import { createStyleBuilder } from "../createStyleBuilder";
-import { createColorHandlers } from "./createColorHandlers";
-import { createOpacityHandlers } from "./createOpacityHandlers";
 
 jest.mock("react-native", () => ({
   StyleSheet: {

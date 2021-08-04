@@ -188,6 +188,69 @@ export const defaultPositioningHandlers = {
   z: (zIndex: NonNullable<FlexStyle["zIndex"]>) =>
     <FlexStyle>{ zIndex: cleanMaybeNumberString(`${zIndex}`) },
 };
+export const defaultFlexHandlers = {
+  flex: (
+    inp:
+      | "1"
+      | "auto"
+      | "initial"
+      | "none"
+      | "row"
+      | "row-reverse"
+      | "col"
+      | "col-reverse"
+      | "grow"
+      | "grow-0"
+      | "shrink"
+      | "shrink-0"
+      | "wrap"
+      | "wrap-reverse"
+      | "nowrap"
+  ) => {
+    return {
+      1: { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },
+      auto: { flexGrow: 1, flexShrink: 1, flexBasis: "auto" },
+      initial: { flexGrow: 0, flexShrink: 1, flexBasis: "auto" },
+      none: { flexGrow: 0, flexShrink: 0, flexBasis: "auto" },
+      row: { flexDirection: "row" },
+      "row-reverse": { flexDirection: "row-reverse" },
+      col: { flexDirection: "column" },
+      "col-reverse": { flexDirection: "column-reverse" },
+      grow: { flexGrow: 1 },
+      "grow-0": { flexGrow: 0 },
+      shrink: { flexShrink: 1 },
+      "shrink-0": { flexShrink: 0 },
+      wrap: { flexWrap: "wrap" },
+      "wrap-reverse": { flexWrap: "wrap-reverse" },
+      nowrap: { flexWrap: "nowrap" },
+    }[inp] as FlexStyle;
+  },
+  justify: (
+    inp: "start" | "end" | "center" | "between" | "around" | "evenly"
+  ) => {
+    return <FlexStyle>{
+      justifyContent: {
+        start: "flex-start",
+        end: "flex-end",
+        center: "center",
+        between: "space-between",
+        around: "space-around",
+        evenly: "space-evenly",
+      }[inp] as FlexStyle["justifyContent"],
+    };
+  },
+  items: (inp: "start" | "end" | "center" | "baseline" | "stretch") => {
+    return <FlexStyle>{
+      alignItems: {
+        start: "flex-start",
+        end: "flex-end",
+        center: "center",
+        baseline: "baseline",
+        stretch: "stretch",
+      }[inp] as FlexStyle["alignItems"],
+    };
+  },
+};
 
 export const defaultHandlers = {
   ...defaultSpacingHandlers,
@@ -198,4 +261,5 @@ export const defaultHandlers = {
   ...defaultOpacityHandlers,
   ...defaultShadowHandlers,
   ...defaultPositioningHandlers,
+  ...defaultFlexHandlers,
 };
