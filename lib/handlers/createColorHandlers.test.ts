@@ -5,6 +5,7 @@ import {
 } from "./defaultHandlers";
 import { createStyleBuilder } from "../createStyleBuilder";
 import { TextStyle, ViewStyle } from "react-native";
+import { createColorHandlers } from "./createColorHandlers";
 
 jest.mock("react-native", () => ({
   StyleSheet: {
@@ -23,7 +24,22 @@ describe("createColorHandlers", () => {
     ["bg:red-300", sb("bg:red-300"), { backgroundColor: C["red-300"] }],
     ["bg:black", sb("bg:black"), { backgroundColor: C["black"] }],
     ["bg:[pink]", sb("bg:[pink]"), { backgroundColor: "pink" }],
-    // TODO: Rest of color handlers!
+    // border-color:
+    [
+      "border-color:red-300",
+      sb("border-color:red-300"),
+      { borderColor: C["red-300"] },
+    ],
+    [
+      "border-color:black",
+      sb("border-color:black"),
+      { borderColor: C["black"] },
+    ],
+    ["border-color:[pink]", sb("border-color:[pink]"), { borderColor: "pink" }],
+    // color:
+    ["color:red-300", sb("color:red-300"), { color: C["red-300"] }],
+    ["color:black", sb("color:black"), { color: C["black"] }],
+    ["color:[pink]", sb("color:[pink]"), { color: "pink" }],
   ];
 
   test.each(cases)(
@@ -33,14 +49,14 @@ describe("createColorHandlers", () => {
     }
   );
 
-  // it("allows custom constraints", () => {
-  //   const { builder } = createStyleBuilder({
-  //     handlers: createAspectRatioHandlers({ foo: [1, 1], bar: [3, 7] }),
-  //   });
-  //
-  //   expect(builder("aspect:foo")).toEqual({ aspectRatio: 1 });
-  //   expect(builder("aspect:bar")).toEqual({ aspectRatio: 3 / 7 });
-  //   // @ts-expect-error
-  //   expect(builder("aspect:1")).toEqual({});
-  // });
+  it("allows custom constraints", () => {
+    const { builder } = createStyleBuilder({
+      handlers: createColorHandlers({ black: "#000", pink: "pink" }),
+    });
+
+    expect(builder("bg:black")).toEqual({ backgroundColor: "#000" });
+    expect(builder("color:pink")).toEqual({ color: "pink" });
+    // @ts-expect-error
+    expect(builder("color:red-300")).toEqual({});
+  });
 });

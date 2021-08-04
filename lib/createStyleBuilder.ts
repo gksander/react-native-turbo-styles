@@ -5,7 +5,6 @@ import {
   InvertClassName,
   NonSymbol,
   ReturnStyle,
-  ReturnStyle,
   StyleHandlerSet,
 } from "types";
 
@@ -29,7 +28,10 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
       return __cachedStyles.get(key);
     }
 
-    let styles = {} as ReturnStyle<StyleHandlers, P> & {
+    let styles = {} as ReturnStyle<
+      StyleHandlers,
+      InvertClassName<StyleHandlers, Cn>
+    > & {
       "--bg-opacity"?: number;
     };
 
