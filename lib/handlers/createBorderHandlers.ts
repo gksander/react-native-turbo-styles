@@ -1,5 +1,6 @@
 import { ViewStyle } from "react-native";
 import { extractFromBrackets } from "../utils";
+import { NonSymbol } from "../types";
 
 export const createBorderHandlers = <
   Constraints extends Record<string | number, number>
@@ -11,7 +12,7 @@ export const createBorderHandlers = <
   ): val is keyof typeof constraints => Boolean(constraints?.[val]);
 
   const borderSizeHandler = (...properties: Array<keyof ViewStyle>) => (
-    inp: keyof Constraints | `[${string}]`
+    inp: NonSymbol<keyof Constraints> | `[${string}]`
   ) => {
     const val = isConstraintKey(inp)
       ? constraints[inp]

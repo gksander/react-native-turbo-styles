@@ -1,5 +1,6 @@
 import { FlexStyle } from "react-native";
 import { extractFromBrackets } from "../utils";
+import { NonSymbol } from "../types";
 
 export const createSpacingHandlers = <
   Constraints extends Record<string | number, string | number>
@@ -9,7 +10,7 @@ export const createSpacingHandlers = <
   const spacingHandler = (
     properties: (keyof FlexStyle)[],
     isNegative?: boolean
-  ) => (val: keyof typeof constraints | `[${string}]`) => {
+  ) => (val: NonSymbol<keyof typeof constraints> | `[${string}]`) => {
     const isConstraintKey = (
       val: keyof typeof constraints | `[${string}]`
     ): val is keyof typeof constraints => Boolean(constraints?.[val]);

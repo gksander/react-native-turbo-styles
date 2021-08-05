@@ -8,9 +8,6 @@ import {
   StyleHandlerSet,
 } from "types";
 
-/**
- * Style builder function (doesn't do anything, but is typed)
- */
 export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
   handlers,
 }: {

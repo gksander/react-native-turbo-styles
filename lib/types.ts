@@ -48,3 +48,5 @@ export type ReturnStyle<
     }
   >
 >;
+
+export type ConstraintOverride<T extends string> = `${T}:[${string}]`;

@@ -1,15 +1,17 @@
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 import { extractFromBrackets } from "../utils";
+import { NonSymbol } from "../types";
 
 export const createColorHandlers = <
   Constraints extends Record<string | number, string>
 >(
   constraints: Constraints
 ) => {
-  type ColorInput = keyof Constraints | `[${string}]`;
+  type ColorInput = NonSymbol<keyof Constraints> | `[${string}]`;
 
-  const isConstraintKey = (val: ColorInput): val is keyof Constraints =>
-    Boolean(constraints?.[val]);
+  const isConstraintKey = (
+    val: ColorInput
+  ): val is NonSymbol<keyof Constraints> => Boolean(constraints?.[val]);
 
   const getColorValue = (val: ColorInput): string | undefined => {
     const constrainedValue = constraints[val];

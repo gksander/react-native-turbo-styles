@@ -1,10 +1,5 @@
 import { createStyleBuilder } from "../createStyleBuilder";
-import {
-  DEFAULT_CONSTRAINTS,
-  defaultAspectRatioHandlers,
-  defaultHandlers,
-} from "./defaultHandlers";
-import { createAspectRatioHandlers } from "./createAspectRatioHandlers";
+import { DEFAULT_CONSTRAINTS, defaultHandlers } from "./defaultHandlers";
 import { createBorderHandlers } from "./createBorderHandlers";
 
 let platform = "android";

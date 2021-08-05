@@ -1,7 +1,7 @@
 export { createStyleBuilder } from "./lib/createStyleBuilder";
 export { flattenColor, twColors } from "./lib/handlers/twColors";
 export * from "./lib/handlers/defaultHandlers";
-export { Override } from "./lib/types";
+export { ConstraintOverride } from "./lib/types";
 export { createAspectRatioHandlers } from "./lib/handlers/createAspectRatioHandlers";
 export { createBorderHandlers } from "./lib/handlers/createBorderHandlers";
 export { createColorHandlers } from "./lib/handlers/createColorHandlers";
