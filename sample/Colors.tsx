@@ -1,25 +1,21 @@
 import * as React from "react";
-import { constraints, sb } from "./myTurboStyles";
+import { DEFAULT_CONSTRAINTS } from "./lib";
+import { sb } from "./myTurboStyles";
 import { ScrollView, Text, View } from "react-native";
-import { ConstraintOverride, useDarkModeStyles } from "./lib";
 
 const getColors = (key: string) => {
   const r = new RegExp(`${key}`);
-  return Object.keys(constraints.colors)
+  return Object.keys(DEFAULT_CONSTRAINTS.COLORS)
     .filter((k) => r.test(k))
-    .map((k) => [k, constraints.colors[k as keyof typeof constraints.colors]]);
+    .map((k) => [
+      k,
+      DEFAULT_CONSTRAINTS.COLORS[k as keyof typeof DEFAULT_CONSTRAINTS.COLORS],
+    ]);
 };
 
 export const Colors: React.FC = () => {
-  const dm = useDarkModeStyles(sb);
-
   return (
-    <ScrollView
-      contentContainerStyle={dm({
-        base: ["py:4", "px:10"],
-        dark: ["bg:gray-900"],
-      })}
-    >
+    <ScrollView contentContainerStyle={sb("py:4", "px:10")}>
       <ColorList color="gray" />
       <ColorList color="red" />
       <ColorList color="green" />
@@ -48,14 +44,7 @@ const ColorList: React.FC<{ color: string }> = ({ color }) => {
             {key}
           </Text>
           <View style={sb("h:2")} />
-          <View
-            style={sb(
-              "w:14",
-              "h:8",
-              "shadow:md",
-              `bg:${key}` as ConstraintOverride<"bg">
-            )}
-          />
+          <View style={sb("w:14", "h:8", "shadow:md", `bg:${key}`)} />
           <View style={sb("h:2")} />
           <Text style={sb("text-align:center")}>{color}</Text>
         </View>

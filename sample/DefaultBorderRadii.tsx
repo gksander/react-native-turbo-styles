@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Text, View } from "react-native";
-import { constraints, sb } from "./myTurboStyles";
+import { DEFAULT_CONSTRAINTS } from "./lib";
+import { sb } from "./myTurboStyles";
 
 type DefaultBorderRadiiProps = {};
 
@@ -15,7 +16,7 @@ export const DefaultBorderRadii: React.FC<DefaultBorderRadiiProps> = () => {
         "px:10"
       )}
     >
-      {Object.keys(constraints.borderRadii).map((key) => (
+      {Object.keys(DEFAULT_CONSTRAINTS.BORDER_RADII).map((key) => (
         <View key={key} style={sb("items:center")}>
           <Text style={sb("text:sm", "color:gray-600")}>rounded:{key}</Text>
           <View

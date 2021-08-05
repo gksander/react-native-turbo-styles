@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Text, View } from "react-native";
-import { constraints, sb } from "./myTurboStyles";
+import { DEFAULT_CONSTRAINTS } from "./lib";
+import { sb } from "./myTurboStyles";
 
 export const DefaultAspectRatios: React.FC = () => {
   return (
@@ -13,7 +14,7 @@ export const DefaultAspectRatios: React.FC = () => {
         "px:10"
       )}
     >
-      {Object.keys(constraints.aspectRatios).map((key) => (
+      {Object.keys(DEFAULT_CONSTRAINTS.ASPECT_RATIOS).map((key) => (
         <View key={key} style={sb("items:center")}>
           <Text style={sb("text:sm", "color:gray-600")}>aspect:{key}</Text>
           <View

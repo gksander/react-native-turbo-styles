@@ -1,13 +1,14 @@
 import * as React from "react";
 import { SafeAreaView, Text, View } from "react-native";
-import { constraints, sb } from "./myTurboStyles";
+import { DEFAULT_CONSTRAINTS } from "./lib";
+import { sb } from "./myTurboStyles";
 
 type DefaultFontSizesProps = {};
 
 export const DefaultFontSizes: React.FC<DefaultFontSizesProps> = () => {
   return (
     <SafeAreaView style={sb("flex:1")}>
-      {Object.keys(constraints.fontSizes).map((key) => (
+      {Object.keys(DEFAULT_CONSTRAINTS.FONT_SIZES).map((key) => (
         <View
           key={key}
           style={sb("px:2", "py:1", "flex:grow", "overflow:hidden")}

@@ -1,13 +1,15 @@
 import * as React from "react";
-import { createStyleBuilder, defaultConstraints } from "./lib";
-import { DefaultAspectRatios } from "./DefaultAspectRatios";
-import { DefaultBorderRadii } from "./DefaultBorderRadii";
 import { DefaultBorderSizes } from "./DefaultBorderSizes";
-
-const { builder: sb } = createStyleBuilder(defaultConstraints);
+import { DefaultBorderRadii } from "./DefaultBorderRadii";
+import { DefaultFontSizes } from "./DefaultFontSizes";
+import { DefaultFontWeights } from "./DefaultFontWeights";
+import { DefaultOpacities } from "./DefaultOpacities";
+import { DefaultAspectRatios } from "./DefaultAspectRatios";
+import { DefaultShadows } from "./DefaultShadows";
+import { Colors } from "./Colors";
 
 const App: React.FC = () => {
-  return <DefaultBorderSizes />;
+  return <Colors />;
 };
 
 export default App;

@@ -1,9 +1,5 @@
-import { createStyleBuilder, defaultConstraints, flattenColor } from "./lib";
+import { createStyleBuilder, defaultHandlers } from "./lib";
 
-export const { builder: sb, constraints } = createStyleBuilder({
-  ...defaultConstraints,
-  colors: {
-    ...defaultConstraints.colors,
-    ...flattenColor("lime", "lime"),
-  },
+export const { builder: sb } = createStyleBuilder({
+  handlers: defaultHandlers,
 });
