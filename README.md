@@ -170,6 +170,7 @@ TODO: Memoization, which avoids re-renders. Don't abuse overrides...
 
 ## TODO:
 
+- [ ] How come the build process is killing my return type?
 - [ ] letterSpacing (tracking)
 - [ ] lineHeight (leading)
 - [ ] Text shadows?
