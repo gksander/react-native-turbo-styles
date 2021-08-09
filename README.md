@@ -32,6 +32,10 @@ export const DefaultHandlersExample: React.FC = () => {
 };
 ```
 
+Static code like this hardly does this library justice. One of the core benefits of TurboStyles is the out-of-box developer experience around styling. Here's a snapshot of what styling-in-action can look like using TurboStyles (with its set of default handlers).
+
+TODO: GIF of using the library...
+
 ## Installation
 
 Install the library with:
@@ -48,9 +52,11 @@ There are no _hard_ requirements/dependencies for TurboStyles, but the library m
 
 ## Library Overview
 
-TurboStyles is built around the concept of "style handlers", which are merely functions that return style objects. The function name is used as a "classname" prefix, and the argument of function is passed as a "classname" suffix. Let's check out an example.
+TurboStyles is built around the concept of "style handlers", which are merely functions that return style objects. The function name is used as a "classname" prefix, and the argument of function is passed as a "classname" suffix. This can be illustrated with the following diagram.
 
-We can create a very basic style builder like this:
+TODO: Diagram of this...
+
+Let's check out an example with code. We can create a very basic style builder like this:
 
 ```ts
 import { ViewStyle, TextStyle } from 'react-native';
@@ -174,3 +180,24 @@ TODO: Memoization, which avoids re-renders. Don't abuse overrides...
 - [ ] letterSpacing (tracking)
 - [ ] lineHeight (leading)
 - [ ] Text shadows?
+
+## Docs Outline
+
+- What _is_ TurboStyles?
+- Basic example.
+- Library overview (just comes down to handlers).
+- Speeding things up with default handlers
+  - All in on default handlers
+  - Using a subset of handlers
+  - Customizing default handlers with your own constraints
+- Style Overrides
+- Default Handlers in Depth
+  - Spacing handlers
+    - Class names
+    - Providing your own constraints
+    - Default constraints
+  - 👆 but for rest of the handler types...
+- Performance overview
+- Examples...
+  - Providing your own "theme" or "constraints"
+  - Custom classes for something like typography...
