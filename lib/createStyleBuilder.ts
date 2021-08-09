@@ -6,7 +6,7 @@ import {
   NonSymbol,
   ReturnStyle,
   StyleHandlerSet,
-} from "types";
+} from "./types";
 
 export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
   handlers,
